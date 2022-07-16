@@ -8,4 +8,7 @@ public class hello {
             System.out.println("123");
         }
     }
+    public static String run(){
+        return "run";
+    }
 }
