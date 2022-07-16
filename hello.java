@@ -13,7 +13,7 @@ public class hello {
         return "run";
     }
 
-    public static String runb(){
+    public static String runA(){
         return "run";
     }
 }
