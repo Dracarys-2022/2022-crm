@@ -16,4 +16,8 @@ public class hello {
     public static String runA(){
         return "run";
     }
+
+    public static String runC(){
+        return "run";
+    }
 }
