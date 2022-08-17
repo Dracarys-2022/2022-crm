@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.crm.mapper.InventoryMapper">
+    <select id="sumExixt" resultType="integer">
+        SELECT SUM(exist) from inventory where pid=#{pid}
+    </select>
+    <select id="total" resultType="integer">
+        SELECT COUNT(id)  FROM inventory WHERE exist!=""
+    </select>
+    <select id="totalNull" resultType="integer">
+        SELECT COUNT(id)  FROM inventory WHERE exist=0
+    </select>
+    <select id="listVo" resultType="com.ly.crm.entity.InventoryVo">
+        SELECT i.*,p.pname,p.units FROM inventory i JOIN product p on i.pid=p.pid  WHERE i.exist!="" ORDER BY  i.createtime DESC
+    </select>
+    <select id="listVoNull" resultType="com.ly.crm.entity.InventoryVo">
+        SELECT i.*,p.pname,p.units FROM inventory i JOIN product p on i.pid=p.pid  WHERE  i.exist=0 ORDER BY  i.createtime DESC
+    </select>
+</mapper>
