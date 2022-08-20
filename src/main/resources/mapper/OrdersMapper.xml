@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<<<<<<< HEAD
 <mapper namespace="com.hsb.crm.mapper.OrdersMapper">
 
+=======
+<mapper namespace="com.ly.crm.mapper.OrdersMapper">
+    <select id="toInventory" resultType="com.ly.crm.entity.OrdersVo">
+        SELECT  o.type,o.oid,p.pname,o.numbers,op.opername,op.phone,o.createtime,o.deadline,p.units from orders o join product p on o.pid=p.pid JOIN operator op ON o.operid=op.oid WHERE o.type=1 ORDER BY o.deadline ASC
+    </select>
+    <select id="toInventoryOut" resultType="com.ly.crm.entity.OrdersVo">
+        SELECT  o.type,o.oid,p.pname,o.numbers,op.opername,op.phone,o.createtime,o.deadline,p.units from orders o join product p on o.pid=p.pid JOIN operator op ON o.operid=op.oid WHERE o.type=2 ORDER BY o.deadline ASC
+    </select>
+    <select id="toInventoryLack" resultType="com.ly.crm.entity.OrdersVo">
+        SELECT  o.type,o.oid,p.pname,o.numbers,op.opername,op.phone,o.createtime,o.deadline,p.units from orders o join product p on o.pid=p.pid JOIN operator op ON o.operid=op.oid WHERE o.type=3 ORDER BY o.deadline ASC
+    </select>
+    <select id="total" resultType="integer">
+        SELECT COUNT(orders.oid) as total FROM orders WHERE orders.type=#{type}
+    </select>
+>>>>>>> e34dc8ac5bf249abf5935a64c005769cb38266a6
 </mapper>

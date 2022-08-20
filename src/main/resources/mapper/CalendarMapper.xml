@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<<<<<<< HEAD
 <mapper namespace="com.hsb.crm.mapper.CalendarMapper">
+=======
+<mapper namespace="com.ly.crm.mapper.CalendarMapper">
+>>>>>>> e34dc8ac5bf249abf5935a64c005769cb38266a6
 
 </mapper>
