@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hsb.crm.mapper.ClientMapper">
+    <select id="selectPage" resultType="com.hsb.crm.entity.ClientVo">
+    SELECT c.*,o.oname from  client c  join operator o on o.oid=c.operid ${ew.customSqlSegment}
+    </select>
+    <select id="selectById" resultType="com.hsb.crm.entity.ClientVo">
+    SELECT c.*,o.oname from  client c  join operator o on o.oid=c.operid ${ew.customSqlSegment}
+    </select>
+</mapper>
