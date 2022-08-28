@@ -26,7 +26,23 @@
             <a-list class="tab-pane"></a-list>
           </a-tab-pane>
           <a-tab-pane tab="待办" key="3">
-            <a-list class="tab-pane"></a-list>
+            <a-list class="tab-pane">
+              <div v-if="state == '用户管理'">
+              <p style="margin-left: 5px;" :key="i" v-for="(it, i) in list">{{ it }}</p>
+            </div>
+            <div v-if="state == '客户管理'">
+              <p style="margin-left: 5px;">待确认订单</p>
+              <p style="margin-left: 20px;" :key="i" v-for="(it, i) in list">订单编号为:{{ it.oid }}</p>
+              <p style="margin-left: 5px;">库存不足订单</p>
+              <p style="margin-left: 20px;" :key="i" v-for="(it, i) in list1">订单编号为:{{ it.oid }}</p>
+            </div>
+            <div v-if="state == '库存管理'">
+              <p style="margin-left: 5px;">待发货订单</p>
+              <p style="margin-left: 20px;" :key="i" v-for="(it, i) in list">订单编号为:{{ it.oid }}</p>
+              <p style="margin-left: 5px;">未处理退货订单</p>
+              <p style="margin-left: 20px;" :key="i" v-for="(it, i) in list1">订单编号为:{{ it.oid }}</p>
+            </div>
+            </a-list>
           </a-tab-pane>
         </a-tabs>
       </a-spin>
@@ -40,12 +56,17 @@
 </template>
 
 <script>
+import { queryItem } from '@/services/operatorItem'
 export default {
   name: 'HeaderNotice',
   data () {
     return {
       loading: false,
-      show: false
+      show: false,
+      oid: "2",
+      state: "",
+      list: [],
+      list1: [],
     }
   },
   computed: {
@@ -56,11 +77,18 @@ export default {
         this.loading = false
         return
       }
-      this.loadding = true
+			if (this.show) return
+      this.loading = true
       setTimeout(() => {
-        this.loadding = false
-      }, 1000)
+        this.loading = false
+      }, 100)
+      queryItem(this.oid).then((res) => {
+        this.state = res.data.state
+        this.list = res.data.data1
+        this.list1 = res.data.data2
+      });
     }
+
   }
 }
 </script>

@@ -232,6 +232,100 @@ const options = {
             },
           ]
         },
+		{
+          path: 'client',
+          name: '客户公司管理',
+          meta: {
+            icon: 'appstore-o'
+          },
+          component: PageView,
+          children: [
+            {
+              path: '/client/clientAdd',
+              name: '客户公司添加',
+              component: () => import('@/pages/client/ClientAdd')
+            },
+            {
+              path: '/client/clientList',
+              name: '客户公司信息',
+              component: () => import('@/pages/client/ClientList'),
+             
+            },
+            {
+              path: '/client/clientDetail',
+              meta: {
+                invisible:true,
+              },
+              name: '客户公司详情',
+              component: () => import('@/pages/client/ClientDetail')
+            },
+            
+          ]
+        },
+        {
+          path: 'contact',
+          name: '客户联系人管理',
+          meta: {
+            icon: 'appstore-o'
+          },
+          component: PageView,
+          children: [
+            {
+              path: '/contact/contactAdd',
+              name: '联系人添加',
+              component: () => import('@/pages/contact/ContactAdd')
+            },
+            {
+              path: '/contact/contactList',
+              name: '联系人信息',
+              component: () => import('@/pages/contact/ContactList')
+            },
+            {
+              path: '/contact/contactDetail',
+              meta: {
+                invisible:true,
+              },
+              name: '客户联系人详情',
+              component: () => import('@/pages/contact/ContactDetail')
+            },
+          ]
+        },
+        {
+          path: 'operator',
+          name: '用户管理',
+          meta: {
+            icon: 'appstore-o'
+          },
+          component: PageView,
+          children: [
+            {
+              path: '/operator/operatorAdd',
+              name: '用户添加',
+              component: () => import('@/pages/operator/OperatorAdd')
+            },
+            {
+              path: '/operator/operatorList',
+              name: '用户信息',
+              component: () => import('@/pages/operator/OperatorList')
+            },
+            {
+              path: '/operator/operatorDetail',
+              meta: {
+                invisible:true,
+              },
+              name: '用户详情',
+              component: () => import('@/pages/operator/OperatorDetail')
+            },
+          ]
+        },
+        {
+          name: '个人中心',
+          path: '/operator/center',
+          meta: {
+            invisible:true,
+          },
+          component: () => import('@/pages/operator/OperatorCenter')
+        }
       ]
     },
   ]

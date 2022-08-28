@@ -30,7 +30,6 @@ const routerMap = {
     name: '分析页',
     component: () => import('@/pages/dashboard/analysis')
   },
-  
   result: {
     name: '结果页',
     icon: 'check-circle-o',
@@ -65,7 +64,32 @@ const routerMap = {
     path: '500',
     component: () => import('@/pages/exception/500')
   },
-  
+  components: {
+    name: '小组件',
+    icon: 'appstore-o',
+    component: view.page
+  },
+  clientAdd:{
+    name:'客户公司添加',
+    component: () => import('@/pages/client/ClientAdd')
+  },
+  clientList:{
+    name:'客户公司信息',
+    component: () => import('@/pages/client/ClientList')
+  },
+  clientDetail:{
+    name:'客户公司详情',
+    component: () => import('@/pages/client/ClientDetail')
+  },
+  contactAdd:{
+    name:'客户联系人添加',
+    component: () => import('@/pages/contact/ContactAdd')
+  },
+  contactList:{
+    name:'客户联系人信息',
+    component: () => import('@/pages/contact/ContactList')
+  },
+
 }
 export default routerMap
 

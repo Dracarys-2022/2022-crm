@@ -5,7 +5,7 @@
       <span class="name">{{user.name}}</span>
     </div>
     <a-menu :class="['avatar-menu']" slot="overlay">
-      <a-menu-item>
+      <a-menu-item @click="center">
         <a-icon type="user" />
         <span>个人中心</span>
       </a-menu-item>
@@ -32,6 +32,12 @@ export default {
     ...mapGetters('account', ['user']),
   },
   methods: {
+    center() {
+      this.$router.replace({
+        path: '/operator/center',
+        //query: { cid: e }
+      });
+    },
     logout() {
       logout()
       this.$router.push('/login')
