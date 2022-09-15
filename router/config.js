@@ -194,22 +194,90 @@ const options = {
         },
         {
           path: 'orders',
-          name: '订单模块',
+          name: '订单管理',
           meta: {
-            icon: 'profile',
+            icon: 'appstore-o'
           },
           component: PageView,
           children: [
             {
-              path: 'addorders',
-              name: '订单添加',
-              component: () => import('@/pages/orders/addOrders/AddOrders'),
+              path: 'addOrders',
+              name: '订单录入',
+              component: () => import('@/pages/orders/addOrders')
             },
             {
-              path: 'listorders',
-              name: '订单浏览',
-              component: () => import('@/pages/orders/listOrders/ListOrders'),
+              path: 'listOrders',
+              name: '订单记录',
+              component: () => import('@/pages/orders/listOrders')
             },
+            {
+              path: 'prefit',
+              name: '利润管理',
+              component: () => import('@/pages/orders/prefit')
+            }
+          ]
+        },
+        {
+          path: 'visit',
+          name: '拜访记录管理',
+          meta: {
+            icon: 'appstore-o'
+          },
+          component: PageView,
+          children: [
+            {
+              path: 'addVisit',
+              name: '拜访记录添加',
+              component: () => import('@/pages/visit/addVisit')
+            },
+            {
+              path: 'listVisit',
+              name: '查看拜访记录',
+              component: () => import('@/pages/visit/convi')
+            }
+          ]
+        },{
+          path: 'roles',
+          name: '角色管理',
+          meta: {
+            icon: 'appstore-o'
+          },
+          component: PageView,
+          children: [
+            {
+              path: 'addRole',
+              name: '角色添加',
+              component: () => import('@/pages/roles/addRole')
+            },
+            {
+              path: 'listRole',
+              name: '角色查看',
+              component: () => import('@/pages/roles/listRole')
+            }
+          ]
+        },{
+          path: 'functions',
+          name: '功能管理',
+          meta: {
+            icon: 'appstore-o'
+          },
+          component: PageView,
+          children: [
+            {
+              path: 'addFunction',
+              name: '功能添加',
+              component: () => import('@/pages/functions/addFunction')
+            },
+            {
+              path: 'listFunction',
+              name: '功能查看',
+              component: () => import('@/pages/functions/listFunction')
+            }
+            // ,{
+            //   path: 'listcheck',
+            //   name: '复选框测试',
+            //   component: () => import('@/pages/functions/listcheck')
+            // }
           ]
         },
         {
