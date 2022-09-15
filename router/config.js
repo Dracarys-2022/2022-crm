@@ -289,6 +289,11 @@ const options = {
           component: PageView,
           children: [
             {
+              path: 'addproduct',
+              name: '产品添加',
+              component: () => import('@/pages/product/addProduct'),
+            },
+            {
               path: 'listproduct',
               name: '产品浏览',
               component: () => import('@/pages/product/ListProduct'),

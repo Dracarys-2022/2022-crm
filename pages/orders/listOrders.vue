@@ -89,9 +89,25 @@
           </template>
         </template>
         <span slot="action" slot-scope="text, record">
-          <a @click="addOutcome(record.peid)">处理</a>
+          <div v-if="record.state==1">
+              <div v-if="record.type==0">
+                  <a @click="requestout(record.oid)">请求出库</a>
+              </div>
+              <div v-else-if="record.type==1">
+                  <a @click="out(record.oid)">出库</a>
+              </div>
+              <div v-else-if="record.type==3">
+                  库存不足
+              </div>
+              <div v-else-if="record.type==2">
+                  <a @click="returnstate(record.oid)">退换</a><br>
+                  <a @click="complate(record.oid)">完成订单</a>
+              </div>
+              <div v-else-if="record.type==4">
+                  已退换
+              </div>
+          </div>
           <a-divider type="vertical" />
-          <a>Delete</a>
         </span>
       </a-table>
     </a-card>
@@ -99,11 +115,9 @@
 </template>
 
 <script>
-import HeadInfo from "../../../components/tool/HeadInfo.vue";
-import { list } from "@/services/orders";
-import { message } from "ant-design-vue";
+import { listorders,requestout,out,returnstate,complate } from "@/services/orders";
+// import { message } from "ant-design-vue";
 export default {
-  components: { HeadInfo },
   data() {
     return {
       searchText: "",
@@ -139,8 +153,8 @@ export default {
         },
         {
           title: "产品",
-          dataIndex: "pid",
-          key: "pid",
+          dataIndex: "pname",
+          key: "pname",
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon",
@@ -182,8 +196,8 @@ export default {
         },
         {
           title: "联系人",
-          dataIndex: "coid",
-          key: "coid",
+          dataIndex: "coname",
+          key: "coname",
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon",
@@ -201,8 +215,8 @@ export default {
         },
         {
           title: "客户",
-          dataIndex: "cid",
-          key: "cid",
+          dataIndex: "cname",
+          key: "cname",
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon",
@@ -286,13 +300,13 @@ export default {
         },
         {
           title: "订单状态",
-          dataIndex: "type",
-          key: "type",
+          dataIndex: "tyname",
+          key: "tyname",
         },
         {
           title: "订单类型",
-          dataIndex: "state",
-          key: "state",
+          dataIndex: "staname",
+          key: "staname",
         },
         {
           title: "操作",
@@ -306,12 +320,12 @@ export default {
     handleTableChange(pagination) {
       this.pagination.current = pagination.current;
       this.pagination.pageSize = pagination.pageSize;
-      list(this.pagination.current, this.pagination.pageSize).then((res) =>
+      listorders(this.pagination.current, this.pagination.pageSize).then((res) =>
         this.querylist(res)
       );
     },
     querylist: function (res) {
-      message.success(res.data.msg);
+      // message.success(res.data.msg);
       this.list = res.data.data.records;
       this.pagination.total = res.data.total;
     },
@@ -320,14 +334,38 @@ export default {
       this.searchText = selectedKeys[0];
       this.searchedColumn = dataIndex;
     },
-
     handleReset(clearFilters) {
       clearFilters();
       this.searchText = "";
     },
+    requestout(oid){
+      requestout(oid,1,5).then(res=>{
+        alert("已请求出库！");
+        this.list = res.data.data.records;
+        this.pagination.total = res.data.total;
+      })
+    },out(oid){
+      out(oid,1,5).then(res=>{
+        alert("已出库！");
+        this.list = res.data.data.records;
+        this.pagination.total = res.data.total;
+      })
+    },returnstate(oid){
+      returnstate(oid,1,5).then(res=>{
+        alert("已退换！");
+        this.list = res.data.data.records;
+        this.pagination.total = res.data.total;
+      })
+    },complate(oid){
+      complate(oid,1,5).then(res=>{
+        alert("已完成订单");
+        this.list = res.data.data.records;
+        this.pagination.total = res.data.total;
+      })
+    }
   },
   created() {
-    list(this.pagination.current, this.pagination.pageSize).then((res) =>
+    listorders(this.pagination.current, this.pagination.pageSize).then((res) =>
       this.querylist(res)
     );
   },

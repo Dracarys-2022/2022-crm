@@ -9,8 +9,8 @@
         layout="horizontal"
         :rules="rules"
       >
-        <a-form-model-item label="订单类型" class="a" prop="type">
-          <a-radio-group v-model="source.type">
+        <a-form-model-item label="订单类型" class="a" prop="state">
+          <a-radio-group v-model="source.state">
             <a-radio value="1" @click="choosepid()">产品</a-radio>
             <a-radio value="2" @click="choosesid()">服务</a-radio>
           </a-radio-group>
@@ -38,15 +38,22 @@
         </a-form-model-item>
         <a-form-model-item class="a" label="客户" prop="cid">
           <a-select v-model="source.cid" placeholder="选择客户">
-            <a-select-option v-for="(it, i) in c" :key="i" :value="it.pid">{{
-              it.pname
+            <a-select-option 
+            v-for="(it, i) in c" 
+            :key="i" 
+            :value="it.cid">{{
+              it.cname
             }}</a-select-option>
           </a-select>
         </a-form-model-item>
         <a-form-model-item class="a" label="客户联系人" prop="coid">
           <a-select v-model="source.coid" placeholder="选择客户联系人">
-            <a-select-option v-for="(it, i) in co" :key="i" :value="it.pid">{{
-              it.pname
+            <a-select-option
+             v-for="(it, i) in co" 
+             :key="i" 
+             :value="it.coid">
+             {{
+              it.coname
             }}</a-select-option>
           </a-select>
         </a-form-model-item>
@@ -70,7 +77,11 @@
           label="截止时间"
           prop="deadline"
         >
-          <a-date-picker v-model="source.deadline" value-format="YYYY-MM-DD" />
+          <a-date-picker v-model="source.deadline" 
+          show-time
+            format="YYYY-MM-DD HH:mm"
+            value-format="YYYY-MM-DD HH:mm"
+          />
         </a-form-model-item>
 
         <a-form-item :wrapper-col="{ offset: 8, span: 16 }" class="btn">
@@ -80,7 +91,7 @@
             @click="Insubmit('source')"
             >添加订单</a-button
           >
-          <a-button style="margin-left: 20px" @click="resetForm('source')"
+          <a-button @click="resetForm('source')"
             >重置</a-button
           >
         </a-form-item>
@@ -90,7 +101,7 @@
 </template>
 
 <script>
-import { add, getproduct } from "@/services/orders";
+import { addorders, getproduct,allpro } from "@/services/orders";
 import { message } from "ant-design-vue";
 export default {
   data() {
@@ -120,7 +131,7 @@ export default {
         style: { width: "300px", position: "relative", float: "left" },
       },
       rules: {
-        type: {
+        state: {
           required: true,
           message: "订单类型不能为空",
           trigger: "change",
@@ -166,15 +177,23 @@ export default {
   methods: {
     choosepid() {
       this.flag = true;
+      this.source.state=1;
+      allpro(1).then(res=>{
+          this.prouct = res.data.product;
+      })
     },
     choosesid() {
       this.flag = false;
+      this.source.state=2;
+      allpro(2).then(res=>{
+        this.prouct = res.data.product;
+      })
     },
     Insubmit(source) {
       this.$refs[source].validate((valid) => {
         if (valid) {
           // 如果校验通过，请求接口，允许提交表单
-          add(this.source).then(this.afterSubmit);
+          addorders(this.source).then(alert("添加成功！"));
           this.$refs[source].resetFields();
         } else {
           //校验不通过
@@ -183,11 +202,11 @@ export default {
         }
       });
     },
-    afterSubmit: function (res) {
-      if (res.data.code == "0001") {
-        message.success(res.data.msg);
-      }
-    },
+    // afterSubmit: function (res) {
+    //   if (res.data.code == "0001") {
+    //     message.success(res.data.msg);
+    //   }
+    // },
     resetForm(source) {
       this.$refs[source].resetFields();
     },
@@ -195,9 +214,12 @@ export default {
   watch: {},
   created() {
     getproduct().then((res) => {
-      this.co = res.data.data;
-      this.c = res.data.data;
-      this.prouct = res.data.data;
+      // alert(res.data.c)
+      // alert(res.data.product)
+      // alert(res.data.co)
+      this.co = res.data.co;
+      this.c = res.data.c;
+      this.prouct = res.data.product;
     });
   },
 };
@@ -208,6 +230,6 @@ export default {
   left: 25%;
 }
 .btn{
-  left: 75px;
+  left: 400px;
 }
 </style>

@@ -103,4 +103,6 @@ module.exports = {
    PREFIT1:`${BASE_URL}/orders/prefit1`,
    //获取对应服务/产品
    ALLPRO:`${BASE_URL}/orders/allpro`,
+   //添加服务
+  ADDPRO:`${BASE_URL}/product/add`,
 }

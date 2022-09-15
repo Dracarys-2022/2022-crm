@@ -1,5 +1,5 @@
 import { request, METHOD } from '@/utils/request'
-import { LISTPRO, LISTOUt, CHANGESTATUS, QUERYBYPID,UPDATEPRO } from '@/services/api'
+import { ADDPRO,LISTPRO, LISTOUt, CHANGESTATUS, QUERYBYPID,UPDATEPRO } from '@/services/api'
 export async function listPro(current, size) {
     return request(LISTPRO, METHOD.GET, {
         current: current,
@@ -36,4 +36,18 @@ export async function update(source) {
         type: source.type,
     })
 }
-export default { listPro, listOut, changeStatus, queryByPid,update }
+//添加产品和服务
+async function addproduct(source) {
+    return request(ADDPRO, METHOD.POST, {
+          status: source.status,
+          pname: source.pname,
+          price: source.price,
+          marketprice: source.marketprice,
+          category: source.category,
+          units: source.units,
+          specification: source.specification,
+          shelflife: source.shelflife,
+          type: source.type,
+    })
+  }
+export default {addproduct, listPro, listOut, changeStatus, queryByPid,update }
