@@ -37,7 +37,7 @@ export async function update(source) {
     })
 }
 //添加产品和服务
-async function addproduct(source) {
+export async function addproduct(source) {
     return request(ADDPRO, METHOD.POST, {
           status: source.status,
           pname: source.pname,

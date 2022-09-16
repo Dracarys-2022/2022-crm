@@ -10,7 +10,7 @@
         :rules="rules"
       >
         <a-form-model-item label="选择类型" class="a" prop="type">
-          <a-radio-group v-model="source.state">
+          <a-radio-group v-model="source.type">
             <a-radio value="1" @click="choosepid()">产品</a-radio>
             <a-radio value="2" @click="choosesid()">服务</a-radio>
           </a-radio-group>
@@ -38,7 +38,7 @@
           label="产品单位"
           prop="units"
         >
-          <a-input v-model="source.category" prop="units" />
+          <a-input v-model="source.units" prop="units" />
         </a-form-model-item>
         <a-form-model-item
           v-if="flag"
@@ -46,7 +46,7 @@
           label="产品规格"
           prop="specification"
         >
-          <a-input v-model="source.category" prop="specification" />
+          <a-input v-model="source.specification" prop="specification" />
         </a-form-model-item>
         <a-form-model-item
           v-if="flag"
@@ -54,14 +54,14 @@
           label="产品保质期"
           prop="shelflife"
         >
-          <a-input v-model="source.category" prop="shelflife" />
+          <a-input v-model="source.shelflife" prop="shelflife" />
         </a-form-model-item>
         <a-form-model-item
           class="a"
           label="市场价"
           prop="marketprice"
         >
-          <a-input v-model="source.category" prop="marketprice" />
+          <a-input v-model="source.marketprice" prop="marketprice" />
         </a-form-model-item>
         <a-form-item :wrapper-col="{ offset: 8, span: 16 }" class="btn">
           <a-button
