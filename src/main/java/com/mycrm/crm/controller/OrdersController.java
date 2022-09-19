@@ -337,4 +337,13 @@ public class OrdersController {
         map.put("product", products);
         return map;
     }
+    @RequestMapping("selectcid")
+    public Object selectcid1(@RequestParam int cid){
+        Map<String,Object> map=new HashMap<String,Object>();
+        QueryWrapper<Contact> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("cid",cid);
+        List<Contact> list=contactService.list(queryWrapper);
+        map.put("data",list);
+        return map;
+    }
 }
