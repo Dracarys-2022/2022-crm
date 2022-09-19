@@ -16,5 +16,5 @@
     <select id="listPage" resultType="com.mycrm.crm.entity.OrdersVo">
     SELECT o.type,o.createtime,o.deadline,o.numbers,o.oid,o.operid,o.price,o.state,o.pid,o.cid,o.coid,p.pname,c.coname,cl.cname from orders o JOIN product p on o.pid=p.pid JOIN contact c
 on c.coid=o.coid join client cl on o.cid=cl.cid
-</select>
+    </select>
 </mapper>

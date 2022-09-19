@@ -10,4 +10,5 @@
     <select id="queryList" resultType="com.mycrm.crm.entity.OperatorVo">
     SELECT o.*,r.roname from operator o join roles r on o.roid=r.roid ${ew.customSqlSegment}
     </select>
+
 </mapper>

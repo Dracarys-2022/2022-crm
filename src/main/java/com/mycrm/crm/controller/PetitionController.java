@@ -26,8 +26,9 @@ import java.util.Map;
 public class PetitionController {
     @Autowired
     PetitionService petitionService;
-@Autowired
+    @Autowired
     OperatorService operatorService;
+
     @RequestMapping("add")
     public Object add(@RequestBody Petition petition) {
         Map Rsmap = new HashMap();
@@ -47,7 +48,7 @@ public class PetitionController {
         int total = petitionService.total();
         Page<PetitionVo> page = new Page<>(current, size);
         IPage<PetitionVo> list = petitionService.listPetition(page);
-        int num=petitionService.num();
+        int num = petitionService.num();
         Rsmap.put("overtotal", total);
         Rsmap.put("num", num);
         Rsmap.put("total", total);
@@ -56,14 +57,15 @@ public class PetitionController {
         Rsmap.put("msg", "查询成功");
         return Rsmap;
     }
+
     @RequestMapping("listNull")
     public Object listNull(@RequestParam int current, @RequestParam int size) {
         Map Rsmap = new HashMap();
         int total = petitionService.totalNull();
         Page<PetitionVo> page = new Page<>(current, size);
         IPage<PetitionVo> list = petitionService.listPetitionNull(page);
-        int num=petitionService.num();
-        int overtotal=petitionService.total();
+        int num = petitionService.num();
+        int overtotal = petitionService.total();
         Rsmap.put("overtotal", overtotal);
         Rsmap.put("num", num);
         Rsmap.put("total", total);
@@ -72,6 +74,7 @@ public class PetitionController {
         Rsmap.put("msg", "查询成功");
         return Rsmap;
     }
+
     @RequestMapping("addoutcome")
     public Object addoutcome(@RequestBody Map<String, String> map) throws JSONException {
         String peid = map.get("peid");
@@ -87,15 +90,37 @@ public class PetitionController {
         Rsmap.put("msg", "录入结果成功");
         return Rsmap;
     }
+
     @RequestMapping("getOper")
     public Object getOper() {
         Map Rsmap = new HashMap();
         QueryWrapper wrapper = new QueryWrapper();
-        wrapper.select("oid","opername");
-        List<Operator> list=operatorService.list(wrapper);
+        wrapper.select("oid", "oname");
+        List<Operator> list = operatorService.list(wrapper);
         Rsmap.put("data", list);
         Rsmap.put("code", 0001);// 0001添加成功
         return Rsmap;
 
+    }
+
+    @RequestMapping("delete")
+    public Object delete(@RequestParam int peid,@RequestParam int current, @RequestParam int size) {
+        Map Rsmap = new HashMap();
+        QueryWrapper<Petition> wrapper = new QueryWrapper<Petition>();
+        wrapper.eq("peid", peid);
+        if (petitionService.remove(wrapper))
+            Rsmap.put("code", 0001);
+        else
+            Rsmap.put("code", 0002);
+        int total = petitionService.totalNull();
+        Page<PetitionVo> page = new Page<>(current, size);
+        IPage<PetitionVo> list = petitionService.listPetitionNull(page);
+        int num = petitionService.num();
+        int overtotal = petitionService.total();
+        Rsmap.put("overtotal", overtotal);
+        Rsmap.put("num", num);
+        Rsmap.put("total", total);
+        Rsmap.put("data", list);
+        return Rsmap;
     }
 }

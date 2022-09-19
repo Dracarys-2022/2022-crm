@@ -13,4 +13,5 @@ public interface InventoryService extends IService<Inventory> {
     Integer totalNull();
     IPage<InventoryVo> listVo(Page<InventoryVo> page);
     IPage<InventoryVo> listVoNull(Page<InventoryVo> page);
+    InventoryVo queryById(String id);
 }

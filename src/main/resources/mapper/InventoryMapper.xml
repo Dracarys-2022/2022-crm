@@ -16,4 +16,7 @@
     <select id="listVoNull" resultType="com.mycrm.crm.entity.InventoryVo">
         SELECT i.*,p.pname,p.units FROM inventory i JOIN product p on i.pid=p.pid  WHERE  i.exist=0 ORDER BY  i.createtime DESC
     </select>
+    <select id="queryById" resultType="com.mycrm.crm.entity.InventoryVo">
+        SELECT i.*,p.pname FROM inventory i JOIN product p ON i.pid=p.pid WHERE i.id=#{id}
+    </select>
 </mapper>
