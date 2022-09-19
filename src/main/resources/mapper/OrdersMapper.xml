@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycrm.crm.mapper.OrdersMapper">
+    <select id="toInventory" resultType="com.mycrm.crm.entity.OrdersVo">
+        SELECT  o.type,o.oid,p.pname,o.numbers,op.opername,op.phone,o.createtime,o.deadline,p.units from orders o join product p on o.pid=p.pid JOIN operator op ON o.operid=op.oid WHERE o.type=1 ORDER BY o.deadline ASC
+    </select>
+    <select id="toInventoryOut" resultType="com.mycrm.crm.entity.OrdersVo">
+        SELECT  o.type,o.oid,p.pname,o.numbers,op.opername,op.phone,o.createtime,o.deadline,p.units from orders o join product p on o.pid=p.pid JOIN operator op ON o.operid=op.oid WHERE o.type=2 ORDER BY o.deadline ASC
+    </select>
+    <select id="toInventoryLack" resultType="com.mycrm.crm.entity.OrdersVo">
+        SELECT  o.type,o.oid,p.pname,o.numbers,op.opername,op.phone,o.createtime,o.deadline,p.units from orders o join product p on o.pid=p.pid JOIN operator op ON o.operid=op.oid WHERE o.type=3 ORDER BY o.deadline ASC
+    </select>
+    <select id="total" resultType="integer">
+        SELECT COUNT(orders.oid) as total FROM orders WHERE orders.type=#{type}
+    </select>
+    <select id="listPage" resultType="com.mycrm.crm.entity.OrdersVo">
+    SELECT o.type,o.createtime,o.deadline,o.numbers,o.oid,o.operid,o.price,o.state,o.pid,o.cid,o.coid,p.pname,c.coname,cl.cname from orders o JOIN product p on o.pid=p.pid JOIN contact c
+on c.coid=o.coid join client cl on o.cid=cl.cid
+</select>
+</mapper>
