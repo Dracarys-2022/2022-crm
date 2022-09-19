@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @RestController
@@ -204,8 +206,9 @@ public class OrdersController {
     }
 
     @RequestMapping("/return")
-    public Object returnst(@RequestParam String oid, @RequestParam String current, @RequestParam String size) {
+    public Object returnst(@RequestParam String oid, @RequestParam String current, @RequestParam String size,@RequestBody Map<Object, Object> Datemap) {
         System.out.println("kaishicha");
+        Map<String, Object> map = new HashMap<String, Object>();
         QueryWrapper<Orders> wrapper = new QueryWrapper<Orders>();
         wrapper.eq("oid", oid);
         Orders orders = ordersService.getOne(wrapper);
@@ -224,12 +227,18 @@ public class OrdersController {
         } else {
             inventory.setLocation("C");
         }
+        inventory.setProducetime((Date) Datemap.get("producetime"));
+        inventory.setEndtime((Date) Datemap.get("endtime"));
+        LocalDateTime createtime = LocalDateTime.now();
+        inventory.setCreatetime(createtime);
+        if (inventoryService.save(inventory))
+            map.put("msg","添加成功");
+        else
+            map.put("msg","添加");
         //等索哥做完，继续完成
         UpdateWrapper<Orders> updateWrapper = new UpdateWrapper<>();
-
         updateWrapper.set("type", 4).eq("oid", oid);
         ordersService.update(updateWrapper);
-        Map<String, Object> map = new HashMap<String, Object>();
         Page<OrdersVo> page = new Page<>(Integer.parseInt(current), Integer.parseInt(size));
         IPage<OrdersVo> list = ordersService.listPage(page);
         for (int i = 0; i < list.getRecords().size(); i++) {
