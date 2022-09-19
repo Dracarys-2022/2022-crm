@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -206,40 +207,45 @@ public class OrdersController {
     }
 
     @RequestMapping("/return")
-    public Object returnst(@RequestParam String oid, @RequestParam String current, @RequestParam String size,@RequestBody Map<Object, Object> Datemap) {
+    public Object returnst(@RequestBody Map<Object, String> Datemap) throws ParseException {
         System.out.println("kaishicha");
         Map<String, Object> map = new HashMap<String, Object>();
         QueryWrapper<Orders> wrapper = new QueryWrapper<Orders>();
-        wrapper.eq("oid", oid);
+        wrapper.eq("oid", Datemap.get("oid"));
         Orders orders = ordersService.getOne(wrapper);
         Inventory inventory = new Inventory();
-        inventory.setId(oid);
+        inventory.setId((String) Datemap.get("oid"));
+        int productid = orders.getPid();
         QueryWrapper<Product> wrapper1 = new QueryWrapper<Product>();
-        wrapper.eq("pid", orders.getPid());
+        wrapper1.eq("pid", orders.getPid());
         Product product = productService.getOne(wrapper1);
         inventory.setPrice(product.getPrice());
         inventory.setPid(orders.getPid());
         inventory.setNumbers(orders.getNumbers());
         inventory.setExist(orders.getNumbers());
         inventory.setType(1);
-        if (inventory.getState() == 0) {
+        System.out.println(Datemap.get("productstatue"));
+        int state = Integer.parseInt(Datemap.get("productstatue"));
+        inventory.setState(state);
+        if (state == 0) {
             inventory.setLocation("A");
         } else {
             inventory.setLocation("C");
         }
-        inventory.setProducetime((Date) Datemap.get("producetime"));
-        inventory.setEndtime((Date) Datemap.get("endtime"));
+        System.out.println(new SimpleDateFormat("yyyy-MM-dd").parse(Datemap.get("procreatetime")));
+        inventory.setProducetime(new SimpleDateFormat("yyyy-MM-dd").parse(Datemap.get("procreatetime")));
+        inventory.setEndtime(new SimpleDateFormat("yyyy-MM-dd").parse(Datemap.get("prodeadline")));
         LocalDateTime createtime = LocalDateTime.now();
         inventory.setCreatetime(createtime);
         if (inventoryService.save(inventory))
-            map.put("msg","添加成功");
+            map.put("msg", "添加成功");
         else
-            map.put("msg","添加");
+            map.put("msg", "添加");
         //等索哥做完，继续完成
         UpdateWrapper<Orders> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.set("type", 4).eq("oid", oid);
+        updateWrapper.set("type", 4).eq("oid", Datemap.get("oid"));
         ordersService.update(updateWrapper);
-        Page<OrdersVo> page = new Page<>(Integer.parseInt(current), Integer.parseInt(size));
+        Page<OrdersVo> page = new Page<>(Integer.parseInt((String) Datemap.get("current")), Integer.parseInt((String) Datemap.get("size")));
         IPage<OrdersVo> list = ordersService.listPage(page);
         for (int i = 0; i < list.getRecords().size(); i++) {
             if (list.getRecords().get(i).getState() == 1) {
@@ -346,13 +352,14 @@ public class OrdersController {
         map.put("product", products);
         return map;
     }
+
     @RequestMapping("selectcid")
-    public Object selectcid1(@RequestParam int cid){
-        Map<String,Object> map=new HashMap<String,Object>();
-        QueryWrapper<Contact> queryWrapper=new QueryWrapper<>();
-        queryWrapper.eq("cid",cid);
-        List<Contact> list=contactService.list(queryWrapper);
-        map.put("data",list);
+    public Object selectcid1(@RequestParam int cid) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        QueryWrapper<Contact> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("cid", cid);
+        List<Contact> list = contactService.list(queryWrapper);
+        map.put("data", list);
         return map;
     }
 }

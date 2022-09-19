@@ -9,7 +9,6 @@ import com.mycrm.crm.entity.Petition;
 import com.mycrm.crm.entity.PetitionVo;
 import com.mycrm.crm.service.OperatorService;
 import com.mycrm.crm.service.PetitionService;
-import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,7 +75,7 @@ public class PetitionController {
     }
 
     @RequestMapping("addoutcome")
-    public Object addoutcome(@RequestBody Map<String, String> map) throws JSONException {
+    public Object addoutcome(@RequestBody Map<String, String> map)  {
         String peid = map.get("peid");
         String outcome = map.get("outcome");
         System.out.println(peid + outcome);
