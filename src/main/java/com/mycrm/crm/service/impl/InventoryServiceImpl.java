@@ -38,4 +38,9 @@ public class InventoryServiceImpl extends ServiceImpl<InventoryMapper, Inventory
     public IPage<InventoryVo> listVoNull(Page<InventoryVo> page) {
         return mapper.listVoNull(page);
     }
+
+    @Override
+    public InventoryVo queryById(String id) {
+        return mapper.queryById(id);
+    }
 }

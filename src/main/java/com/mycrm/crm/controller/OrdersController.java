@@ -7,11 +7,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mycrm.crm.entity.Orders;
 import com.mycrm.crm.entity.OrdersVo;
-import com.mycrm.crm.service.ClientService;
-import com.mycrm.crm.service.ContactService;
-import com.mycrm.crm.service.OrdersService;
-import com.mycrm.crm.service.ProductService;
+import com.mycrm.crm.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,6 +31,8 @@ public class OrdersController {
     ClientService clientService;
     @Autowired
     ContactService contactService;
+    @Autowired
+    InventoryService inventoryService;
 
     @RequestMapping("toInventory")
     public Object toInventory(@RequestParam int current, @RequestParam int size) {
@@ -72,42 +72,8 @@ public class OrdersController {
         Rsmap.put("total", total);
         return Rsmap;
     }
-    // @RequestMapping("add")
-    // public Object add(@RequestBody Orders orders) {
-    //     Map Rsmap = new HashMap();
-    //     Date date = new Date();
-    //     DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-    //     String dateStr = dateFormat.format(date);
-    //     Random random = new Random();
-    //     StringBuilder rs = new StringBuilder();
-    //     for (int i = 0; i < 3; i++) {
-    //         rs.append(random.nextInt(10));
-    //     }
-    //     String oid = (dateStr + rs);
-    //     orders.setOid(oid);
-    //     orders.setType(0);
-    //     if (ordersService.save(orders)) {
-    //         Rsmap.put("msg", "添加成功");
-    //         Rsmap.put("code", 0001);// 0001添加成功
-    //     } else {
-    //         Rsmap.put("msg", "添加失败");
-    //         Rsmap.put("code", 0002);// 0001添加成功
-    //     }
-    //     return Rsmap;
-    // }
 
-    // @RequestMapping("list")
-    // public Object list(@RequestParam int current, @RequestParam int size) {
-    //     Map Rsmap = new HashMap();
-    //     Page<Orders> page = new Page<>(current, size);
-    //     IPage<Orders> list=ordersService.page(page);
-    //     int total = ordersService.total(1);
-    //     Rsmap.put("code", 0001);// 0001添加成功
-    //     Rsmap.put("data", list);
-    //     Rsmap.put("msg", "查询成功");
-    //     Rsmap.put("total", total);
-    //     return Rsmap;
-    // }
+
     @RequestMapping("/add")
     public Object add(@RequestBody Orders orders) {
         System.out.println(orders);
@@ -240,7 +206,27 @@ public class OrdersController {
     @RequestMapping("/return")
     public Object returnst(@RequestParam String oid, @RequestParam String current, @RequestParam String size) {
         System.out.println("kaishicha");
+        QueryWrapper<Orders> wrapper = new QueryWrapper<Orders>();
+        wrapper.eq("oid", oid);
+        Orders orders = ordersService.getOne(wrapper);
+        Inventory inventory = new Inventory();
+        inventory.setId(oid);
+        QueryWrapper<Product> wrapper1 = new QueryWrapper<Product>();
+        wrapper.eq("pid", orders.getPid());
+        Product product = productService.getOne(wrapper1);
+        inventory.setPrice(product.getPrice());
+        inventory.setPid(orders.getPid());
+        inventory.setNumbers(orders.getNumbers());
+        inventory.setExist(orders.getNumbers());
+        inventory.setType(1);
+        if (inventory.getState() == 0) {
+            inventory.setLocation("A");
+        } else {
+            inventory.setLocation("C");
+        }
+        //等索哥做完，继续完成
         UpdateWrapper<Orders> updateWrapper = new UpdateWrapper<>();
+
         updateWrapper.set("type", 4).eq("oid", oid);
         ordersService.update(updateWrapper);
         Map<String, Object> map = new HashMap<String, Object>();
@@ -318,11 +304,6 @@ public class OrdersController {
             Product product = productService.getById(a);
             int aaa = list.get(i).getNumbers();
             int aa = list.get(i).getPrice().intValue() - (aaa * product.getPrice().intValue());
-//            BigDecimal number = new BigDecimal(0);
-//            int value=aaa;
-//            number=BigDecimal.valueOf((int)value);
-//            BigDecimal aa1= list.get(i).getPrice().subtract(number.multiply(product.getPrice()));
-//            aa.add(aa1);
             aa1 = aa1 + aa;
         }
         Map<String, Object> map = new HashMap<String, Object>();
@@ -340,8 +321,6 @@ public class OrdersController {
             int a = list1.get(j).getPid();
             Product product = productService.getById(a);
             int aa = list1.get(j).getPrice().intValue() - (product.getPrice().intValue());
-//            list.get(i).getPrice().subtract(product.getPrice());
-//            bb.add(list1.get(j).getPrice().subtract(product.getPrice()));
             bb = bb + aa;
         }
         Map<String, Object> map = new HashMap<String, Object>();

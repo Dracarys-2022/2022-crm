@@ -38,7 +38,6 @@ public class Product implements Serializable {
      * 分类名
      */
     private String category;
-
     /**
      * 成本价
      */

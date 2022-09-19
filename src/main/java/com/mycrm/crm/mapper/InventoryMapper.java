@@ -14,4 +14,6 @@ public interface InventoryMapper extends BaseMapper<Inventory> {
     Integer totalNull();
     IPage<InventoryVo> listVo(Page<InventoryVo> page);
     IPage<InventoryVo> listVoNull(Page<InventoryVo> page);
+    InventoryVo queryById(String id);
+
 }

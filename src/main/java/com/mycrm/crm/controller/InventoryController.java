@@ -158,7 +158,7 @@ public class InventoryController {
     public Object queryById(@RequestBody Map<String, String> map) {
         Map Rsmap = new HashMap();
         String id = map.get("id");
-        Inventory inventory = inventoryService.getById(id);
+        Inventory inventory = inventoryService.queryById(id);
         Rsmap.put("data", inventory);
         return Rsmap;
     }
