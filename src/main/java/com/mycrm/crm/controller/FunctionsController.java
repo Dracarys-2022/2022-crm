@@ -6,7 +6,10 @@ import com.mycrm.crm.entity.Functions;
 import com.mycrm.crm.entity.Roles;
 import com.mycrm.crm.service.FunctionsService;
 import com.mycrm.crm.service.RolesService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,6 +27,7 @@ import java.util.Map;
  * @author ly
  * @since 2022-07-17
  */
+@Api(tags = "功能管理") //  tags：你可以当作是这个组的名字。
 @RestController
 @RequestMapping("/functions")
 public class FunctionsController {
@@ -31,19 +35,20 @@ public class FunctionsController {
     FunctionsService functionsService;
     @Autowired
     RolesService rolesService;
-    @RequestMapping("/add")
+    @ApiOperation("功能的添加")
+    @GetMapping("/add")
     public Object add(@RequestBody Functions functions){
         System.out.println(functions);
         functionsService.save(functions);
         return 2;
     }
-    @RequestMapping("/add1")
+    @GetMapping("/add1")
     public Object add1(@RequestBody Functions functions){
         System.out.println(functions.getFatherid());
         functionsService.save(functions);
         return 2;
     }
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public Object list(){
         System.out.println("查询数据");
 //        System.out.println(rolesService.list());
@@ -54,7 +59,7 @@ public class FunctionsController {
         System.out.println(map.get("two"));
         return map.get("one");
     }
-    @RequestMapping("/listFunction")
+    @GetMapping("/listFunction")
     public Object listFunction(){
         System.out.println("查询数据");
         Map<String,Object> map=new HashMap<String,Object>();
@@ -66,7 +71,7 @@ public class FunctionsController {
         System.out.println(map.get("two"));
         return map.get("one");
     }
-    @RequestMapping("/listFunction1")
+    @GetMapping("/listFunction1")
 //    public Object listFunction1(@RequestParam("fid") int fid){
         public Object listFunction1(@RequestBody Functions functions){
         System.out.println("查询数据");
@@ -79,21 +84,21 @@ public class FunctionsController {
         System.out.println(map.get("two"));
         return map.get("one");
     }
-    @RequestMapping("/delete")
+    @GetMapping("/delete")
     public Object delete(@RequestBody Functions functions){
         System.out.println("删除数据");
         System.out.println(functions.getFid());
         functionsService.removeById(functions.getFid());
         return functionsService.list();
     }
-    @RequestMapping("/update")
+    @GetMapping("/update")
     public Object update(@RequestBody Functions functions){
         System.out.println("查看某个数据");
         System.out.println(functions.getFid());
         System.out.println(functionsService.getById(functions.getFid()));
         return functionsService.getById(functions.getFid());
     }
-    @RequestMapping("/updateone")
+    @GetMapping("/updateone")
     public Object updateone(@RequestBody Functions functions){
         System.out.println("修改数据");
         System.out.println(functions.getFid()+','+functions.getFname());
@@ -102,7 +107,7 @@ public class FunctionsController {
         functionsService.update(functions,queryWrapper);
         return 0;
     }
-    @RequestMapping("/beSureFunctions")
+    @GetMapping("/beSureFunctions")
     public Object beSureFunctions(@RequestBody Roles roles){
         System.out.println("修改数据");
         System.out.println(roles.getRoid()+','+roles.getPermissions());
