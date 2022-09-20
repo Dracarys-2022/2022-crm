@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
-@MapperScan("com.mycrm.crm.mapper")
+//@MapperScan("com.mycrm.crm.mapper")
 @EnableWebMvc
 public class CrmApplication {
 
