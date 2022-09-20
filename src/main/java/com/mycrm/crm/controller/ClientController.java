@@ -9,6 +9,8 @@ import com.mycrm.crm.service.ClientService;
 import com.mycrm.crm.service.ContactService;
 import com.mycrm.crm.util.FromDateUtil;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,12 +26,14 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/client")
+@Api(tags = "客户公司模块控制器")
 public class ClientController {
     @Autowired
     ClientService clientService;
     @Autowired
     ContactService contactService;
-    @RequestMapping("/add")
+    @PostMapping("/add")
+    @ApiOperation(value = "添加客户公司")
     public ResponseData addClient(@RequestBody Client client){
         QueryWrapper<Client> queryWrapper = new QueryWrapper<>();
        if(clientService.getOne(queryWrapper.eq("cname", client.getCname()))==null)
@@ -49,7 +53,8 @@ public class ClientController {
 
 
     }
-    @RequestMapping("/queryList")
+    @GetMapping("/queryList")
+    @ApiOperation(value = "查询未流失客户公司")
     public Object listClient()
     {
         QueryWrapper<Client> wrapper = new QueryWrapper<Client>();
@@ -58,14 +63,16 @@ public class ClientController {
         return list;
     }
 
-    @RequestMapping("/queryById")
+    @GetMapping("/queryById")
+    @ApiOperation(value = "查询指定客户公司")
     public Object getById(@RequestParam ("cid") Integer cid){
         QueryWrapper queryWrapper=new QueryWrapper();
         queryWrapper.eq("cid",cid);
         Client client = clientService.selectById(queryWrapper);
         return client;
     }
-    @RequestMapping("/update")
+    @PutMapping("/update")
+    @ApiOperation(value = "更新客户公司信息")
     public  ResponseData updateClient(@RequestBody Client client){
         client.setUpdatetime(FromDateUtil.UtilToSql());
         boolean update = clientService.updateById(client);
@@ -85,8 +92,9 @@ public class ClientController {
             return new ResponseData().error("修改失败",client);
         }
     }
-    @RequestMapping("/page")
-   public  Object testSelectPage(@RequestBody Paging pageclient) {
+    @GetMapping("/page")
+    @ApiOperation(value = "查询客户公司")
+    public  Object testSelectPage(@RequestBody Paging pageclient) {
         QueryWrapper<ClientVo> wrapper = new QueryWrapper<ClientVo>();
         Page<ClientVo> page = new Page<>(pageclient.getCurrent(), pageclient.getPagesize());
         IPage<ClientVo> iPage= null;

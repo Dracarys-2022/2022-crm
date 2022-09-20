@@ -8,12 +8,10 @@ import com.mycrm.crm.entity.*;
 import com.mycrm.crm.service.ClientService;
 import com.mycrm.crm.service.ContactService;
 import com.mycrm.crm.util.FromDateUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,12 +25,14 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/contact")
+@Api(tags = "客户模块控制器")
 public class ContactController {
     @Autowired
     ContactService contactService;
     @Autowired
     ClientService clientService;
-    @RequestMapping("/add")
+    @PostMapping("/add")
+    @ApiOperation(value = "添加客户联系人")
     public ResponseData addContact(@RequestBody Contact contact) {
         QueryWrapper<Contact> queryWrapper = new QueryWrapper<>();
         if (contactService.getOne(queryWrapper.eq("phone", contact.getPhone())) == null) {
@@ -49,7 +49,8 @@ public class ContactController {
             return new ResponseData().error("手机号重复", contact);
         }
     }
-    @RequestMapping("/page")
+    @GetMapping("/page")
+    @ApiOperation(value = "查询所有客户信息")
     public  Object testSelectPage(@RequestBody Paging pagacontact) {
         QueryWrapper<ContactVo> wrapper = new QueryWrapper<ContactVo>();
         Page<ContactVo> page = new Page<>(pagacontact.getCurrent(), pagacontact.getPagesize());
@@ -79,14 +80,16 @@ public class ContactController {
         pagacontact.setPagesize((int) iPage.getSize());
         return pagacontact;
     }
-    @RequestMapping("/queryById")
+    @GetMapping("/queryById")
+    @ApiOperation(value = "查询指定客户")
     public Object getById(@RequestParam("coid") Integer coid){
         QueryWrapper<ContactVo> wrapper = new QueryWrapper<ContactVo>();
         wrapper.eq("coid",coid);
         ContactVo contactVo = contactService.selectById(wrapper);
         return contactVo;
     }
-    @RequestMapping("/update")
+    @PutMapping("/update")
+    @ApiOperation(value = "更新客户信息")
     public  ResponseData updateContact(@RequestBody Contact contact){
         QueryWrapper<Contact> queryWrapper = new QueryWrapper<>();
         contact.setUpdatetime(FromDateUtil.UtilToSql());

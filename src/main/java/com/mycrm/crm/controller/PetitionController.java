@@ -9,12 +9,10 @@ import com.mycrm.crm.entity.Petition;
 import com.mycrm.crm.entity.PetitionVo;
 import com.mycrm.crm.service.OperatorService;
 import com.mycrm.crm.service.PetitionService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,13 +20,16 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/petition")
+@Api(tags = "投诉模块控制器")
+
 public class PetitionController {
     @Autowired
     PetitionService petitionService;
     @Autowired
     OperatorService operatorService;
 
-    @RequestMapping("add")
+    @PostMapping("add")
+    @ApiOperation(value = "添加投诉", notes = "增加一条投诉信息")
     public Object add(@RequestBody Petition petition) {
         Map Rsmap = new HashMap();
         if (petitionService.save(petition)) {
@@ -41,7 +42,8 @@ public class PetitionController {
         return Rsmap;
     }
 
-    @RequestMapping("list")
+    @GetMapping("list")
+    @ApiOperation(value = "查询已经处理操作", notes = "查询已经处理投诉信息")
     public Object list(@RequestParam int current, @RequestParam int size) {
         Map Rsmap = new HashMap();
         int total = petitionService.total();
@@ -58,6 +60,8 @@ public class PetitionController {
     }
 
     @RequestMapping("listNull")
+    @ApiOperation(value = "查询未处理操作", notes = "查询未处理投诉信息")
+
     public Object listNull(@RequestParam int current, @RequestParam int size) {
         Map Rsmap = new HashMap();
         int total = petitionService.totalNull();
@@ -74,7 +78,8 @@ public class PetitionController {
         return Rsmap;
     }
 
-    @RequestMapping("addoutcome")
+    @PostMapping("addoutcome")
+    @ApiOperation(value = "更新处理结果", notes = "更新他投诉信息的投诉结果")
     public Object addoutcome(@RequestBody Map<String, String> map)  {
         String peid = map.get("peid");
         String outcome = map.get("outcome");
@@ -90,7 +95,8 @@ public class PetitionController {
         return Rsmap;
     }
 
-    @RequestMapping("getOper")
+    @GetMapping("getOper")
+    @ApiOperation(value = "获得职工信息", notes = "获得职工信息")
     public Object getOper() {
         Map Rsmap = new HashMap();
         QueryWrapper wrapper = new QueryWrapper();
@@ -102,7 +108,8 @@ public class PetitionController {
 
     }
 
-    @RequestMapping("delete")
+    @DeleteMapping("delete")
+    @ApiOperation(value = "入库操作", notes = "增加一条入库信息")
     public Object delete(@RequestParam int peid,@RequestParam int current, @RequestParam int size) {
         Map Rsmap = new HashMap();
         QueryWrapper<Petition> wrapper = new QueryWrapper<Petition>();

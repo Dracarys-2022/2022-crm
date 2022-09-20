@@ -10,7 +10,11 @@ import com.mycrm.crm.entity.Product;
 import com.mycrm.crm.service.InventoryService;
 import com.mycrm.crm.service.OrdersService;
 import com.mycrm.crm.service.ProductService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
@@ -18,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
+@Api(tags = "库存模块控制器")
 @RequestMapping("/inventory")
 public class InventoryController {
     @Autowired
@@ -27,7 +32,8 @@ public class InventoryController {
     @Autowired
     ProductService productService;
 
-    @RequestMapping("add")
+    @PostMapping("add")
+    @ApiOperation(value = "入库操作", notes = "增加一条入库信息")
     public Object stockIn(@RequestBody Inventory inventory) {
         Map Rsmap = new HashMap();
         Date date = new Date();
@@ -41,6 +47,7 @@ public class InventoryController {
         String order_id = (dateStr + rs);
         inventory.setId(order_id);
         inventory.setExist(inventory.getNumbers());
+        inventory.setType(0);
         System.out.println(inventory);
         if (inventoryService.save(inventory)) {
             Rsmap.put("code", 0001);// 0001添加成功
@@ -52,7 +59,8 @@ public class InventoryController {
         return Rsmap;
     }
 
-    @RequestMapping("query")
+    @GetMapping("query")
+    @ApiOperation(value = "查询库存", notes = "查询所有新进库存信息")
     public Object query() {
         Map<Object, Object> Rsmap = new HashMap<Object, Object>();
         QueryWrapper wrapper = new QueryWrapper();
@@ -64,7 +72,8 @@ public class InventoryController {
         return Rsmap;
     }
 
-    @RequestMapping("sub")
+    @GetMapping("sub")
+    @ApiOperation(value = "出库操作", notes = "进行一条数据的出库操作")
     public Object stockOut(@RequestParam String oid) {
         Map Rsmap = new HashMap();
         QueryWrapper<Inventory> wrapper = new QueryWrapper<Inventory>();
@@ -103,7 +112,8 @@ public class InventoryController {
         return Rsmap;
     }
 
-    @RequestMapping("return")
+    @PutMapping("return")
+    @ApiOperation(value = "退货操作", notes = "进行一条订单退货后的操作")
     public Object returnById(@RequestBody Inventory inventory) {
         Map Rsmap = new HashMap();
         Date date = new Date();
@@ -128,7 +138,8 @@ public class InventoryController {
         return Rsmap;
     }
 
-    @RequestMapping("list")
+    @GetMapping("list")
+    @ApiOperation(value = "获取库存信息", notes = "获得已出库记录")
     public Object list(@RequestParam int current, @RequestParam int size) {
         Map Rsmap = new HashMap();
         //QueryWrapper<Inventory> wrapper = new QueryWrapper<>();
@@ -142,7 +153,8 @@ public class InventoryController {
         Rsmap.put("total", total);
         return Rsmap;
     }
-    @RequestMapping("listNull")
+    @GetMapping("listNull")
+    @ApiOperation(value = "未出库记录", notes = "获得全部未出库的记录")
     public Object listNull(@RequestParam int current, @RequestParam int size) {
         Map Rsmap = new HashMap();
         int total = inventoryService.totalNull();
@@ -154,19 +166,21 @@ public class InventoryController {
         Rsmap.put("total", total);
         return Rsmap;
     }
-    @RequestMapping("queryById")
-    public Object queryById(@RequestBody Map<String, String> map) {
+    @GetMapping("queryById")
+    @ApiOperation(value = "查询库存信息", notes = "查询库存信息")
+    public Object queryById(@RequestParam String id) {
         Map Rsmap = new HashMap();
-        String id = map.get("id");
         Inventory inventory = inventoryService.queryById(id);
         Rsmap.put("data", inventory);
         return Rsmap;
     }
 
-    @RequestMapping("update")
+    @PostMapping("update")
+    @ApiOperation(value = "更新", notes = "更新一条库存信息")
     public Object update(@RequestBody Inventory inventory) {
         Map Rsmap = new HashMap();
         String id = inventory.getId();
+        System.out.println(inventory.getPid());
         if (inventoryService.updateById(inventory)) {
             Inventory new_inventory = inventoryService.getById(id);
             Rsmap.put("data", new_inventory);
@@ -179,7 +193,8 @@ public class InventoryController {
         return Rsmap;
     }
 
-    @RequestMapping("getproduct")
+    @GetMapping("getproduct")
+    @ApiOperation(value = "获得商品名称", notes = "获得商品的名称")
     public Object getproduct() {
         Map Rsmap = new HashMap();
         QueryWrapper<Product> wrapper=new QueryWrapper();
@@ -188,7 +203,8 @@ public class InventoryController {
         Rsmap.put("data", list);
         return Rsmap;
     }
-    @RequestMapping("lack")
+    @GetMapping("lack")
+    @ApiOperation(value = "库存不足", notes = "库存量不足进行提醒")
     public Object lack(@RequestParam String oid){
         Map Rsmap = new HashMap();
         QueryWrapper<Orders> wrapper=new QueryWrapper();

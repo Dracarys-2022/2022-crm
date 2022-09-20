@@ -7,12 +7,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mycrm.crm.entity.*;
 import com.mycrm.crm.service.*;
 import com.mycrm.crm.util.MD5Util;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +26,7 @@ import java.util.Map;
  * @since 2022-07-18
  */
 @RestController
+@Api(tags = "用户模块控制器")
 @RequestMapping("/operator")
 public class OperatorController {
     @Autowired
@@ -41,7 +40,8 @@ public class OperatorController {
     @Autowired
     ContactService contactService;
 
-    @RequestMapping("/add")
+    @PostMapping("/add")
+    @ApiOperation(value = "添加用户")
     public ResponseData addOperator(@RequestBody Operator operator){
         String password= MD5Util.getMd5(operator.getPassword());
         operator.setPassword(password);
@@ -58,7 +58,8 @@ public class OperatorController {
             return new ResponseData().error("手机号重复",operator);
         }
     }
-    @RequestMapping("/queryById")
+    @GetMapping("/queryById")
+    @ApiOperation(value = "查询指定用户")
     public Object getById(@RequestParam("oid") Integer oid){
         QueryWrapper<OperatorVo> wrapper = new QueryWrapper<OperatorVo>();
         wrapper.eq("oid",oid);
@@ -66,7 +67,8 @@ public class OperatorController {
 
         return operator;
     }
-    @RequestMapping("/queryContact")
+    @GetMapping("/queryContact")
+    @ApiOperation(value = "查询客户信息")
     public Object listRoles() {
         QueryWrapper<Functions> queryWrapper= new QueryWrapper<>();
         queryWrapper.eq("fname","客户管理");
@@ -76,7 +78,8 @@ public class OperatorController {
         List<OperatorVo> list =operatorService.queryList(wrapper);
         return list;
     }
-    @RequestMapping("/update")
+    @PutMapping("/update")
+    @ApiOperation(value = "更新用户信息")
     public  ResponseData updateOperator(@RequestBody Operator operator){
         QueryWrapper<Operator> queryWrapper = new QueryWrapper<>();
         if(operatorService.getOne(queryWrapper.eq("phone", operator.getPhone()).ne("oid",operator.getOid()))==null)
@@ -91,7 +94,8 @@ public class OperatorController {
             return new ResponseData().error("手机号重复",operator);
         }
     }
-    @RequestMapping("/page")
+    @GetMapping("/page")
+    @ApiOperation(value = "查询用户信息")
     public  Object testSelectPage(@RequestBody Paging pagaoperator) {
         QueryWrapper<OperatorVo> wrapper = new QueryWrapper<OperatorVo>();
         Page<OperatorVo> page = new Page<>(pagaoperator.getCurrent(), pagaoperator.getPagesize());
@@ -127,7 +131,8 @@ public class OperatorController {
         pagaoperator.setPagesize((int) iPage.getSize());
         return pagaoperator;
     }
-    @RequestMapping("/queryItems")
+    @GetMapping("/queryItems")
+    @ApiOperation(value = "待办信息")
     public  Object queryItems(@RequestParam("oid") Integer oid) {
 
         QueryWrapper queryWrapper= new QueryWrapper();
