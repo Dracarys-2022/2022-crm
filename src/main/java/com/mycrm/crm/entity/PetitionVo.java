@@ -5,10 +5,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@ApiModel(description = "æŠ•è¯‰æ‰©å±•å®ä½“")
+@ApiModel(description = "Í¶ËßÀ©Õ¹ÊµÌå")
 public class PetitionVo extends Petition {
-    @ApiModelProperty(value = "èŒå·¥å§“å")
+    @ApiModelProperty(value = "Ö°¹¤ĞÕÃû")
     private String opername;
-    @ApiModelProperty(value = "æ“ä½œäººå§“å")
+    @ApiModelProperty(value = "²Ù×÷ÈËĞÕÃû")
     private String exname;
 }
