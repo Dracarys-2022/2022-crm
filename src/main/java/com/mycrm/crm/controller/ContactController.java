@@ -49,7 +49,7 @@ public class ContactController {
             return new ResponseData().error("手机号重复", contact);
         }
     }
-    @GetMapping("/page")
+    @PostMapping("/page")
     @ApiOperation(value = "查询所有客户信息")
     public  Object testSelectPage(@RequestBody Paging pagacontact) {
         QueryWrapper<ContactVo> wrapper = new QueryWrapper<ContactVo>();
@@ -88,7 +88,7 @@ public class ContactController {
         ContactVo contactVo = contactService.selectById(wrapper);
         return contactVo;
     }
-    @PutMapping("/update")
+    @PostMapping("/update")
     @ApiOperation(value = "更新客户信息")
     public  ResponseData updateContact(@RequestBody Contact contact){
         QueryWrapper<Contact> queryWrapper = new QueryWrapper<>();

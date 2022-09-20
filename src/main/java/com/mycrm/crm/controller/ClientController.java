@@ -71,7 +71,7 @@ public class ClientController {
         Client client = clientService.selectById(queryWrapper);
         return client;
     }
-    @PutMapping("/update")
+    @PostMapping("/update")
     @ApiOperation(value = "更新客户公司信息")
     public  ResponseData updateClient(@RequestBody Client client){
         client.setUpdatetime(FromDateUtil.UtilToSql());
@@ -92,9 +92,10 @@ public class ClientController {
             return new ResponseData().error("修改失败",client);
         }
     }
-    @GetMapping("/page")
+    @PostMapping("/page")
     @ApiOperation(value = "查询客户公司")
     public  Object testSelectPage(@RequestBody Paging pageclient) {
+        System.out.println(pageclient);
         QueryWrapper<ClientVo> wrapper = new QueryWrapper<ClientVo>();
         Page<ClientVo> page = new Page<>(pageclient.getCurrent(), pageclient.getPagesize());
         IPage<ClientVo> iPage= null;

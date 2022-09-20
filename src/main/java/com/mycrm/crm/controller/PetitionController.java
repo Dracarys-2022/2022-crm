@@ -78,7 +78,8 @@ public class PetitionController {
         return Rsmap;
     }
 
-    @PostMapping("addoutcome")
+
+    @PutMapping("addoutcome")
     @ApiOperation(value = "更新处理结果", notes = "更新他投诉信息的投诉结果")
     public Object addoutcome(@RequestBody Map<String, String> map)  {
         String peid = map.get("peid");
@@ -95,6 +96,7 @@ public class PetitionController {
         return Rsmap;
     }
 
+
     @GetMapping("getOper")
     @ApiOperation(value = "获得职工信息", notes = "获得职工信息")
     public Object getOper() {
@@ -107,6 +109,7 @@ public class PetitionController {
         return Rsmap;
 
     }
+
 
     @DeleteMapping("delete")
     @ApiOperation(value = "入库操作", notes = "增加一条入库信息")

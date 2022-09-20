@@ -78,7 +78,8 @@ public class OperatorController {
         List<OperatorVo> list =operatorService.queryList(wrapper);
         return list;
     }
-    @PutMapping("/update")
+
+    @PostMapping("/update")
     @ApiOperation(value = "更新用户信息")
     public  ResponseData updateOperator(@RequestBody Operator operator){
         QueryWrapper<Operator> queryWrapper = new QueryWrapper<>();
@@ -94,7 +95,8 @@ public class OperatorController {
             return new ResponseData().error("手机号重复",operator);
         }
     }
-    @GetMapping("/page")
+
+    @PostMapping("/page")
     @ApiOperation(value = "查询用户信息")
     public  Object testSelectPage(@RequestBody Paging pagaoperator) {
         QueryWrapper<OperatorVo> wrapper = new QueryWrapper<OperatorVo>();
@@ -131,6 +133,7 @@ public class OperatorController {
         pagaoperator.setPagesize((int) iPage.getSize());
         return pagaoperator;
     }
+
     @GetMapping("/queryItems")
     @ApiOperation(value = "待办信息")
     public  Object queryItems(@RequestParam("oid") Integer oid) {

@@ -32,6 +32,7 @@ public class InventoryController {
     @Autowired
     ProductService productService;
 
+
     @PostMapping("add")
     @ApiOperation(value = "入库操作", notes = "增加一条入库信息")
     public Object stockIn(@RequestBody Inventory inventory) {
@@ -59,6 +60,7 @@ public class InventoryController {
         return Rsmap;
     }
 
+
     @GetMapping("query")
     @ApiOperation(value = "查询库存", notes = "查询所有新进库存信息")
     public Object query() {
@@ -71,6 +73,7 @@ public class InventoryController {
         Rsmap.put("msg", "查询成功");
         return Rsmap;
     }
+
 
     @GetMapping("sub")
     @ApiOperation(value = "出库操作", notes = "进行一条数据的出库操作")
@@ -112,6 +115,7 @@ public class InventoryController {
         return Rsmap;
     }
 
+
     @PutMapping("return")
     @ApiOperation(value = "退货操作", notes = "进行一条订单退货后的操作")
     public Object returnById(@RequestBody Inventory inventory) {
@@ -138,6 +142,7 @@ public class InventoryController {
         return Rsmap;
     }
 
+
     @GetMapping("list")
     @ApiOperation(value = "获取库存信息", notes = "获得已出库记录")
     public Object list(@RequestParam int current, @RequestParam int size) {
@@ -153,6 +158,7 @@ public class InventoryController {
         Rsmap.put("total", total);
         return Rsmap;
     }
+
     @GetMapping("listNull")
     @ApiOperation(value = "未出库记录", notes = "获得全部未出库的记录")
     public Object listNull(@RequestParam int current, @RequestParam int size) {
@@ -166,6 +172,7 @@ public class InventoryController {
         Rsmap.put("total", total);
         return Rsmap;
     }
+
     @GetMapping("queryById")
     @ApiOperation(value = "查询库存信息", notes = "查询库存信息")
     public Object queryById(@RequestParam String id) {
@@ -175,12 +182,12 @@ public class InventoryController {
         return Rsmap;
     }
 
+
     @PostMapping("update")
     @ApiOperation(value = "更新", notes = "更新一条库存信息")
     public Object update(@RequestBody Inventory inventory) {
         Map Rsmap = new HashMap();
         String id = inventory.getId();
-        System.out.println(inventory.getPid());
         if (inventoryService.updateById(inventory)) {
             Inventory new_inventory = inventoryService.getById(id);
             Rsmap.put("data", new_inventory);
@@ -193,6 +200,7 @@ public class InventoryController {
         return Rsmap;
     }
 
+
     @GetMapping("getproduct")
     @ApiOperation(value = "获得商品名称", notes = "获得商品的名称")
     public Object getproduct() {
@@ -203,6 +211,7 @@ public class InventoryController {
         Rsmap.put("data", list);
         return Rsmap;
     }
+
     @GetMapping("lack")
     @ApiOperation(value = "库存不足", notes = "库存量不足进行提醒")
     public Object lack(@RequestParam String oid){

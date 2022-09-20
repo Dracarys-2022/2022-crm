@@ -5,11 +5,11 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@ApiModel(description = "搴撳瓨鎵╁睍瀹炰綋")
+@ApiModel(description = "库存扩展实体")
 
 public class InventoryVo extends Inventory{
-    @ApiModelProperty(value = "鍟嗗搧鍚嶇О")
+    @ApiModelProperty(value = "商品名称")
     private String pname;
-    @ApiModelProperty(value = "鍟嗗搧鍚嶇О")
+    @ApiModelProperty(value = "商品名称")
     private String units;
 }
