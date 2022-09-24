@@ -9,15 +9,12 @@ import com.mycrm.crm.service.RolesService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.*;
-=======
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
->>>>>>> 83528cb18ece3a9aac31cad6df35b8f02b7476df
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +37,6 @@ public class FunctionsController {
     @Autowired
     RolesService rolesService;
     @ApiOperation("功能的添加")
-<<<<<<< HEAD
     @PostMapping("/add")
     public Object add(@RequestBody Functions functions){
         System.out.println(functions);
@@ -64,21 +60,7 @@ public class FunctionsController {
         return map;
     }
     @PostMapping("/list")
-=======
-    @GetMapping("/add")
-    public Object add(@RequestBody Functions functions){
-        System.out.println(functions);
-        functionsService.save(functions);
-        return 2;
-    }
-    @GetMapping("/add1")
-    public Object add1(@RequestBody Functions functions){
-        System.out.println(functions.getFatherid());
-        functionsService.save(functions);
-        return 2;
-    }
     @GetMapping("/list")
->>>>>>> 83528cb18ece3a9aac31cad6df35b8f02b7476df
     public Object list(){
         System.out.println("查询数据");
 //        System.out.println(rolesService.list());
@@ -89,11 +71,9 @@ public class FunctionsController {
         System.out.println(map.get("two"));
         return map.get("one");
     }
-<<<<<<< HEAD
     @PostMapping("/listFunction")
-=======
+
     @GetMapping("/listFunction")
->>>>>>> 83528cb18ece3a9aac31cad6df35b8f02b7476df
     public Object listFunction(){
         System.out.println("查询数据");
         Map<String,Object> map=new HashMap<String,Object>();
@@ -105,11 +85,8 @@ public class FunctionsController {
         System.out.println(map.get("two"));
         return map.get("one");
     }
-<<<<<<< HEAD
     @PostMapping("/listFunction1")
-=======
     @GetMapping("/listFunction1")
->>>>>>> 83528cb18ece3a9aac31cad6df35b8f02b7476df
 //    public Object listFunction1(@RequestParam("fid") int fid){
         public Object listFunction1(@RequestBody Functions functions){
         System.out.println("查询数据");
@@ -122,33 +99,24 @@ public class FunctionsController {
         System.out.println(map.get("two"));
         return map.get("one");
     }
-<<<<<<< HEAD
     @PostMapping("/delete")
-=======
     @GetMapping("/delete")
->>>>>>> 83528cb18ece3a9aac31cad6df35b8f02b7476df
     public Object delete(@RequestBody Functions functions){
         System.out.println("删除数据");
         System.out.println(functions.getFid());
         functionsService.removeById(functions.getFid());
         return functionsService.list();
     }
-<<<<<<< HEAD
     @PostMapping("/update")
-=======
     @GetMapping("/update")
->>>>>>> 83528cb18ece3a9aac31cad6df35b8f02b7476df
     public Object update(@RequestBody Functions functions){
         System.out.println("查看某个数据");
         System.out.println(functions.getFid());
         System.out.println(functionsService.getById(functions.getFid()));
         return functionsService.getById(functions.getFid());
     }
-<<<<<<< HEAD
     @PostMapping("/updateone")
-=======
     @GetMapping("/updateone")
->>>>>>> 83528cb18ece3a9aac31cad6df35b8f02b7476df
     public Object updateone(@RequestBody Functions functions){
         System.out.println("修改数据");
         System.out.println(functions.getFid()+','+functions.getFname());
@@ -157,11 +125,8 @@ public class FunctionsController {
         functionsService.update(functions,queryWrapper);
         return 0;
     }
-<<<<<<< HEAD
     @PostMapping("/beSureFunctions")
-=======
     @GetMapping("/beSureFunctions")
->>>>>>> 83528cb18ece3a9aac31cad6df35b8f02b7476df
     public Object beSureFunctions(@RequestBody Roles roles){
         System.out.println("修改数据");
         System.out.println(roles.getRoid()+','+roles.getPermissions());
