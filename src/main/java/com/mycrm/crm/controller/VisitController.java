@@ -4,6 +4,8 @@ package com.mycrm.crm.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mycrm.crm.entity.Visit;
+import com.mycrm.crm.service.ActiveService;
+import com.mycrm.crm.service.UserLogService;
 import com.mycrm.crm.service.VisitService;
 
 import io.swagger.annotations.Api;
@@ -39,6 +41,10 @@ import java.util.Map;
 public class VisitController {
     @Autowired
     VisitService visitService;
+    @Autowired
+    ActiveService activeService;
+    @Autowired
+    UserLogService userLogService;
 
     @ApiOperation("添加记录")
     @PostMapping("/add")

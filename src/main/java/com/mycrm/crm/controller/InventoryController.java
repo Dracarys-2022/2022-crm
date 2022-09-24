@@ -3,13 +3,8 @@ package com.mycrm.crm.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.mycrm.crm.entity.Inventory;
-import com.mycrm.crm.entity.InventoryVo;
-import com.mycrm.crm.entity.Orders;
-import com.mycrm.crm.entity.Product;
-import com.mycrm.crm.service.InventoryService;
-import com.mycrm.crm.service.OrdersService;
-import com.mycrm.crm.service.ProductService;
+import com.mycrm.crm.entity.*;
+import com.mycrm.crm.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @RestController
@@ -31,7 +27,10 @@ public class InventoryController {
     OrdersService ordersService;
     @Autowired
     ProductService productService;
-
+    @Autowired
+    ActiveService activeService;
+    @Autowired
+    UserLogService userLogService;
 
     @PostMapping("add")
     @ApiOperation(value = "入库操作", notes = "增加一条入库信息")
@@ -209,6 +208,10 @@ public class InventoryController {
         wrapper.select("pid","pname");
         List<Product> list=productService.list(wrapper);
         Rsmap.put("data", list);
+        List<UserLog> userLog=userLogService.selectid();
+        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了入库操作");
+        userLog.get(0).setBehavior(behavior);
+        userLogService.updateById(userLog.get(0));
         return Rsmap;
     }
 

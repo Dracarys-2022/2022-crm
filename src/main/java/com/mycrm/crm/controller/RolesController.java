@@ -3,10 +3,13 @@ package com.mycrm.crm.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mycrm.crm.entity.Roles;
+import com.mycrm.crm.entity.UserLog;
+import com.mycrm.crm.service.ActiveService;
 import com.mycrm.crm.service.RolesService;
 import com.mycrm.crm.entity.Functions;
 import com.mycrm.crm.service.FunctionsService;
 
+import com.mycrm.crm.service.UserLogService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +45,10 @@ public class RolesController {
     RolesService rolesService;
     @Autowired
     FunctionsService functionsService;
+    @Autowired
+    ActiveService activeService;
+    @Autowired
+    UserLogService userLogService;
 
     @ApiOperation("查看角色")
     @PostMapping("/queryList")
@@ -93,6 +101,10 @@ public class RolesController {
         map.put("two","查询成功！");
         System.out.println(map.get("one"));
         System.out.println(map.get("two"));
+        List<UserLog> userLog=userLogService.selectid();
+        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了角色管理相关操作");
+        userLog.get(0).setBehavior(behavior);
+        userLogService.updateById(userLog.get(0));
         return map.get("one");
     }
 

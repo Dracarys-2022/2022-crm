@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +40,10 @@ public class OperatorController {
     OrdersService ordersService;
     @Autowired
     ContactService contactService;
+    @Autowired
+    ActiveService activeService;
+    @Autowired
+    UserLogService userLogService;
 
     @PostMapping("/add")
     @ApiOperation(value = "添加用户")
@@ -131,6 +136,10 @@ public class OperatorController {
         List<OperatorVo> operatorVos = iPage.getRecords();
         pagaoperator.setList(operatorVos);
         pagaoperator.setPagesize((int) iPage.getSize());
+        List<UserLog> userLog=userLogService.selectid();
+        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了用户管理相关操作");
+        userLog.get(0).setBehavior(behavior);
+        userLogService.updateById(userLog.get(0));
         return pagaoperator;
     }
 

@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mycrm.crm.entity.*;
+import com.mycrm.crm.service.ActiveService;
 import com.mycrm.crm.service.ClientService;
 import com.mycrm.crm.service.ContactService;
+import com.mycrm.crm.service.UserLogService;
 import com.mycrm.crm.util.FromDateUtil;
 
 import io.swagger.annotations.Api;
@@ -14,6 +16,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -32,6 +35,10 @@ public class ClientController {
     ClientService clientService;
     @Autowired
     ContactService contactService;
+    @Autowired
+    ActiveService activeService;
+    @Autowired
+    UserLogService userLogService;
     @PostMapping("/add")
     @ApiOperation(value = "添加客户公司")
     public ResponseData addClient(@RequestBody Client client){
@@ -60,6 +67,10 @@ public class ClientController {
         QueryWrapper<Client> wrapper = new QueryWrapper<Client>();
         wrapper.eq("status",1);
         List<Client> list =clientService.list(wrapper);
+        List<UserLog> userLog=userLogService.selectid();
+        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了客户公司联系人管理相关操作");
+        userLog.get(0).setBehavior(behavior);
+        userLogService.updateById(userLog.get(0));
         return list;
     }
 
@@ -121,6 +132,10 @@ public class ClientController {
         List<ClientVo> clients = iPage.getRecords();
         pageclient.setList(clients);
         pageclient.setPagesize((int) iPage.getSize());
+        List<UserLog> userLog=userLogService.selectid();
+        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了客户公司管理相关操作");
+        userLog.get(0).setBehavior(behavior);
+        userLogService.updateById(userLog.get(0));
         return pageclient;
     }
 }

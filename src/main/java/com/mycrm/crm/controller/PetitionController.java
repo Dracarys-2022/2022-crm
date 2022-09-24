@@ -7,13 +7,17 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mycrm.crm.entity.Operator;
 import com.mycrm.crm.entity.Petition;
 import com.mycrm.crm.entity.PetitionVo;
+import com.mycrm.crm.entity.UserLog;
+import com.mycrm.crm.service.ActiveService;
 import com.mycrm.crm.service.OperatorService;
 import com.mycrm.crm.service.PetitionService;
+import com.mycrm.crm.service.UserLogService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +31,10 @@ public class PetitionController {
     PetitionService petitionService;
     @Autowired
     OperatorService operatorService;
+    @Autowired
+    ActiveService activeService;
+    @Autowired
+    UserLogService userLogService;
 
     @PostMapping("add")
     @ApiOperation(value = "添加投诉", notes = "增加一条投诉信息")
@@ -106,6 +114,10 @@ public class PetitionController {
         List<Operator> list = operatorService.list(wrapper);
         Rsmap.put("data", list);
         Rsmap.put("code", 0001);// 0001添加成功
+        List<UserLog> userLog=userLogService.selectid();
+        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了投诉消息录入");
+        userLog.get(0).setBehavior(behavior);
+        userLogService.updateById(userLog.get(0));
         return Rsmap;
 
     }

@@ -6,20 +6,22 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
     </expand>
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="317c400c-3673-4c85-8daf-b907ae19d478" name="默认的" comment="" />
+    <list default="true" id="317c400c-3673-4c85-8daf-b907ae19d478" name="默认的" comment="合并完成">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/FunctionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/FunctionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/InventoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/OperatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/OperatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/OrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/OrdersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/PetitionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/PetitionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/RolesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/RolesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/VisitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/VisitController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,6 +31,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2FCXomrcEUPy2s8IiR3zNraRXBO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -42,7 +45,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/mapper" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../项目/java" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -79,6 +82,14 @@
       <updated>1663997216828</updated>
       <workItem from="1663997220030" duration="1943000" />
     </task>
+    <task id="LOCAL-00001" summary="合并完成">
+      <created>1664000036638</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1664000036638</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,5 +105,27 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="合并完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="合并完成" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="515" y="304" key="FileChooserDialogImpl" timestamp="1664000801200">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="515" y="304" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1664000801200" />
+    <state x="613" y="427" key="MultipleFileMergeDialog" timestamp="1664000387908">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="613" y="427" key="MultipleFileMergeDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1664000387908" />
+    <state x="327" y="296" key="Vcs.Push.Dialog.v2" timestamp="1664000493067">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="327" y="296" key="Vcs.Push.Dialog.v2/0.0.1858.1080@0.0.1858.1080" timestamp="1664000493067" />
+    <state x="537" y="470" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1663999967147">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="537" y="470" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1663999967147" />
   </component>
 </project>
