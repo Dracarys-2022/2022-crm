@@ -2,6 +2,7 @@ package com.mycrm.crm.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.mycrm.crm.common.BaseContext;
 import com.mycrm.crm.entity.User;
 import com.mycrm.crm.entity.UserLog;
 import com.mycrm.crm.service.UserLogService;
@@ -41,17 +42,27 @@ public class UserController {
         User user1=service.getOne(queryWrapper);
         request.getSession().setAttribute("token",user.getUser());
         if(user1==null){
-            List<UserLog> userLog=userLogService.selectid();
-            String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"因为账号或者密码错误登录失败");
-            userLog.get(0).setBehavior(behavior);
-            userLogService.updateById(userLog.get(0));
+//            List<UserLog> userLog=userLogService.selectid();
+//            String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"因为账号或者密码错误登录失败");
+//            userLog.get(0).setBehavior(behavior);
+//            userLogService.updateById(userLog.get(0));
+            Integer id= BaseContext.getCurrentId().intValue();
+            UserLog userLog=userLogService.getById(id);
+            String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"因为账号或者密码错误登录失败");
+            userLog.setBehavior(behavior);
+            userLogService.updateById(userLog);
             user.setCode(0);
            return user;
         }
-        List<UserLog> userLog=userLogService.selectid();
-        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"登录成功");
-        userLog.get(0).setBehavior(behavior);
-        userLogService.updateById(userLog.get(0));
+//        List<UserLog> userLog=userLogService.selectid();
+//        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"登录成功");
+//        userLog.get(0).setBehavior(behavior);
+//        userLogService.updateById(userLog.get(0));
+        Integer id= BaseContext.getCurrentId().intValue();
+        UserLog userLog=userLogService.getById(id);
+        String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"登录成功");
+        userLog.setBehavior(behavior);
+        userLogService.updateById(userLog);
         user1.setCode(1);
         return user1;
     }

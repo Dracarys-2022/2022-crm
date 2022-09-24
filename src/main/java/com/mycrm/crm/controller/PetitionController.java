@@ -4,6 +4,7 @@ package com.mycrm.crm.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mycrm.crm.common.BaseContext;
 import com.mycrm.crm.entity.Operator;
 import com.mycrm.crm.entity.Petition;
 import com.mycrm.crm.entity.PetitionVo;
@@ -114,10 +115,15 @@ public class PetitionController {
         List<Operator> list = operatorService.list(wrapper);
         Rsmap.put("data", list);
         Rsmap.put("code", 0001);// 0001添加成功
-        List<UserLog> userLog=userLogService.selectid();
-        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了投诉消息录入");
-        userLog.get(0).setBehavior(behavior);
-        userLogService.updateById(userLog.get(0));
+//        List<UserLog> userLog=userLogService.selectid();
+//        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了投诉消息录入");
+//        userLog.get(0).setBehavior(behavior);
+//        userLogService.updateById(userLog.get(0));
+        Integer id= BaseContext.getCurrentId().intValue();
+        UserLog userLog=userLogService.getById(id);
+        String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"查看了投诉消息录入");
+        userLog.setBehavior(behavior);
+        userLogService.updateById(userLog);
         return Rsmap;
 
     }

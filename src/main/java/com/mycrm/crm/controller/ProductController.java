@@ -4,6 +4,7 @@ package com.mycrm.crm.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mycrm.crm.common.BaseContext;
 import com.mycrm.crm.entity.Orders;
 import com.mycrm.crm.entity.Product;
 import com.mycrm.crm.entity.Service;
@@ -51,10 +52,15 @@ public class ProductController {
         Rsmap.put("data", list);
         Rsmap.put("msg", "查询成功");
         Rsmap.put("total", total);
-        List<UserLog> userLog=userLogService.selectid();
-        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了产品模块相关操作");
-        userLog.get(0).setBehavior(behavior);
-        userLogService.updateById(userLog.get(0));
+//        List<UserLog> userLog=userLogService.selectid();
+//        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了产品模块相关操作");
+//        userLog.get(0).setBehavior(behavior);
+//        userLogService.updateById(userLog.get(0));
+        Integer id= BaseContext.getCurrentId().intValue();
+        UserLog userLog=userLogService.getById(id);
+        String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"查看了产品模块相关操作");
+        userLog.setBehavior(behavior);
+        userLogService.updateById(userLog);
         return Rsmap;
     }
 

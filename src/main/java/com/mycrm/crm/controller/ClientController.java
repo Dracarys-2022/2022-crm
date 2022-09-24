@@ -4,6 +4,7 @@ package com.mycrm.crm.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mycrm.crm.common.BaseContext;
 import com.mycrm.crm.entity.*;
 import com.mycrm.crm.service.ActiveService;
 import com.mycrm.crm.service.ClientService;
@@ -67,10 +68,15 @@ public class ClientController {
         QueryWrapper<Client> wrapper = new QueryWrapper<Client>();
         wrapper.eq("status",1);
         List<Client> list =clientService.list(wrapper);
-        List<UserLog> userLog=userLogService.selectid();
-        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了客户公司联系人管理相关操作");
-        userLog.get(0).setBehavior(behavior);
-        userLogService.updateById(userLog.get(0));
+//        List<UserLog> userLog=userLogService.selectid();
+//        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了客户公司联系人管理相关操作");
+//        userLog.get(0).setBehavior(behavior);
+//        userLogService.updateById(userLog.get(0));
+        Integer id= BaseContext.getCurrentId().intValue();
+        UserLog userLog=userLogService.getById(id);
+        String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"查看了客户公司联系人管理相关操作");
+        userLog.setBehavior(behavior);
+        userLogService.updateById(userLog);
         return list;
     }
 
@@ -132,10 +138,15 @@ public class ClientController {
         List<ClientVo> clients = iPage.getRecords();
         pageclient.setList(clients);
         pageclient.setPagesize((int) iPage.getSize());
-        List<UserLog> userLog=userLogService.selectid();
-        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了客户公司管理相关操作");
-        userLog.get(0).setBehavior(behavior);
-        userLogService.updateById(userLog.get(0));
+//        List<UserLog> userLog=userLogService.selectid();
+//        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了客户公司管理相关操作");
+//        userLog.get(0).setBehavior(behavior);
+//        userLogService.updateById(userLog.get(0));
+        Integer id= BaseContext.getCurrentId().intValue();
+        UserLog userLog=userLogService.getById(id);
+        String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"查看了客户公司管理相关操作");
+        userLog.setBehavior(behavior);
+        userLogService.updateById(userLog);
         return pageclient;
     }
 }

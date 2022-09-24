@@ -2,6 +2,7 @@ package com.mycrm.crm.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.mycrm.crm.common.BaseContext;
 import com.mycrm.crm.entity.*;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -64,10 +65,15 @@ public class OrdersController {
         Rsmap.put("data", list);
         Rsmap.put("msg", "查询成功");
         Rsmap.put("total", total);
-        List<UserLog> userLog=userLogService.selectid();
-        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了出库操作");
-        userLog.get(0).setBehavior(behavior);
-        userLogService.updateById(userLog.get(0));
+//        List<UserLog> userLog=userLogService.selectid();
+//        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了出库操作");
+//        userLog.get(0).setBehavior(behavior);
+//        userLogService.updateById(userLog.get(0));
+        Integer id= BaseContext.getCurrentId().intValue();
+        UserLog userLog=userLogService.getById(id);
+        String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"查看了出库操作");
+        userLog.setBehavior(behavior);
+        userLogService.updateById(userLog);
         return Rsmap;
     }
 
@@ -141,10 +147,15 @@ public class OrdersController {
         map.put("product", productService.list());
         map.put("c", clientService.list());
         map.put("co", contactService.list());
-        List<UserLog> userLog=userLogService.selectid();
-        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了订单录入");
-        userLog.get(0).setBehavior(behavior);
-        userLogService.updateById(userLog.get(0));
+//        List<UserLog> userLog=userLogService.selectid();
+//        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了订单录入");
+//        userLog.get(0).setBehavior(behavior);
+//        userLogService.updateById(userLog.get(0));
+        Integer id= BaseContext.getCurrentId().intValue();
+        UserLog userLog=userLogService.getById(id);
+        String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"查看了订单录入");
+        userLog.setBehavior(behavior);
+        userLogService.updateById(userLog);
         return map;
     }
 
@@ -182,10 +193,15 @@ public class OrdersController {
         }
         map.put("data", list);
         map.put("total", ordersService.count());
-        List<UserLog> userLog=userLogService.selectid();
-        String behavior=userLog.get(0).getBehavior().concat(" 查看了订单记录");
-        userLog.get(0).setBehavior(behavior);
-        userLogService.updateById(userLog.get(0));
+//        List<UserLog> userLog=userLogService.selectid();
+//        String behavior=userLog.get(0).getBehavior().concat(" 查看了订单记录");
+//        userLog.get(0).setBehavior(behavior);
+//        userLogService.updateById(userLog.get(0));
+        Integer id= BaseContext.getCurrentId().intValue();
+        UserLog userLog=userLogService.getById(id);
+        String behavior=userLog.getBehavior().concat(" 查看了订单记录");
+        userLog.setBehavior(behavior);
+        userLogService.updateById(userLog);
         return map;
     }
 
@@ -422,10 +438,15 @@ public class OrdersController {
         }
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("service", bb);
-        List<UserLog> userLog=userLogService.selectid();
-        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了利润管理");
-        userLog.get(0).setBehavior(behavior);
-        userLogService.updateById(userLog.get(0));
+//        List<UserLog> userLog=userLogService.selectid();
+//        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了利润管理");
+//        userLog.get(0).setBehavior(behavior);
+//        userLogService.updateById(userLog.get(0));
+        Integer id= BaseContext.getCurrentId().intValue();
+        UserLog userLog=userLogService.getById(id);
+        String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"查看了利润管理");
+        userLog.setBehavior(behavior);
+        userLogService.updateById(userLog);
         return map;
     }
 
