@@ -3,6 +3,7 @@ package com.mycrm.crm.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mycrm.crm.common.BaseContext;
 import com.mycrm.crm.entity.User;
 import com.mycrm.crm.entity.UserLog;
 import com.mycrm.crm.service.UserLogService;
@@ -81,7 +82,7 @@ public class UserLogController {
         String userAgent = request.getHeader("sec-ch-ua-platform");
         userLog.setUseragent(userAgent);
         QueryWrapper<User> queryWrapper1=new QueryWrapper<>();
-        queryWrapper1.eq("user",user1);
+        queryWrapper1.eq("oname",user1);
         queryWrapper1.eq("password",password);
         User user2=userService.getOne(queryWrapper1);
         if(user2==null){
@@ -90,9 +91,9 @@ public class UserLogController {
             userLog.setStatus(1);
         }
         service.save(userLog);
-        log.info("id为{}",userLog.getId());
-        userLog.setBy1(userLog.getId());
-        service.updateById(userLog);
+        Long id= Long.valueOf(userLog.getId());
+        BaseContext.setCurrentId(id);
+        System.err.println(BaseContext.getCurrentId());
         return "成功";
     }
 }

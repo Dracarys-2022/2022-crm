@@ -26,11 +26,11 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "oid", type = IdType.AUTO)
     @ApiModelProperty(value = "主键")
-    private Integer id;
+    private Integer oid;
     @ApiModelProperty(value = "用户名")
-    private String user;
+    private String oname;
     @ApiModelProperty(value = "密码")
     private String password;
     @ApiModelProperty(value = "状态")
@@ -38,9 +38,9 @@ public class User implements Serializable {
     @ApiModelProperty(value = "权限")
     private String permissions;
     @ApiModelProperty(value = "角色")
-    private String roles;
-    @ApiModelProperty(value = "")
-    private  Integer code;
+    private Integer roid;
+    @ApiModelProperty(value = "电话")
+    private  String phone;
 
 
 
