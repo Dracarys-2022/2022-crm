@@ -3,8 +3,10 @@ package com.mycrm.crm.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mycrm.crm.common.BaseContext;
+import com.mycrm.crm.entity.Operator;
 import com.mycrm.crm.entity.User;
 import com.mycrm.crm.entity.UserLog;
+import com.mycrm.crm.service.OperatorService;
 import com.mycrm.crm.service.UserLogService;
 import com.mycrm.crm.service.UserService;
 import com.mycrm.crm.util.Md5Utils;
@@ -35,18 +37,20 @@ public class UserController {
     UserService service;
     @Autowired
     UserLogService userLogService;
+    @Autowired
+    OperatorService operatorService;
 
     @ApiOperation(value = "用户登录")
     @PostMapping("login")
-    public Integer login(@RequestBody User user, HttpServletRequest request){
-        QueryWrapper<User> queryWrapper=new QueryWrapper<>();
-        String password= Md5Utils.code(user.getPassword());
+    public Integer login(@RequestBody Operator operator, HttpServletRequest request){
+        QueryWrapper<Operator> queryWrapper=new QueryWrapper<>();
+        String password= Md5Utils.code(operator.getPassword());
         System.err.println(password);
-        queryWrapper.eq("oname",user.getOname());
+        queryWrapper.eq("oname",operator.getOname());
         queryWrapper.eq("password",password);
-        User user1=service.getOne(queryWrapper);
-        request.getSession().setAttribute("token",user.getOname());
-        if(user1==null){
+        Operator operator1=operatorService.getOne(queryWrapper);
+        request.getSession().setAttribute("token",operator.getOname());
+        if(operator1==null){
 //            List<UserLog> userLog=userLogService.selectid();
 //            String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"因为账号或者密码错误登录失败");
 //            userLog.get(0).setBehavior(behavior);

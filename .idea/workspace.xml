@@ -11,27 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="317c400c-3673-4c85-8daf-b907ae19d478" name="默认的" comment="合并完成">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/util/Md5Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/crm_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/crm_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/crm.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/UserLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/UserLogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/ActiveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/ActiveController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/ClientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/ClientController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/FunctionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/FunctionsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/InventoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/InventoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/OperatorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/OperatorController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/OrdersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/OrdersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/PetitionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/PetitionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/RolesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/RolesController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/UserLogController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/UserLogController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/VisitController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/VisitController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/entity/User.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +47,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../练习/reggie" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -103,6 +87,9 @@
       <workItem from="1664034155578" duration="942000" />
       <workItem from="1664090134935" duration="96000" />
       <workItem from="1664090376540" duration="2192000" />
+      <workItem from="1664093288039" duration="806000" />
+      <workItem from="1664094121174" duration="35000" />
+      <workItem from="1664096387862" duration="343000" />
     </task>
     <task id="LOCAL-00001" summary="合并完成">
       <created>1664000036638</created>
@@ -145,10 +132,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="516" y="213" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1664091457213" />
-    <state x="515" y="304" key="FileChooserDialogImpl" timestamp="1664091497918">
+    <state x="515" y="304" key="FileChooserDialogImpl" timestamp="1664094142124">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="515" y="304" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1664091497918" />
+    <state x="515" y="304" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1664094142124" />
     <state width="1057" height="244" key="GridCell.Tab.0.bottom" timestamp="1664092407828">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -209,16 +196,5 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="537" y="470" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1663999967147" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/UserController.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

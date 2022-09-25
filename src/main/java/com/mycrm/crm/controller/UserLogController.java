@@ -4,8 +4,10 @@ package com.mycrm.crm.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mycrm.crm.common.BaseContext;
+import com.mycrm.crm.entity.Operator;
 import com.mycrm.crm.entity.User;
 import com.mycrm.crm.entity.UserLog;
+import com.mycrm.crm.service.OperatorService;
 import com.mycrm.crm.service.UserLogService;
 import com.mycrm.crm.service.UserService;
 import io.swagger.annotations.Api;
@@ -36,6 +38,8 @@ public class UserLogController {
     UserLogService service;
     @Autowired
     UserService userService;
+    @Autowired
+    OperatorService operatorService;
     @GetMapping("select")
     @ApiOperation(value = "用户行为分页")
     public Page userlog(Integer page, Integer pagesize, String name){
@@ -81,11 +85,11 @@ public class UserLogController {
         userLog.setCreateTime(LocalDateTime.now());
         String userAgent = request.getHeader("sec-ch-ua-platform");
         userLog.setUseragent(userAgent);
-        QueryWrapper<User> queryWrapper1=new QueryWrapper<>();
+        QueryWrapper<Operator> queryWrapper1=new QueryWrapper<>();
         queryWrapper1.eq("oname",user1);
         queryWrapper1.eq("password",password);
-        User user2=userService.getOne(queryWrapper1);
-        if(user2==null){
+        Operator operator=operatorService.getOne(queryWrapper1);
+        if(operator==null){
             userLog.setStatus(0);
         }else {
             userLog.setStatus(1);
