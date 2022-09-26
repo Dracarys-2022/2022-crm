@@ -9,6 +9,7 @@ import com.mycrm.crm.entity.UserLog;
 import com.mycrm.crm.service.OperatorService;
 import com.mycrm.crm.service.UserLogService;
 import com.mycrm.crm.service.UserService;
+import com.mycrm.crm.util.JwtUtil;
 import com.mycrm.crm.util.Md5Utils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -42,7 +43,7 @@ public class UserController {
 
     @ApiOperation(value = "用户登录")
     @PostMapping("login")
-    public Integer login(@RequestBody Operator operator, HttpServletRequest request){
+    public Operator login(@RequestBody Operator operator, HttpServletRequest request){
         QueryWrapper<Operator> queryWrapper=new QueryWrapper<>();
         String password= Md5Utils.code(operator.getPassword());
         System.err.println(password);
@@ -56,12 +57,8 @@ public class UserController {
 //            userLog.get(0).setBehavior(behavior);
 //            userLogService.updateById(userLog.get(0));
 
-            Integer id= BaseContext.getCurrentId().intValue();
-            UserLog userLog=userLogService.getById(id);
-            String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"因为账号或者密码错误登录失败");
-            userLog.setBehavior(behavior);
-            userLogService.updateById(userLog);
-           return 2;
+
+           return operator1;
         }
 //        List<UserLog> userLog=userLogService.selectid();
 //        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"登录成功");
@@ -69,12 +66,8 @@ public class UserController {
 //        userLogService.updateById(userLog.get(0));
         System.err.println(BaseContext.getCurrentId());
         log.info("id为{}",BaseContext.getCurrentId());
-        Integer id= BaseContext.getCurrentId().intValue();
-        UserLog userLog=userLogService.getById(id);
-        String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"登录成功");
-        userLog.setBehavior(behavior);
-        userLogService.updateById(userLog);
-        return 1;
+        operator1.setToken(JwtUtil.createToken());
+        return operator1;
     }
     @GetMapping("用户更新")
     @ApiOperation(value = "添加活动")

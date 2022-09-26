@@ -78,15 +78,11 @@ public class FunctionsController {
         map.put("two","查询成功！");
         System.out.println(map.get("one"));
         System.out.println(map.get("two"));
-//        List<UserLog> userLog=userLogService.selectid();
-//        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了功能管理相关操作");
-//        userLog.get(0).setBehavior(behavior);
-//        userLogService.updateById(userLog.get(0));
-        Integer id= BaseContext.getCurrentId().intValue();
-        UserLog userLog=userLogService.getById(id);
-        String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"查看了功能管理相关操作");
-        userLog.setBehavior(behavior);
-        userLogService.updateById(userLog);
+        List<UserLog> userLog=userLogService.selectid();
+        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了功能管理相关操作");
+        userLog.get(0).setBehavior(behavior);
+        userLogService.updateById(userLog.get(0));
+
         return map.get("one");
     }
     @PostMapping("/listFunction")

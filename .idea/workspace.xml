@@ -10,12 +10,34 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="317c400c-3673-4c85-8daf-b907ae19d478" name="默认的" comment="合并完成">
+    <list default="true" id="317c400c-3673-4c85-8daf-b907ae19d478" name="默认的" comment="使用了operator数据库">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/util/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/crm_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/crm_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/crm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/ActiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/ActiveController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/FunctionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/FunctionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/InventoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/OperatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/OperatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/OrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/OrdersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/RolesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/RolesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/UserLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/UserLogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/entity/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/entity/Operator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/ActiveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/ActiveController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/ClientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/ClientController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/FunctionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/FunctionsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/InventoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/InventoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/OperatorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/OperatorController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/OrdersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/OrdersController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/RolesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/RolesController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/UserLogController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/UserLogController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/entity/Operator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/entity/Operator.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +111,10 @@
       <workItem from="1664090376540" duration="2192000" />
       <workItem from="1664093288039" duration="806000" />
       <workItem from="1664094121174" duration="35000" />
-      <workItem from="1664096387862" duration="343000" />
+      <workItem from="1664096387862" duration="1143000" />
+      <workItem from="1664120011164" duration="1004000" />
+      <workItem from="1664169291679" duration="233000" />
+      <workItem from="1664185143532" duration="3874000" />
     </task>
     <task id="LOCAL-00001" summary="合并完成">
       <created>1664000036638</created>
@@ -105,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664001276548</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="使用了operator数据库">
+      <created>1664096887281</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1664096887281</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,49 +157,50 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="合并完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="合并完成" />
+    <MESSAGE value="使用了operator数据库" />
+    <option name="LAST_COMMIT_MESSAGE" value="使用了operator数据库" />
   </component>
   <component name="WindowStateProjectService">
     <state x="516" y="213" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1664091457213">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="516" y="213" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1664091457213" />
-    <state x="515" y="304" key="FileChooserDialogImpl" timestamp="1664094142124">
+    <state x="515" y="304" key="FileChooserDialogImpl" timestamp="1664120513568">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="515" y="304" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1664094142124" />
-    <state width="1057" height="244" key="GridCell.Tab.0.bottom" timestamp="1664092407828">
+    <state x="515" y="304" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1664120513568" />
+    <state width="1057" height="244" key="GridCell.Tab.0.bottom" timestamp="1664204372176">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1057" height="244" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1664092407828" />
-    <state width="1057" height="244" key="GridCell.Tab.0.center" timestamp="1664092407827">
+    <state width="1057" height="244" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1664204372176" />
+    <state width="1057" height="244" key="GridCell.Tab.0.center" timestamp="1664204372176">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1057" height="244" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1664092407827" />
-    <state width="1057" height="244" key="GridCell.Tab.0.left" timestamp="1664092407827">
+    <state width="1057" height="244" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1664204372176" />
+    <state width="1057" height="244" key="GridCell.Tab.0.left" timestamp="1664204372174">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1057" height="244" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1664092407827" />
-    <state width="1057" height="244" key="GridCell.Tab.0.right" timestamp="1664092407828">
+    <state width="1057" height="244" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1664204372174" />
+    <state width="1057" height="244" key="GridCell.Tab.0.right" timestamp="1664204372176">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1057" height="244" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1664092407828" />
-    <state width="1057" height="244" key="GridCell.Tab.1.bottom" timestamp="1664092407829">
+    <state width="1057" height="244" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1664204372176" />
+    <state width="1057" height="244" key="GridCell.Tab.1.bottom" timestamp="1664204372176">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1057" height="244" key="GridCell.Tab.1.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1664092407829" />
-    <state width="1057" height="244" key="GridCell.Tab.1.center" timestamp="1664092407829">
+    <state width="1057" height="244" key="GridCell.Tab.1.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1664204372176" />
+    <state width="1057" height="244" key="GridCell.Tab.1.center" timestamp="1664204372176">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1057" height="244" key="GridCell.Tab.1.center/0.0.1858.1080@0.0.1858.1080" timestamp="1664092407829" />
-    <state width="1057" height="244" key="GridCell.Tab.1.left" timestamp="1664092407828">
+    <state width="1057" height="244" key="GridCell.Tab.1.center/0.0.1858.1080@0.0.1858.1080" timestamp="1664204372176" />
+    <state width="1057" height="244" key="GridCell.Tab.1.left" timestamp="1664204372176">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1057" height="244" key="GridCell.Tab.1.left/0.0.1858.1080@0.0.1858.1080" timestamp="1664092407828" />
-    <state width="1057" height="244" key="GridCell.Tab.1.right" timestamp="1664092407829">
+    <state width="1057" height="244" key="GridCell.Tab.1.left/0.0.1858.1080@0.0.1858.1080" timestamp="1664204372176" />
+    <state width="1057" height="244" key="GridCell.Tab.1.right" timestamp="1664204372176">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1057" height="244" key="GridCell.Tab.1.right/0.0.1858.1080@0.0.1858.1080" timestamp="1664092407829" />
+    <state width="1057" height="244" key="GridCell.Tab.1.right/0.0.1858.1080@0.0.1858.1080" timestamp="1664204372176" />
     <state width="1057" height="302" key="GridCell.Tab.2.bottom" timestamp="1664092404000">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -188,13 +221,29 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="613" y="427" key="MultipleFileMergeDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1664000387908" />
-    <state x="327" y="296" key="Vcs.Push.Dialog.v2" timestamp="1664001309453">
+    <state x="327" y="296" key="Vcs.Push.Dialog.v2" timestamp="1664096909579">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="327" y="296" key="Vcs.Push.Dialog.v2/0.0.1858.1080@0.0.1858.1080" timestamp="1664001309453" />
+    <state x="327" y="296" key="Vcs.Push.Dialog.v2/0.0.1858.1080@0.0.1858.1080" timestamp="1664096909579" />
     <state x="537" y="470" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1663999967147">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="537" y="470" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1663999967147" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/UserLogController.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/ActiveController.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

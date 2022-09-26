@@ -87,7 +87,6 @@ public class UserLogController {
         userLog.setUseragent(userAgent);
         QueryWrapper<Operator> queryWrapper1=new QueryWrapper<>();
         queryWrapper1.eq("oname",user1);
-        queryWrapper1.eq("password",password);
         Operator operator=operatorService.getOne(queryWrapper1);
         if(operator==null){
             userLog.setStatus(0);

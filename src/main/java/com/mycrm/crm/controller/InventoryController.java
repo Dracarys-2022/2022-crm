@@ -209,15 +209,11 @@ public class InventoryController {
         wrapper.select("pid","pname");
         List<Product> list=productService.list(wrapper);
         Rsmap.put("data", list);
-//        List<UserLog> userLog=userLogService.selectid();
-//        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了入库操作");
-//        userLog.get(0).setBehavior(behavior);
-//        userLogService.updateById(userLog.get(0));
-        Integer id= BaseContext.getCurrentId().intValue();
-        UserLog userLog=userLogService.getById(id);
-        String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"查看了入库操作");
-        userLog.setBehavior(behavior);
-        userLogService.updateById(userLog);
+        List<UserLog> userLog=userLogService.selectid();
+        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了入库操作");
+        userLog.get(0).setBehavior(behavior);
+        userLogService.updateById(userLog.get(0));
+
         return Rsmap;
     }
 

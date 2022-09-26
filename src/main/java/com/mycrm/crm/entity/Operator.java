@@ -61,5 +61,7 @@ public class Operator implements Serializable {
     @ApiModelProperty(value = "角色")
     private Integer roid;
 
+    @ApiModelProperty(value = "token")
+    private  String token;
 
 }

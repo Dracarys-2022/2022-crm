@@ -57,15 +57,11 @@ public class ActiveController {
         queryWrapper.eq("time", day);
         queryWrapper.orderByAsc("starttime");
         List<Active> active1 = activeService.list(queryWrapper);
-//        List<UserLog> userLog=userLogService.selectid();
-//        String behavior=userLog.get(0).getBehavior().concat(" 查看了"+day+"日程表");
-//        userLog.get(0).setBehavior(behavior);
-//        userLogService.updateById(userLog.get(0));
-        Integer id= BaseContext.getCurrentId().intValue();
-        UserLog userLog=userLogService.getById(id);
-        String behavior=userLog.getBehavior().concat(" 查看了"+day+"日程表");
-        userLog.setBehavior(behavior);
-        userLogService.updateById(userLog);
+        List<UserLog> userLog=userLogService.selectid();
+        String behavior=userLog.get(0).getBehavior().concat(" 查看了"+day+"日程表");
+        userLog.get(0).setBehavior(behavior);
+        userLogService.updateById(userLog.get(0));
+
 
         return R.success(active1);
 
@@ -74,60 +70,44 @@ public class ActiveController {
     @PutMapping("/supdate/{id}")
     public R<Active> update(@PathVariable Integer id, HttpServletRequest request){
         Active active=activeService.getById(id);
-//        List<UserLog> userLog=userLogService.selectid();
-//        String behavior=userLog.get(0).getBehavior().concat(" 查看了详细日程表");
-//        userLog.get(0).setBehavior(behavior);
-//        userLogService.updateById(userLog.get(0));
-        Integer id1= BaseContext.getCurrentId().intValue();
-        UserLog userLog=userLogService.getById(id1);
-        String behavior=userLog.getBehavior().concat(" 查看了详细日程表");
-        userLog.setBehavior(behavior);
-        userLogService.updateById(userLog);
+        List<UserLog> userLog=userLogService.selectid();
+        String behavior=userLog.get(0).getBehavior().concat(" 查看了详细日程表");
+        userLog.get(0).setBehavior(behavior);
+        userLogService.updateById(userLog.get(0));
+
         return R.success(active);
     }
     @PostMapping("update")
     @ApiOperation(value = "更新活动")
     public R<String> update1(@RequestBody Active active, HttpServletRequest request){
         activeService.updateById(active);
-//        List<UserLog> userLog=userLogService.selectid();
-//        String behavior=userLog.get(0).getBehavior().concat(" 修改了"+active.getTime()+"日程表");
-//        userLog.get(0).setBehavior(behavior);
-//        userLogService.updateById(userLog.get(0));
-        Integer id1= BaseContext.getCurrentId().intValue();
-        UserLog userLog=userLogService.getById(id1);
-        String behavior=userLog.getBehavior().concat(" 修改了"+active.getTime()+"日程表");
-        userLog.setBehavior(behavior);
-        userLogService.updateById(userLog);
+        List<UserLog> userLog=userLogService.selectid();
+        String behavior=userLog.get(0).getBehavior().concat(" 修改了"+active.getTime()+"日程表");
+        userLog.get(0).setBehavior(behavior);
+        userLogService.updateById(userLog.get(0));
+
         return R.success("修改日程成功");
     }
     @DeleteMapping("/delete/{id}")
     @ApiOperation(value = "删除活动")
     public R<String> delete(@PathVariable Integer id, HttpServletRequest request){
         activeService.removeById(id);
-//        List<UserLog> userLog=userLogService.selectid();
-//        String behavior=userLog.get(0).getBehavior().concat(" 删除了编号为:"+id+"日程表");
-//        userLog.get(0).setBehavior(behavior);
-//        userLogService.updateById(userLog.get(0));
-        Integer id1= BaseContext.getCurrentId().intValue();
-        UserLog userLog=userLogService.getById(id1);
-        String behavior=userLog.getBehavior().concat(" 删除了编号为:"+id+"日程表");
-        userLog.setBehavior(behavior);
-        userLogService.updateById(userLog);
+        List<UserLog> userLog=userLogService.selectid();
+        String behavior=userLog.get(0).getBehavior().concat(" 删除了编号为:"+id+"日程表");
+        userLog.get(0).setBehavior(behavior);
+        userLogService.updateById(userLog.get(0));
+
         return R.success("成功");
     }
     @PostMapping()
     @ApiOperation(value = "活动列表")
     public R<List<Active>> list(HttpServletRequest request){
         List<Active> activeList=activeService.list();
-//        List<UserLog> userLog=userLogService.selectid();
-//        String behavior=userLog.get(0).getBehavior().concat(" "+LocalDateTime.now()+"查看了用户日程表");
-//        userLog.get(0).setBehavior(behavior);
-//        userLogService.updateById(userLog.get(0));
-        Integer id1= BaseContext.getCurrentId().intValue();
-        UserLog userLog=userLogService.getById(id1);
-        String behavior=userLog.getBehavior().concat(" "+LocalDateTime.now()+"查看了用户日程表");
-        userLog.setBehavior(behavior);
-        userLogService.updateById(userLog);
+        List<UserLog> userLog=userLogService.selectid();
+        String behavior=userLog.get(0).getBehavior().concat(" "+LocalDateTime.now()+"查看了用户日程表");
+        userLog.get(0).setBehavior(behavior);
+        userLogService.updateById(userLog.get(0));
+
 
         return R.success(activeList);
 
