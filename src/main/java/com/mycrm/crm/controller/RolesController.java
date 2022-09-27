@@ -51,11 +51,9 @@ public class RolesController {
     @Autowired
     UserLogService userLogService;
 
-    @ApiOperation("查看角色")
+
     @PostMapping("/queryList")
-
-    @RequestMapping("/queryList")
-
+    @ApiOperation("查看角色")
     public Object listRoles()
     {
         QueryWrapper<Roles> queryWrapper= new QueryWrapper<>();
@@ -65,8 +63,9 @@ public class RolesController {
     }
 
 
-    @ApiOperation("添加角色")
+
     @PostMapping("/add")
+    @ApiOperation("添加角色")
     public Object add(@RequestBody Roles roles){
         System.out.println(roles);
         Map<String,Object> map=new HashMap<String,Object>();
@@ -77,11 +76,9 @@ public class RolesController {
         }
         return map;
     }
-    @ApiOperation("查看角色")
+
     @PostMapping("/list")
-
-    @RequestMapping("/list")
-
+    @ApiOperation("查看角色")
     public Object list(){
         System.out.println("查询数据");
         Map<String,Object> map=new HashMap<String,Object>();
@@ -109,11 +106,9 @@ public class RolesController {
         return map.get("one");
     }
 
-    @ApiOperation("删除角色")
+
     @PostMapping("/delete")
-
-    @RequestMapping("/delete")
-
+    @ApiOperation("删除角色")
     public Object delete(@RequestBody Roles roles){
         System.out.println("删除数据");
         System.out.println(roles.getRoid());
@@ -121,11 +116,9 @@ public class RolesController {
         return rolesService.list();
     }
 
-    @ApiOperation("修改角色信息")
+
     @PostMapping("/update")
-
-    @RequestMapping("/update")
-
+    @ApiOperation("修改角色信息")
     public Object update(@RequestBody Roles roles){
         System.out.println("查看某个数据");
         System.out.println(roles.getRoid());
@@ -133,11 +126,9 @@ public class RolesController {
         return rolesService.getById(roles.getRoid());
     }
 
-    @ApiOperation("查看某个角色信息")
+
     @PostMapping("/roleOne")
-
-    @RequestMapping("/roleOne")
-
+    @ApiOperation("查看某个角色信息")
     public Object roleOne(@RequestBody Roles roles){
         System.out.println("查看某个数据");
         System.out.println(roles.getRoid());
@@ -145,11 +136,9 @@ public class RolesController {
         return rolesService.getById(roles.getRoid());
     }
 
-    @ApiOperation("修改角色信息")
+
     @PostMapping("/updateone")
-
-    @RequestMapping("/updateone")
-
+    @ApiOperation("修改角色信息")
     public Object updateone(@RequestBody Roles roles){
         System.out.println("修改数据");
         System.out.println(roles.getRoid()+','+roles.getRoname());

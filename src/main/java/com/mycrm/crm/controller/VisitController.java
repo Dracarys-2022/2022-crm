@@ -45,23 +45,15 @@ public class VisitController {
     ActiveService activeService;
     @Autowired
     UserLogService userLogService;
-
-    @ApiOperation("添加记录")
     @PostMapping("/add")
-
-    @RequestMapping("/add")
-
+    @ApiOperation("添加记录")
     public Object add(@RequestBody Visit visit){
         System.out.println(visit);
         visitService.save(visit);
         return 2;
     }
-
-    @ApiOperation("查看记录")
     @GetMapping("/list")
-
-    @RequestMapping("/list")
-
+    @ApiOperation("查看记录")
     public Object list(@RequestParam String current,@RequestParam String size){
         System.out.println(current+","+size);
         System.out.println("查询拜访记录");
@@ -73,12 +65,8 @@ public class VisitController {
         map.put("total",visitService.count());
         return map;
     }
-
-    @ApiOperation("删除记录")
     @PostMapping("/delete")
-
-    @RequestMapping("/delete")
-
+    @ApiOperation("删除记录")
     public Object delete(@RequestBody Visit visit){
         System.out.println(visit.getVid());
         visitService.removeById(visit.getVid());

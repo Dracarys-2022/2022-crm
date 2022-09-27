@@ -50,12 +50,9 @@ public class OrdersController {
     @Autowired
     UserLogService userLogService;
 
-    @ApiOperation("显示库存信息")
+
     @GetMapping("toInventory")
-
-
-    @RequestMapping("toInventory")
-
+    @ApiOperation("显示库存信息")
     public Object toInventory(@RequestParam int current, @RequestParam int size) {
         Map Rsmap = new HashMap();
         Page<OrdersVo> page = new Page<>(current, size);
@@ -73,11 +70,9 @@ public class OrdersController {
         return Rsmap;
     }
 
-    @ApiOperation("已出库库存信息")
+
     @GetMapping("toInventoryOut")
-
-    @RequestMapping("toInventoryOut")
-
+    @ApiOperation("已出库库存信息")
     public Object toInventoryOut(@RequestParam int current, @RequestParam int size) {
         Map Rsmap = new HashMap();
         Page<OrdersVo> page = new Page<>(current, size);
@@ -90,12 +85,9 @@ public class OrdersController {
         return Rsmap;
     }
 
-    @ApiOperation("库存不足信息")
+
     @GetMapping("toInventoryLack")
-
-
-    @RequestMapping("toInventoryLack")
-
+    @ApiOperation("库存不足信息")
     public Object toInventoryLack(@RequestParam int current, @RequestParam int size) {
         Map Rsmap = new HashMap();
         Page<OrdersVo> page = new Page<>(current, size);
@@ -109,12 +101,9 @@ public class OrdersController {
     }
 
 
-    @ApiOperation("添加订单")
+
     @PostMapping("/add")
-
-
-    @RequestMapping("/add")
-
+    @ApiOperation("添加订单")
     public Object add(@RequestBody Orders orders) {
         System.out.println(orders);
         Date date = new Date();
@@ -131,12 +120,9 @@ public class OrdersController {
         return 2;
     }
 
-    @ApiOperation("查询所有下拉菜单")
+
     @PostMapping("/getlist")
-
-
-    @RequestMapping("/getlist")
-
+    @ApiOperation("查询所有下拉菜单")
     public Object getList() {
         System.out.println("kaishicha");
         Map<String, Object> map = new HashMap<String, Object>();
@@ -151,12 +137,9 @@ public class OrdersController {
         return map;
     }
 
-    @ApiOperation("查询所有订单信息")
+
     @GetMapping("/list")
-
-
-    @RequestMapping("/list")
-
+    @ApiOperation("查询所有订单信息")
     public Object list(@RequestParam String current, @RequestParam String size) {
         System.out.println("kaishicha");
         Map<String, Object> map = new HashMap<String, Object>();
@@ -193,11 +176,9 @@ public class OrdersController {
         return map;
     }
 
-    @ApiOperation("请求出库")
+
     @GetMapping("/request")
-
-    @RequestMapping("/request")
-
+    @ApiOperation("请求出库")
     public Object request(@RequestParam String oid, @RequestParam String current, @RequestParam String size) {
         System.out.println("kaishicha");
         UpdateWrapper<Orders> updateWrapper = new UpdateWrapper<>();
@@ -232,12 +213,9 @@ public class OrdersController {
         return map;
     }
 
-    @ApiOperation("出库")
+
     @GetMapping("/out")
-
-
-    @RequestMapping("/out")
-
+    @ApiOperation("出库")
     public Object out(@RequestParam String oid, @RequestParam String current, @RequestParam String size) {
         System.out.println("kaishicha");
         UpdateWrapper<Orders> updateWrapper = new UpdateWrapper<>();
@@ -272,12 +250,9 @@ public class OrdersController {
         return map;
     }
 
-    @ApiOperation("退换")
+
     @PostMapping("/return")
-
-
-    @RequestMapping("/return")
-
+    @ApiOperation("退换")
     public Object returnst(@RequestBody Map<Object, String> Datemap) throws ParseException {
         System.out.println("kaishicha");
         Map<String, Object> map = new HashMap<String, Object>();
@@ -344,12 +319,9 @@ public class OrdersController {
         return map;
     }
 
-    @ApiOperation("完成订单")
+
     @GetMapping("/complate")
-
-
-    @RequestMapping("/complate")
-
+    @ApiOperation("完成订单")
     public Object complate(@RequestParam String oid, @RequestParam String current, @RequestParam String size) {
         System.out.println("kaishicha");
         UpdateWrapper<Orders> updateWrapper = new UpdateWrapper<>();
@@ -384,12 +356,9 @@ public class OrdersController {
         return map;
     }
 
-    @ApiOperation("查看利润信息")
+
     @GetMapping("/prefit")
-
-
-    @RequestMapping("/prefit")
-
+    @ApiOperation("查看利润信息")
     public Object prefit() {
         QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("type", 5);
@@ -407,12 +376,9 @@ public class OrdersController {
         return map;
     }
 
-    @ApiOperation("查看利润信息")
+
     @GetMapping("/prefit1")
-
-
-    @RequestMapping("/prefit1")
-
+    @ApiOperation("查看利润信息")
     public Object prefit1() {
         QueryWrapper<Orders> queryWrapper1 = new QueryWrapper<>();
         queryWrapper1.eq("state", 2);
@@ -434,12 +400,9 @@ public class OrdersController {
         return map;
     }
 
-    @ApiOperation("查看所有产品信息")
+
     @GetMapping("/allpro")
-
-
-    @RequestMapping("/allpro")
-
+    @ApiOperation("查看所有产品信息")
     public Object allPro(@RequestParam int oid) {
         Map<String, Object> map = new HashMap<String, Object>();
         QueryWrapper<Product> queryWrapper1 = new QueryWrapper<>();
@@ -449,12 +412,9 @@ public class OrdersController {
         return map;
     }
 
-    @ApiOperation("根据客户查找联系人信息")
+
     @GetMapping("selectcid")
-
-
-    @RequestMapping("selectcid")
-
+    @ApiOperation("根据客户查找联系人信息")
     public Object selectcid1(@RequestParam int cid) {
         Map<String, Object> map = new HashMap<String, Object>();
         QueryWrapper<Contact> queryWrapper = new QueryWrapper<>();
