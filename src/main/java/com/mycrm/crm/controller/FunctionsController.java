@@ -45,8 +45,8 @@ public class FunctionsController {
     ActiveService activeService;
     @Autowired
     UserLogService userLogService;
-    @ApiOperation("功能的添加")
     @PostMapping("/add")
+    @ApiOperation("功能的添加")
     public Object add(@RequestBody Functions functions){
         System.out.println(functions);
         Map<String,Object> map=new HashMap<String,Object>();
@@ -58,6 +58,7 @@ public class FunctionsController {
         return map;
     }
     @PostMapping("/add1")
+    @ApiOperation("功能的添加")
     public Object add1(@RequestBody Functions functions){
         System.out.println(functions.getFatherid());
         Map<String,Object> map=new HashMap<String,Object>();
@@ -69,7 +70,7 @@ public class FunctionsController {
         return map;
     }
     @PostMapping("/list")
-    @GetMapping("/list")
+    @ApiOperation("功能的查询")
     public Object list(){
         System.out.println("查询数据");
 //        System.out.println(rolesService.list());
@@ -86,8 +87,7 @@ public class FunctionsController {
         return map.get("one");
     }
     @PostMapping("/listFunction")
-
-    @GetMapping("/listFunction")
+    @ApiOperation("功能的查询")
     public Object listFunction(){
         System.out.println("查询数据");
         Map<String,Object> map=new HashMap<String,Object>();
@@ -100,7 +100,7 @@ public class FunctionsController {
         return map.get("one");
     }
     @PostMapping("/listFunction1")
-    @GetMapping("/listFunction1")
+    @ApiOperation("功能的查询")
 //    public Object listFunction1(@RequestParam("fid") int fid){
         public Object listFunction1(@RequestBody Functions functions){
         System.out.println("查询数据");
@@ -114,7 +114,7 @@ public class FunctionsController {
         return map.get("one");
     }
     @PostMapping("/delete")
-    @GetMapping("/delete")
+    @ApiOperation("功能的查询")
     public Object delete(@RequestBody Functions functions){
         System.out.println("删除数据");
         System.out.println(functions.getFid());
@@ -122,7 +122,7 @@ public class FunctionsController {
         return functionsService.list();
     }
     @PostMapping("/update")
-    @GetMapping("/update")
+    @ApiOperation("功能的查询")
     public Object update(@RequestBody Functions functions){
         System.out.println("查看某个数据");
         System.out.println(functions.getFid());
@@ -130,7 +130,7 @@ public class FunctionsController {
         return functionsService.getById(functions.getFid());
     }
     @PostMapping("/updateone")
-    @GetMapping("/updateone")
+    @ApiOperation("功能的查询")
     public Object updateone(@RequestBody Functions functions){
         System.out.println("修改数据");
         System.out.println(functions.getFid()+','+functions.getFname());
@@ -140,7 +140,7 @@ public class FunctionsController {
         return 0;
     }
     @PostMapping("/beSureFunctions")
-    @GetMapping("/beSureFunctions")
+    @ApiOperation("功能的查询")
     public Object beSureFunctions(@RequestBody Roles roles){
         System.out.println("修改数据");
         System.out.println(roles.getRoid()+','+roles.getPermissions());
