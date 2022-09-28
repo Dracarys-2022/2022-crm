@@ -93,8 +93,8 @@ export default {
     afterLogin(res) {
       this.logging = false
       const loginRes = res.data
-      console.log("loginRes:"+loginRes.token);
-      alert("loginRes:"+loginRes.token)
+      // console.log("loginRes:"+loginRes.token);
+      // alert("loginRes:"+loginRes.token)
       if (!loginRes.token == '') {
         localStorage.setItem('access-admin',JSON.stringify(loginRes.token))
           this.$message.success('登录成功')
