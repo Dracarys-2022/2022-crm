@@ -2,18 +2,18 @@
   <div>
     <div v-show="!modalShow">
       <a-card :bordered="false">
-      <div style="display: flex; flex-wrap: wrap">
+      <!-- <div style="display: flex; flex-wrap: wrap">
         <head-info title="累计投诉" content="66个" :bordered="true" />
         <head-info title="已处理的投诉" content="24个" />
-      </div>
+      </div> -->
     </a-card>
     <a-card style="margin-top: 24px" :bordered="false" title="">
       <div slot="extra">
-        <a-radio-group>
+        <!-- <a-radio-group>
           <a-radio-button>全部</a-radio-button>
           <a-radio-button>进行中</a-radio-button>
           <a-radio-button>等待中</a-radio-button>
-        </a-radio-group>
+        </a-radio-group> -->
         <a-input-search style="margin-left: 16px; width: 272px" />
       </div>
       <a-table
@@ -95,7 +95,7 @@
                   <a @click="requestout(record.oid)">请求出库</a>
               </div>
               <div v-else-if="record.type==1">
-                  <a @click="out(record.oid)">出库</a>
+                  <a>等待出库</a>
               </div>
               <div v-else-if="record.type==3">
                   库存不足

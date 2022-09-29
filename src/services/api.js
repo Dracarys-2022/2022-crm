@@ -44,6 +44,7 @@ module.exports = {
   OperatorById:`${BASE_URL}/operator/queryById`,
   OperatorUpdate:`${BASE_URL}/operator/update`,
   OperatorList:`${BASE_URL}/operator/queryContact`,
+  //添加用户的时候查角色
   RolesList:`${BASE_URL}/roles/queryList`,
   OperatorItem:`${BASE_URL}/operator/queryItems`,
    //角色添加

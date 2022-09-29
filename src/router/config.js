@@ -44,83 +44,83 @@ const options = {
               },
               component: () => import('@/pages/dashboard/workplace'),
             },
-            {
-              path: 'analysis',
-              name: '分析页',
-              component: () => import('@/pages/dashboard/analysis'),
-            }
+            // {
+            //   path: 'analysis',
+            //   name: '分析页',
+            //   component: () => import('@/pages/dashboard/analysis'),
+            // }
           ]
         },
         
         
-        {
-          path: 'result',
-          name: '结果页',
-          meta: {
-            icon: 'check-circle-o',
-          },
-          component: PageView,
-          children: [
-            {
-              path: 'success',
-              name: '成功',
-              component: () => import('@/pages/result/Success')
-            },
-            {
-              path: 'error',
-              name: '失败',
-              component: () => import('@/pages/result/Error')
-            }
-          ]
-        },
-        {
-          path: 'exception',
-          name: '异常页',
-          meta: {
-            icon: 'warning',
-          },
-          component: BlankView,
-          children: [
-            {
-              path: '404',
-              name: 'Exp404',
-              component: () => import('@/pages/exception/404')
-            },
-            {
-              path: '403',
-              name: 'Exp403',
-              component: () => import('@/pages/exception/403')
-            },
-            {
-              path: '500',
-              name: 'Exp500',
-              component: () => import('@/pages/exception/500')
-            }
-          ]
-        },
+        // {
+        //   path: 'result',
+        //   name: '结果页',
+        //   meta: {
+        //     icon: 'check-circle-o',
+        //   },
+        //   component: PageView,
+        //   children: [
+        //     {
+        //       path: 'success',
+        //       name: '成功',
+        //       component: () => import('@/pages/result/Success')
+        //     },
+        //     {
+        //       path: 'error',
+        //       name: '失败',
+        //       component: () => import('@/pages/result/Error')
+        //     }
+        //   ]
+        // },
+        // {
+        //   path: 'exception',
+        //   name: '异常页',
+        //   meta: {
+        //     icon: 'warning',
+        //   },
+        //   component: BlankView,
+        //   children: [
+        //     {
+        //       path: '404',
+        //       name: 'Exp404',
+        //       component: () => import('@/pages/exception/404')
+        //     },
+        //     {
+        //       path: '403',
+        //       name: 'Exp403',
+        //       component: () => import('@/pages/exception/403')
+        //     },
+        //     {
+        //       path: '500',
+        //       name: 'Exp500',
+        //       component: () => import('@/pages/exception/500')
+        //     }
+        //   ]
+        // },
        
-        {
-          name: '带参菜单',
-          path: 'router/query',
-          meta: {
-            icon: 'project',
-            query: {
-              name: '菜单默认参数'
-            }
-          },
-          component: () => import('@/pages/Demo')
-        },
-        {
-          name: '动态路由菜单',
-          path: 'router/dynamic/:id',
-          meta: {
-            icon: 'project',
-            params: {
-              id: 123
-            }
-          },
-          component: () => import('@/pages/Demo')
-        },
+        // {
+        //   name: '带参菜单',
+        //   path: 'router/query',
+        //   meta: {
+        //     icon: 'project',
+        //     query: {
+        //       name: '菜单默认参数'
+        //     }
+        //   },
+        //   component: () => import('@/pages/Demo')
+        // },
+        // {
+        //   name: '动态路由菜单',
+        //   path: 'router/dynamic/:id',
+        //   meta: {
+        //     icon: 'project',
+        //     params: {
+        //       id: 123
+        //     }
+        //   },
+        //   component: () => import('@/pages/Demo')
+        // },
         {
           path: '/userlog',
           name: '登录日志',
@@ -246,7 +246,7 @@ const options = {
           ]
         },{
           path: 'roles',
-          name: '角色管理',
+          name: '权限管理',
           meta: {
             icon: 'appstore-o'
           },
@@ -262,33 +262,38 @@ const options = {
               path: 'listRole',
               name: '角色查看',
               component: () => import('@/pages/roles/listRole')
-            }
-          ]
-        },{
-          path: 'functions',
-          name: '功能管理',
-          meta: {
-            icon: 'appstore-o'
-          },
-          component: PageView,
-          children: [
-            {
-              path: 'addFunction',
-              name: '功能添加',
-              component: () => import('@/pages/functions/addFunction')
-            },
-            {
+            },{
               path: 'listFunction',
               name: '功能查看',
               component: () => import('@/pages/functions/listFunction')
             }
-            // ,{
-            //   path: 'listcheck',
-            //   name: '复选框测试',
-            //   component: () => import('@/pages/functions/listcheck')
-            // }
           ]
         },
+        // {
+        //   path: 'functions',
+        //   name: '功能管理',
+        //   meta: {
+        //     icon: 'appstore-o'
+        //   },
+        //   component: PageView,
+        //   children: [
+        //     // {
+        //     //   path: 'addFunction',
+        //     //   name: '功能添加',
+        //     //   component: () => import('@/pages/functions/addFunction')
+        //     // },
+        //     {
+        //       path: 'listFunction',
+        //       name: '功能查看',
+        //       component: () => import('@/pages/functions/listFunction')
+        //     }
+        //     // ,{
+        //     //   path: 'listcheck',
+        //     //   name: '复选框测试',
+        //     //   component: () => import('@/pages/functions/listcheck')
+        //     // }
+        //   ]
+        // },
         {
           path: 'product',
           name: '产品模块',

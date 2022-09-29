@@ -6,7 +6,7 @@
       <th>序号</th>
       <th>功能</th>
       <td>级别</td>
-      <th>操作</th>
+      <!-- <th>操作</th> -->
             </tr>
         </thead>
     <tbody>
@@ -15,7 +15,7 @@
       <td>{{func.fname}}</td>
       <td v-if="func.fatherid==0">父权限</td>
       <td v-if="func.fatherid!=0">子权限</td>
-      <td><button @click="remove(func.fid)">删除</button><button @click="update(func.fid)">修改</button></td>
+      <!-- <td><button @click="remove(func.fid)">删除</button><button @click="update(func.fid)">修改</button></td> -->
      </tr>
     </tbody>
    </table>
@@ -24,9 +24,9 @@
       <a-input v-model="fname" placeholder="输入功能名称"/>
     </a-form-item>
       <a-input v-model="fid" v-show='false'/>
-    <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
+    <!-- <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button type="primary" @click="onSubmit">修改</a-button>
-    </a-form-item>
+    </a-form-item> -->
   </a-form>
 </div>   
 </template>
