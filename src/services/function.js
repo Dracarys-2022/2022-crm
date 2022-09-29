@@ -25,8 +25,11 @@ async function addFunction1(name,fatherid) {
     fatherid:fatherid
   })
 }
-async function listFunctions() {
-return request(LISTFUNCTION, METHOD.POST, {})
+async function listFunctions(current, size) {
+return request(LISTFUNCTION, METHOD.GET, {
+  current: current,
+  size: size
+})
 }
 async function firstFunction() {
   return request(FIRSTFUNCTION, METHOD.POST, {})
