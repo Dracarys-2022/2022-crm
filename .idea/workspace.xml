@@ -11,27 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="317c400c-3673-4c85-8daf-b907ae19d478" name="默认的" comment="使用了operator数据库">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/config/MyInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/config/WebMvcConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/entity/FunctionsVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_3_21.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_21.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/FunctionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/FunctionsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/mapper/FunctionsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/mapper/FunctionsMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/service/FunctionsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/service/FunctionsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/service/impl/FunctionsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/service/impl/FunctionsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/util/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/FunctionsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/FunctionsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/FunctionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/FunctionsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/OrdersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/OrdersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/RolesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/RolesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/VisitController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycrm/crm/controller/VisitController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/crm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/config/MyInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/config/MyInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/OperatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/OperatorController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +46,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../实训作业/h927" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -119,6 +102,8 @@
       <workItem from="1664285828906" duration="3812000" />
       <workItem from="1664327576328" duration="23924000" />
       <workItem from="1664427285628" duration="14780000" />
+      <workItem from="1664517377444" duration="3466000" />
+      <workItem from="1664520910338" duration="95000" />
     </task>
     <task id="LOCAL-00001" summary="合并完成">
       <created>1664000036638</created>
