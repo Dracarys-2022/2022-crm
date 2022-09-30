@@ -74,7 +74,7 @@ public class OperatorController {
         return operator;
     }
     @GetMapping("/queryContact")
-    @ApiOperation(value = "查询客户信息")
+    @ApiOperation(value = "查询所有销售")
     public Object listRoles() {
         QueryWrapper<Functions> queryWrapper= new QueryWrapper<>();
         queryWrapper.eq("fname","客户管理");
