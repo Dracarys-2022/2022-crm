@@ -13,12 +13,12 @@ export async function listOut(current, size) {
     })
 }
 export async function changeStatus(pid) {
-    return request(CHANGESTATUS, METHOD.POST, {
+    return request(CHANGESTATUS, METHOD.GET, {
         pid: pid
     })
 }
 export async function queryByPid(pid) {
-    return request(QUERYBYPID, METHOD.POST, {
+    return request(QUERYBYPID, METHOD.GET, {
         pid: pid
     })
 }
