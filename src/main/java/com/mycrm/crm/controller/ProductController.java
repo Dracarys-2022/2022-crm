@@ -12,12 +12,10 @@ import com.mycrm.crm.entity.UserLog;
 import com.mycrm.crm.service.ActiveService;
 import com.mycrm.crm.service.ProductService;
 import com.mycrm.crm.service.UserLogService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -33,6 +31,7 @@ import java.util.Map;
  * @since 2022-07-17
  */
 @RestController
+@Api(tags = "产品模块控制器")
 @RequestMapping("/product")
 public class ProductController {
     @Autowired
@@ -42,7 +41,8 @@ public class ProductController {
     @Autowired
     UserLogService userLogService;
 
-    @RequestMapping("list")
+    @GetMapping("list")
+    @ApiOperation("获得所有已上架的产品")
     public Object list(@RequestParam int current, @RequestParam int size) {
         Map Rsmap = new HashMap();
         Page<Product> page = new Page<>(current, size);
@@ -60,7 +60,8 @@ public class ProductController {
         return Rsmap;
     }
 
-    @RequestMapping("listOut")
+    @GetMapping("listOut")
+    @ApiOperation("获得所有已下架的产品")
     public Object listOut(@RequestParam int current, @RequestParam int size) {
         Map Rsmap = new HashMap();
         Page<Product> page = new Page<>(current, size);
@@ -73,11 +74,11 @@ public class ProductController {
         return Rsmap;
     }
 
-    @RequestMapping("changeStatus")
-    public Object changeStatus(@RequestBody Map<String, Integer> map) {
+    @GetMapping("changeStatus")
+    @ApiOperation("根据pid修改产品状态")
+    public Object changeStatus(@RequestParam int pid) {
         Map Rsmap = new HashMap();
         QueryWrapper wrapper = new QueryWrapper();
-        int pid = map.get("pid");
         wrapper.eq("pid", pid);
         Product product = productService.getOne(wrapper);
         int status = product.getStatus();
@@ -93,10 +94,10 @@ public class ProductController {
         return Rsmap;
     }
 
-    @RequestMapping("queryByPid")
-    public Object queryByPid(@RequestBody Map<String, Integer> map) {
+    @GetMapping("queryByPid")
+    @ApiOperation("根据pid查询产品")
+    public Object queryByPid(@RequestParam int pid) {
         Map Rsmap = new HashMap();
-        int pid = map.get("pid");
         QueryWrapper wrapper = new QueryWrapper();
         wrapper.eq("pid", pid);
         Product product = productService.getOne(wrapper);
@@ -106,7 +107,8 @@ public class ProductController {
         return Rsmap;
     }
 
-    @RequestMapping("update")
+    @PostMapping("update")
+    @ApiOperation("修改产品")
     public Object update(@RequestBody Product product) {
         Map Rsmap = new HashMap();
         int pid = product.getPid();
@@ -118,7 +120,8 @@ public class ProductController {
         return Rsmap;
     }
 
-    @RequestMapping("/add")
+    @PostMapping("/add")
+    @ApiOperation("添加新产品")
     public Object add(@RequestBody Product product) {
         productService.save(product);
         return 0;
