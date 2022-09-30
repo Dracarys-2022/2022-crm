@@ -105,4 +105,6 @@ module.exports = {
    ALLPRO:`${BASE_URL}/orders/allpro`,
    //添加服务
   ADDPRO:`${BASE_URL}/product/add`,
+   //根据cid找coid
+   SELECTCOID:`${BASE_URL}/orders/selectcid`,
 }
