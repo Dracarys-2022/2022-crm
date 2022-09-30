@@ -4,9 +4,11 @@ package com.mycrm.crm.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mycrm.crm.common.BaseContext;
 import com.mycrm.crm.entity.Operator;
+import com.mycrm.crm.entity.Roles;
 import com.mycrm.crm.entity.User;
 import com.mycrm.crm.entity.UserLog;
 import com.mycrm.crm.service.OperatorService;
+import com.mycrm.crm.service.RolesService;
 import com.mycrm.crm.service.UserLogService;
 import com.mycrm.crm.service.UserService;
 import com.mycrm.crm.util.JwtUtil;
@@ -40,7 +42,8 @@ public class UserController {
     UserLogService userLogService;
     @Autowired
     OperatorService operatorService;
-
+    @Autowired
+    RolesService rolesService;
     @ApiOperation(value = "用户登录")
     @PostMapping("login")
     public Operator login(@RequestBody Operator operator, HttpServletRequest request){
@@ -66,7 +69,11 @@ public class UserController {
 //        userLogService.updateById(userLog.get(0));
         System.err.println(BaseContext.getCurrentId());
         log.info("id为{}",BaseContext.getCurrentId());
-        operator1.setToken(JwtUtil.createToken());
+        QueryWrapper<Roles> wrapper=new QueryWrapper<Roles>();
+        wrapper.eq("roid",operator1.getRoid());
+        String functions=rolesService.getOne(wrapper).getPermissions();
+        operator1.setToken(JwtUtil.createToken(operator1,functions));
+        System.out.println("token的值为"+operator1.getToken());
         return operator1;
     }
     @GetMapping("用户更新")

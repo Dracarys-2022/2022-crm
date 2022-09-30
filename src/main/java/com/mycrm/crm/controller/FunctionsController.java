@@ -2,8 +2,11 @@ package com.mycrm.crm.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mycrm.crm.common.BaseContext;
 import com.mycrm.crm.entity.Functions;
+import com.mycrm.crm.entity.FunctionsVo;
 import com.mycrm.crm.entity.Roles;
 import com.mycrm.crm.entity.UserLog;
 import com.mycrm.crm.service.ActiveService;
@@ -69,22 +72,32 @@ public class FunctionsController {
         }
         return map;
     }
-    @PostMapping("/list")
+    @GetMapping("/list")
     @ApiOperation("功能的查询")
-    public Object list(){
+    public Object list(@RequestParam String current, @RequestParam String size){
         System.out.println("查询数据");
 //        System.out.println(rolesService.list());
+        Page<FunctionsVo> page=new Page<FunctionsVo>(Integer.parseInt(current), Integer.parseInt(size));
+        IPage<FunctionsVo> listPage=functionsService.listPage(page);
+        for (int i = 0; i < listPage.getRecords().size(); i++) {
+            if (listPage.getRecords().get(i).getFatherid()==0){
+                listPage.getRecords().get(i).setFunctionName("父权限");
+            }if (listPage.getRecords().get(i).getFatherid()!=0){
+                listPage.getRecords().get(i).setFunctionName("子权限");
+            }
+        }
         Map<String,Object> map=new HashMap<String,Object>();
-        map.put("one",functionsService.list());
+        map.put("data",listPage);
+        map.put("total",functionsService.count());
         map.put("two","查询成功！");
-        System.out.println(map.get("one"));
-        System.out.println(map.get("two"));
+        System.out.println(map.get("data"));
+        System.out.println(map.get("total"));
         List<UserLog> userLog=userLogService.selectid();
         String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了功能管理相关操作");
         userLog.get(0).setBehavior(behavior);
         userLogService.updateById(userLog.get(0));
 
-        return map.get("one");
+        return map;
     }
     @PostMapping("/listFunction")
     @ApiOperation("功能的查询")
