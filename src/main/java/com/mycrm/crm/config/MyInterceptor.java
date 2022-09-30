@@ -32,9 +32,124 @@ public class MyInterceptor implements HandlerInterceptor {
                     return true;
                 }
             }
-        }if("/roles/add".equals(request.getRequestURI())){
+        }
+        if("/roles/add".equals(request.getRequestURI())){
             for(String fun:functions){
                 if ("13".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        //投诉模块
+        if("/petition/add".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("36".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        if("/petition/list".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("39".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        if("/petition/listNull".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("40".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        if("/petition/addoutcome".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("37".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        if("/petition/delete".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("41".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        //库存模块
+        if("/inventory/add".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("82".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        if("/inventory/query".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("56".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        if("/inventory/sub".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("62".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        if("/inventory/list".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("64".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        if("/inventory/listNull".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("65".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        if("/inventory/queryById".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("58".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        if("/inventory/update".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("60".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        if("/inventory/getproduct".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("59".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        if("/inventory/lack".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("63".equals(fun)){
                     System.out.println("我通过了");
                     return true;
                 }
