@@ -85,7 +85,7 @@ public class RolesController {
         List<Roles> list=rolesService.list();
         for (int i = 0; i <list.size() ; i++) {
             String a=list.get(i).getPermissions();
-            if (a!=null){
+            if (a!=null & !"".equals(a)){
                 String[] aa= a.split(",");
                 StringBuilder sb=new StringBuilder();
                 for (int j = 0; j < aa.length; j++) {

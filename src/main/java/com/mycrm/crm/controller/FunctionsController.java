@@ -89,14 +89,13 @@ public class FunctionsController {
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("data",listPage);
         map.put("total",functionsService.count());
-        map.put("two","查询成功！");
+        map.put("msg","查询成功！");
         System.out.println(map.get("data"));
         System.out.println(map.get("total"));
         List<UserLog> userLog=userLogService.selectid();
         String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了功能管理相关操作");
         userLog.get(0).setBehavior(behavior);
         userLogService.updateById(userLog.get(0));
-
         return map;
     }
     @PostMapping("/listFunction")
