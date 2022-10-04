@@ -44,6 +44,7 @@
 <script>
 import {listRoles,deleteRole,updateRole,updateone,RoleOne} from '@/services/roles'
 import {beSureFunction,firstFunction,firstFunction1} from '@/services/function'
+import { message } from "ant-design-vue";
     export default ({
         name:'listRole',
         data(){
@@ -71,44 +72,28 @@ import {beSureFunction,firstFunction,firstFunction1} from '@/services/function'
                 // listRoles().then(res=>this.roles=res);
             },
             afterList(res){
-                if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+                if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
-            }else{
-                this.$message.success(
-                '查询成功'
-        );
             }
                 this.roles=res.data;
             },afterDelete(res){
                 this.roles=res.data;
                 if(res.data.msg!=""){
-                this.$message.success(
+                message.success(
             // '查询成功',
                 res.data.msg,
             10,
         )
-            }else{
-                this.$message.success(
-                '删除成功！'
-        );
             }
             },update(roid){
                 updateRole(roid).then(res=>this.lookUpdate(res))
             },lookUpdate(res){
-                if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+                if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
-            }else{
-                this.$message.success(
-                '查询成功'
-        );
             }
                 this.isform=true,
                 this.islist=false,
@@ -116,16 +101,10 @@ import {beSureFunction,firstFunction,firstFunction1} from '@/services/function'
                 this.roid=res.data.roid
             },onSubmit(){
                 updateone(this.roid,this.roname).then(res=>{
-                    if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+                    if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
-            }else{
-                this.$message.success(
-                '修改成功！'
-        );
             }
                 })
             },assignment(roid){
@@ -134,18 +113,12 @@ import {beSureFunction,firstFunction,firstFunction1} from '@/services/function'
             },afterAss(res){
                 // alert(res.data.permissions==null)
                 // alert(res.data.permissions)
-                if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+                if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
-            }else{
-                this.$message.success(
-                '查询成功'
-        );
             }
-                if(res.data.permissions!=null){
+                if(res.data.permissions!=null&&res.data.permissions!=""){
                     // alert(res.data.permissions)
                     // alert(res.data.permissions=="")
                     var sss=res.data.permissions.split(",");
@@ -160,16 +133,10 @@ import {beSureFunction,firstFunction,firstFunction1} from '@/services/function'
                 firstFunction().then(res=>this.afterassimen(res))
             },afterassimen(res){
                 // alert("111")
-                if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+                if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
-            }else{
-                this.$message.success(
-                '查询成功'
-        );
             }
                 this.isform=false;
                 this.islist=false;
@@ -191,16 +158,10 @@ import {beSureFunction,firstFunction,firstFunction1} from '@/services/function'
                 // });
                 beSureFunction(rooid,Onepermission).then(res=>this.afterBesure(res));
             },afterBesure(res){
-                if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+                if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
-            }else{
-                this.$message.success(
-                '修改成功！'
-        );
             }
                 this.roles=res.data;
                 this.ischeck=false;
@@ -208,16 +169,10 @@ import {beSureFunction,firstFunction,firstFunction1} from '@/services/function'
             },sonfun(fid){
                 firstFunction1(fid).then(res=>this.aftersonfun(res))
             },aftersonfun(res){
-                if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+                if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
-            }else{
-                this.$message.success(
-                '查询成功'
-        );
             }
                 this.functiontwo=res.data;
             }
