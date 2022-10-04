@@ -23,11 +23,12 @@ public class MyInterceptor implements HandlerInterceptor {
         Jws<Claims> claimsJws= Jwts.parser().setSigningKey(JwtUtil.signature).parseClaimsJws(aa);
         Claims body=claimsJws.getBody();
         String permissions= (String) body.get("permissions");
+        System.out.println("权限："+permissions);
         String functions []=permissions.split(",");
         //功能查询的拦截放行
         if ("/functions/list".equals(request.getRequestURI())){
             for(String fun:functions){
-                if ("13".equals(fun)){
+                if ("92".equals(fun)){
                     System.out.println("我通过了");
                     return true;
                 }
@@ -145,7 +146,7 @@ public class MyInterceptor implements HandlerInterceptor {
                     return true;
                 }
             }
-        }if("/functions/listFunction".equals(request.getRequestURI())||"/functions/listFunction1".equals(request.getRequestURI())||"/functions/beSureFunctions".equals(request.getRequestURI())){
+        }if("/functions/listFunction".equals(request.getRequestURI())||"/functions/listFunction1".equals(request.getRequestURI())||"/functions/beSureFunctions".equals(request.getRequestURI())||"/roles/roleOne".equals(request.getRequestURI())){
             for(String fun:functions){
                 if ("89".equals(fun)){
                     System.out.println("修改权限");
@@ -153,6 +154,14 @@ public class MyInterceptor implements HandlerInterceptor {
                 }
             }
         }
+//        if("/roles/roleOne".equals(request.getRequestURI())){
+//            for(String fun:functions){
+//                if ("89".equals(fun)){
+//                    System.out.println("修改权限");
+//                    return true;
+//                }
+//            }
+//        }
         //投诉模块
         if("/petition/add".equals(request.getRequestURI())){
             for(String fun:functions){

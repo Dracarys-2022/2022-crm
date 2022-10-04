@@ -8,7 +8,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new MyInterceptor()).
-                excludePathPatterns("/user-log/save").excludePathPatterns("/user/login").
+                excludePathPatterns("/user-log/save").excludePathPatterns("/user/login").excludePathPatterns("/active/activesave","active/supdate/","active/update","active/delete/").
                 addPathPatterns("/**");
     }
 }

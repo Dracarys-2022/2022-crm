@@ -92,6 +92,7 @@ public class RolesController {
                     Functions f=functionsService.getById(Integer.parseInt(aa[j]));
                     sb.append(f.getFname()).append(",");
                 }
+                System.out.println(sb);
                 list.get(i).setPermissions(sb.toString());
             }
         }
