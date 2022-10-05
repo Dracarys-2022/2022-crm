@@ -161,16 +161,16 @@ public class OperatorController {
         QueryWrapper WrapperContact = new QueryWrapper();
         QueryWrapper WrapperInventory = new QueryWrapper();
         QueryWrapper WrapperOperator = new QueryWrapper();
-        WrapperContact.eq("fname","客户管理");
-        WrapperInventory.eq("fname","库存管理");
-        WrapperOperator.eq("fname","用户管理");
+        WrapperContact.eq("fname","添加订单");
+        WrapperInventory.eq("fname","查看有库存的");
+        WrapperOperator.eq("fname","查看所有用户信息");
         Functions functionsContact =functionsService.getOne(WrapperContact);
         Functions functionsInventory =functionsService.getOne(WrapperInventory);
         Functions functionsOperator =functionsService.getOne(WrapperOperator);
         if(functionsContact!=null & roles.getPermissions().contains(String.valueOf(functionsContact.getFid())))
         {
             QueryWrapper<Orders> queryList= new QueryWrapper();
-            map.put("state","客户管理");
+            map.put("state","添加订单");
             queryList.eq("type",0).eq("operid",oid);
             map.put("data1",ordersService.list(queryList));
             QueryWrapper<Orders> queryList1= new QueryWrapper();
@@ -180,7 +180,7 @@ public class OperatorController {
         else if(functionsInventory!=null & roles.getPermissions().contains(String.valueOf(functionsInventory.getFid())))
         {
             QueryWrapper<Orders> queryList3= new QueryWrapper();
-            map.put("state","库存管理");
+            map.put("state","查看有库存的");
             queryList3.eq("type",1);
             map.put("data1",ordersService.list(queryList3));
             QueryWrapper<Orders> queryList4= new QueryWrapper();
@@ -188,7 +188,7 @@ public class OperatorController {
             map.put("data2",ordersService.list(queryList4));
         }
         else if ( functionsOperator!=null & roles.getPermissions().contains(String.valueOf(functionsOperator.getFid()))){
-            map.put("state","用户管理");
+            map.put("state","查看所有用户信息");
             QueryWrapper<Operator> queryList= new QueryWrapper();
             List list=new ArrayList();
             queryList.eq("status",0);
