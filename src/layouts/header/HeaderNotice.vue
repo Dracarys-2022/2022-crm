@@ -27,16 +27,16 @@
           </a-tab-pane>
           <a-tab-pane tab="待办" key="3">
             <a-list class="tab-pane">
-              <div v-if="state == '用户管理'">
+              <div v-if="state == '查看所有用户信息'">
               <p style="margin-left: 5px;" :key="i" v-for="(it, i) in list">{{ it }}</p>
             </div>
-            <div v-if="state == '客户管理'">
+            <div v-if="state == '添加订单'">
               <p style="margin-left: 5px;">待确认订单</p>
               <p style="margin-left: 20px;" :key="i" v-for="(it, i) in list">订单编号为:{{ it.oid }}</p>
               <p style="margin-left: 5px;">库存不足订单</p>
               <p style="margin-left: 20px;" :key="i" v-for="(it, i) in list1">订单编号为:{{ it.oid }}</p>
             </div>
-            <div v-if="state == '库存管理'">
+            <div v-if="state == '查看有库存的'">
               <p style="margin-left: 5px;">待发货订单</p>
               <p style="margin-left: 20px;" :key="i" v-for="(it, i) in list">订单编号为:{{ it.oid }}</p>
               <p style="margin-left: 5px;">未处理退货订单</p>
