@@ -34,11 +34,11 @@ public class Active implements Serializable {
     @ApiModelProperty(value = "活动名称")
     private String name;
     @ApiModelProperty(value = "时间")
-    private LocalDate time;
+    private String time;
     @ApiModelProperty(value = "开始时间")
-    private LocalTime starttime;
+    private String starttime;
     @ApiModelProperty(value = "结束时间")
-    private LocalTime endtime;
+    private String endtime;
     @ApiModelProperty(value = "参与人")
     private String people;
 
