@@ -52,6 +52,7 @@ export default {
                 select: "+86",
                 phone: "",
                 mobile: "",
+                operid:"",
                 address: "",
                 remark: "",
                 cid: "",
@@ -94,6 +95,7 @@ export default {
     },
     methods: {
         Insubmit(contact) {
+            this.contact.operid=localStorage.getItem('localOperator');
             this.contact.cid = this.list[this.contact.cid].cid
             this.$refs[contact].validate((valid) => {
                 if (valid) {   // 如果校验通过，请求接口，允许提交表单

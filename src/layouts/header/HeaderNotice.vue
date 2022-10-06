@@ -63,7 +63,7 @@ export default {
     return {
       loading: false,
       show: false,
-      oid: "2",
+      oid: "",
       state: "",
       list: [],
       list1: [],
@@ -73,6 +73,7 @@ export default {
   },
   methods: {
     fetchNotice () {
+      this.oid=localStorage.getItem('localOperator');
       if (this.loading) {
         this.loading = false
         return

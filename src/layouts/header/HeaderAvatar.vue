@@ -2,7 +2,7 @@
   <a-dropdown>
     <div class="header-avatar" style="cursor: pointer">
       <a-avatar class="avatar" size="small" shape="circle" :src="user.avatar"/>
-      <span class="name">{{user.name}}</span>
+      <span class="name">{{name}}</span>
     </div>
     <a-menu :class="['avatar-menu']" slot="overlay">
       <a-menu-item @click="center">
@@ -28,9 +28,36 @@ import {logout} from '@/services/user'
 
 export default {
   name: 'HeaderAvatar',
+  data(){
+    return{
+      name:"",
+    }
+  },
   computed: {
     ...mapGetters('account', ['user']),
   },
+  watch: {
+    $route() {
+      this.name=localStorage.getItem('oname');
+      this.name=this.name.substring(1, this.name.length-1)
+      // queryItem(this.oid).then((res) => {
+      //   this.state = res.data.state
+      //   this.list = res.data.data1
+      //   this.list1 = res.data.data2
+      // });
+    },
+  },
+  mounted:
+    function () {
+      this.name=localStorage.getItem('oname');
+      this.name=this.name.substring(1, this.name.length-1)
+      //console.log(this.name);
+      // queryItem(this.oid).then((res) => {
+      //   this.state = res.data.state
+      //   this.list = res.data.data1
+      //   this.list1 = res.data.data2
+      // });
+    },
   methods: {
     center() {
       this.$router.replace({

@@ -86,6 +86,7 @@ export default {
            this.$message.success("已将本次登录记录")
           
           login(oname, password).then(this.afterLogin)
+          localStorage.setItem('oname',JSON.stringify(oname))
           }
         }
       })

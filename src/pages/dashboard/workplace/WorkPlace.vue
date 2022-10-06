@@ -1,7 +1,7 @@
 <template>
   <page-layout :avatar="currUser.avatar">
     <div slot="headerContent">
-      <div class="title">{{ welcome.timeFix[lang] }}，{{ currUser.name }}，{{ welcome.message[lang] }}</div>
+      <div class="title">{{ welcome.timeFix[lang] }}{{ name }}{{ welcome.message[lang] }}</div>
       <div>{{ currUser.position[lang] }}</div>
     </div>
     <template slot="extra">
@@ -12,7 +12,7 @@
     <template>
       <a-row style="margin: 0 -12px">
         <a-col style="padding: 0 12px" :xl="16" :lg="24" :md="24" :sm="24" :xs="24">
-          <a-card class="project-list" :loading="loading" style="margin-bottom: 24px;" :bordered="false" title="待办事项"
+          <!-- <a-card class="project-list" :loading="loading" style="margin-bottom: 24px;" :bordered="false" title="待办事项"
             :body-style="{ padding: 0 }">
             <div v-if="state == '用户管理'">
               <p style="margin-left: 50px;" :key="i" v-for="(it, i) in list">{{ it }}</p>
@@ -29,7 +29,7 @@
               <p style="margin-left: 50px;">未处理退货订单</p>
               <p style="margin-left: 80px;" :key="i" v-for="(it, i) in list1">订单编号为:{{ it.oid }}</p>
             </div>
-          </a-card>
+          </a-card> -->
           <a-card :loading="loading" :title="$t('dynamic')" :bordered="false">
             <a-list>
               <a-list-item :key="index" v-for="(item, index) in activities">
@@ -84,17 +84,17 @@ import HeadInfo from '@/components/tool/HeadInfo'
 import Radar from '@/components/chart/Radar'
 import { mapState } from 'vuex'
 import { request, METHOD } from '@/utils/request'
-import { queryItem } from '@/services/operatorItem'
+//import { queryItem } from '@/services/operatorItem'
 export default {
   name: 'WorkPlace',
   components: { Radar, HeadInfo, PageLayout },
   i18n: require('./i18n'),
   data() {
     return {
-      
       projects: [],
-      oid: "2",
+      oid: "",
       state: "",
+      name:"",
       list: [],
       list1: [],
       loading: true,
@@ -121,20 +121,25 @@ export default {
   },
    watch: {
     $route() {
-      queryItem(this.oid).then((res) => {
-        this.state = res.data.state
-        this.list = res.data.data1
-        this.list1 = res.data.data2
-      });
+      this.name=localStorage.getItem('oname');
+      this.name=this.name.substring(1, this.name.length-1)
+      // queryItem(this.oid).then((res) => {
+      //   this.state = res.data.state
+      //   this.list = res.data.data1
+      //   this.list1 = res.data.data2
+      // });
     },
   },
   mounted:
     function () {
-      queryItem(this.oid).then((res) => {
-        this.state = res.data.state
-        this.list = res.data.data1
-        this.list1 = res.data.data2
-      });
+      this.name=localStorage.getItem('oname');
+      this.name=this.name.substring(1, this.name.length-1)
+      //console.log(this.name);
+      // queryItem(this.oid).then((res) => {
+      //   this.state = res.data.state
+      //   this.list = res.data.data1
+      //   this.list1 = res.data.data2
+      // });
     }
 }
 </script>

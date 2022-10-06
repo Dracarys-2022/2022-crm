@@ -56,7 +56,9 @@ export default {
         this.changeFlag = 2;
         return callback(new Error('旧密码不能为空'));
       } else if ( this.operator1.old != md5(value)) {
+        console.log("旧密码");
         console.log(this.operator1.old);
+        console.log("输入密码");
         console.log(md5(value));
         this.changeFlag = 2;
         return callback(new Error('旧密码不正确'));
@@ -107,7 +109,7 @@ export default {
       list: [],
       operator: {
         phone: "",
-        oid: "8"
+        oid: ""
       },
       operator1:{
         old: "",
@@ -115,7 +117,7 @@ export default {
         password: "",
         againPassword: "",
         endPassword:"",
-        oid: "8"
+        oid: ""
       },
       labelCol: {
         style: { width: "150px", float: "left", position: "relative" },
@@ -146,6 +148,7 @@ export default {
   },
   methods: {
     updatePhone(operator) {
+      
       this.$refs[operator].validate((valid) => {
         if (valid) {   // 如果校验通过，请求接口，允许提交表单
           update(this.operator).then(res => {
@@ -167,6 +170,7 @@ export default {
       })
     },
     updatePwd(operator1) {
+      //this.operator1.oid=localStorage.getItem('localOperator');
       this.operator1.password=md5(this.operator1.endPassword)
       this.$refs[operator1].validate((valid) => {
         if (valid) {   // 如果校验通过，请求接口，允许提交表单
@@ -191,17 +195,19 @@ export default {
   },
   mounted:
     function () {
+      this.operator.oid=localStorage.getItem('localOperator');
       queryById(this.operator.oid).then((res) => {
         this.operator.phone = res.data.phone;
         //this.operator.old = res.data.password;
         this.operator.oid = res.data.oid;
         this.operator1.old = res.data.password;
-       // console.log(this.operator1.old)
+        //console.log(this.operator1.old)
         this.operator1.oid = res.data.oid;
       });
     },
   watch: {
     $route() {
+      this.operator.oid=localStorage.getItem('localOperator');
       queryById(this.operator.oid).then((res) => {
         if(res.data.msg!=""){
                 this.$message.success(
@@ -226,7 +232,7 @@ export default {
 };
 </script>
 <style>
-.content{
+/* .content{
   margin-left: 25%;
-}
+} */
 </style>

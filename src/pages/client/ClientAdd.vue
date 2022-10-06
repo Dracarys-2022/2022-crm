@@ -92,6 +92,7 @@ export default {
         registered: "",
         phone: "",
         mobile: "",
+        operid:"",
         address: "",
         category: "股份有限公司",
         account: "",
@@ -128,6 +129,7 @@ export default {
 
   methods: {
     Insubmit(client) {
+      this.client.operid=localStorage.getItem('localOperator');
       this.$refs[client].validate((valid) => {
         if (valid) {   // 如果校验通过，请求接口，允许提交表单
           this.client.phone = this.client.select + this.client.mobile

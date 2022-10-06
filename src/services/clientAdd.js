@@ -11,6 +11,7 @@ export async function add(client)
         phone:client.phone,
         category:client.category,
         account:client.account,
+        operid:client.operid,
         industry:client.industry,
         quality:client.quality,
         remark:client.remark

@@ -8,7 +8,8 @@ export async function add(contact)
         coname:contact.coname,
         address:contact.address,
         phone:contact.phone,
-        remark:contact.remark
+        remark:contact.remark,
+        operid:contact.operid,
     })
 }
 export default add
