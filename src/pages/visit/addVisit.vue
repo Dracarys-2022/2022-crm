@@ -102,6 +102,7 @@
 
 <script>
 import {addvisit} from "@/services/visit"
+import { message } from "ant-design-vue";
 export default {
   data() {
     return {
@@ -121,7 +122,8 @@ export default {
         attitude: "",
         fund: "",
         remark: "",
-        createtime:''
+        createtime:'',
+        operid:""
       },
       labelCol: {
         style: { width: "150px", float: "left", position: "relative" },
@@ -159,15 +161,14 @@ export default {
       this.$refs.visit.validate((valid) => {
         if (valid) {   // 如果校验通过，请求接口，允许提交表单
           this.visit.phone = this.visit.select + this.visit.mobile
+          this.visit.operid=localStorage.getItem('localOperator');
           addvisit(this.visit).then(res=>{
-            if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+            if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
             }else{
-                this.$message.success(
+                message.success(
                 '填写成功！'
         );
             }

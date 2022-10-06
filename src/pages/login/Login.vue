@@ -96,6 +96,7 @@ export default {
       // console.log("loginRes:"+loginRes.token);
       // alert("loginRes:"+loginRes.token)
       if (!loginRes.token == '') {
+        localStorage.setItem('localOperator',JSON.stringify(loginRes.oid))
         localStorage.setItem('access-admin',JSON.stringify(loginRes.token))
           this.$message.success('登录成功')
           this.$router.push('/dashboard/workplace')

@@ -21,7 +21,8 @@ async function addvisit(visit) {
     attitude:visit.attitude,
     fund:visit.fund,
     remark:visit.remark,
-    createtime:visit.createtime
+    createtime:visit.createtime,
+    operid:visit.operid
   })
 }
 //查询拜访记录

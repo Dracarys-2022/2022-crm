@@ -18,7 +18,8 @@ async function addorders(source) {
     pid: source.pid,
     createtime: source.createtime,
     deadline: source.deadline,
-    type: source.type
+    type: source.type,
+    operid:source.operid
   })
 }
 //查询所有关于订单的下拉框

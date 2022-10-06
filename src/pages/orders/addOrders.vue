@@ -193,15 +193,14 @@ export default {
       this.$refs[source].validate((valid) => {
         if (valid) {
           // 如果校验通过，请求接口，允许提交表单
+          this.source.operid=localStorage.getItem('localOperator');
           addorders(this.source).then(res=>{
-            if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+            if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
             }else{
-                this.$message.success(
+                message.success(
                 '查询成功'
         );
             }
