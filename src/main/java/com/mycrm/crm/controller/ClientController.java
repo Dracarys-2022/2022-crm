@@ -48,7 +48,7 @@ public class ClientController {
        {
            client.setCreatetime(FromDateUtil.UtilToSql());
            client.setUpdatetime(FromDateUtil.UtilToSql());
-           client.setOperid(1);
+           //client.setOperid(1);
            boolean save = clientService.save(client);
            if(save == true){
                return new ResponseData().ok("添加成功",client);

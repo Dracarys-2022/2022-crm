@@ -67,6 +67,8 @@ public class OperatorController {
     @GetMapping("/queryById")
     @ApiOperation(value = "查询指定用户")
     public Object getById(@RequestParam("oid") Integer oid){
+//        System.out.println("------------------------------------");
+//        System.out.println(oid);
         QueryWrapper<OperatorVo> wrapper = new QueryWrapper<OperatorVo>();
         wrapper.eq("oid",oid);
         Operator operator = operatorService.selectById(wrapper);

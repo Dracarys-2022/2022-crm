@@ -38,7 +38,7 @@ public class ContactController {
         if (contactService.getOne(queryWrapper.eq("phone", contact.getPhone())) == null) {
             contact.setCreatetime(FromDateUtil.UtilToSql());
             contact.setUpdatetime(FromDateUtil.UtilToSql());
-            contact.setOperid(1);
+            //contact.setOperid(1);
             boolean save = contactService.save(contact);
             if (save == true) {
                 return new ResponseData().ok("添加成功", contact);
