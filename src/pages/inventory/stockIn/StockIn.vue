@@ -99,6 +99,7 @@ export default {
       },
      
       source: {
+        operid:"",
         numbers: "",
         pid: "",
         price: "",
@@ -168,6 +169,7 @@ export default {
           let time = this.source.producetime.toString().split(",");
           this.source.producetime = time[0];
           this.source.endtime = time[1];
+          this.source.operid=localStorage.getItem('localOperator');
           add(this.source).then(this.afterSubmit);
           this.$refs[source].resetFields();
         } else {
@@ -189,9 +191,9 @@ export default {
                 '查询成功'
         );
             }
-      if (res.data.code == "0001") {
-        message.success("入库成功");
-      }
+      // if (res.data.code == "0001") {
+      //   message.success("入库成功");
+      // }
     },
     resetForm(source) {
       this.$refs[source].resetFields();
@@ -207,7 +209,7 @@ export default {
   },
   created(){
     getproduct().then(res=>{
-      if(res.data.msg!=""){
+      if(res.data.msg=="您没有权限进行此操作!"){
                 this.$message.success(
             // '查询成功',
                 res.data.msg,

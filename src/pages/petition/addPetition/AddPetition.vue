@@ -61,7 +61,7 @@ export default {
         content: "",
         executor: "",
         createtime: "",
-        operid: "1",
+        operid: "",
       },
       rules: {
         content: {
@@ -91,7 +91,7 @@ export default {
   },
   created() {
      getOper().then(res=>{
-      if(res.data.msg!=""){
+      if(res.data.msg!="您没有权限进行此操作"){
                 this.$message.success(
             // '查询成功',
                 res.data.msg,
@@ -110,6 +110,7 @@ export default {
       this.$refs[petition].validate((valid) => {
         if (valid) {
           // 如果校验通过，请求接口，允许提交表单
+          this.petition.operid=localStorage.getItem('localOperator');
           add(this.petition).then(this.afterSubmit);
           this.$refs[petition].resetFields();
         } else {

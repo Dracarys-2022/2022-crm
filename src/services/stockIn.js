@@ -4,6 +4,7 @@ import { StOCKIN, StOCKQUERY, StOCKOUT, StOCKLIST,StOCKQUERYBYID ,StOCKUPDATE,GE
 export async function add(source) {
     console.log(source);
     return request(StOCKIN, METHOD.POST, {
+        operid:source.operid,
         pid: source.pid,
         numbers: source.numbers,
         price: source.price,

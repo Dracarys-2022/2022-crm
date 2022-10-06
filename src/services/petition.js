@@ -3,6 +3,7 @@ import { PETITIONADD ,PETITIONLIST,PETITIONOUTCOME,GETOPER,PETITIONLISTNULL,DELE
 
 export async function add(petition) {
     return request(PETITIONADD, METHOD.POST, {
+        operid:petition.operid,
         createtime: petition.createtime,
         executor: petition.executor,
         content: petition.content

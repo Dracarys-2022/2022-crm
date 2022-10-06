@@ -25,6 +25,7 @@ module.exports = {
   PETITIONLISTNULL:`${BASE_URL}/petition/listNull`,
   PETITIONOUTCOME:`${BASE_URL}/petition/addoutcome`,
   GETOPER:`${BASE_URL}/petition/getOper`,
+  DELETEPETION:`${BASE_URL}/petition/delete`,
   LISTPRO:`${BASE_URL}/product/list`,
   LISTOUt:`${BASE_URL}/product/listOut`,
   CHANGESTATUS:`${BASE_URL}/product/changeStatus`,
