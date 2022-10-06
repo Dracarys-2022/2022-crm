@@ -28,8 +28,8 @@ public class MyInterceptor implements HandlerInterceptor {
         //功能查询的拦截放行
         if ("/functions/list".equals(request.getRequestURI())){
             for(String fun:functions){
-                if ("92".equals(fun)){
-                    System.out.println("我通过了");
+                if ("90".equals(fun)){
+                    System.out.println("查看功能");
                     return true;
                 }
             }
