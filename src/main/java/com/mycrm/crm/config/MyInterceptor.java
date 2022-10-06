@@ -171,6 +171,14 @@ public class MyInterceptor implements HandlerInterceptor {
                 }
             }
         }
+        if("/petition/getOper".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("89".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
         if("/petition/list".equals(request.getRequestURI())){
             for(String fun:functions){
                 if ("39".equals(fun)){

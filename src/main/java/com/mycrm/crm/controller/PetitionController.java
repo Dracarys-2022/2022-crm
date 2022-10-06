@@ -88,7 +88,7 @@ public class PetitionController {
     }
 
 
-    @PutMapping("addoutcome")
+    @PostMapping("addoutcome")
     @ApiOperation(value = "更新处理结果", notes = "更新他投诉信息的投诉结果")
     public Object addoutcome(@RequestBody Map<String, String> map)  {
         String peid = map.get("peid");
@@ -114,22 +114,14 @@ public class PetitionController {
         wrapper.select("oid", "oname");
         List<Operator> list = operatorService.list(wrapper);
         Rsmap.put("data", list);
-        Rsmap.put("code", 0001);// 0001添加成功
-//        List<UserLog> userLog=userLogService.selectid();
-//        String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了投诉消息录入");
-//        userLog.get(0).setBehavior(behavior);
-//        userLogService.updateById(userLog.get(0));
-        Integer id= BaseContext.getCurrentId().intValue();
-        UserLog userLog=userLogService.getById(id);
-        String behavior=userLog.getBehavior().concat(" "+ LocalDateTime.now()+"查看了投诉消息录入");
-        userLog.setBehavior(behavior);
-        userLogService.updateById(userLog);
+        Rsmap.put("code", 0001);
+        Rsmap.put("msg", "查询成功");// 0001添加成功
         return Rsmap;
 
     }
 
 
-    @DeleteMapping("delete")
+    @GetMapping("delete")
     @ApiOperation(value = "入库操作", notes = "增加一条入库信息")
     public Object delete(@RequestParam int peid,@RequestParam int current, @RequestParam int size) {
         Map Rsmap = new HashMap();
