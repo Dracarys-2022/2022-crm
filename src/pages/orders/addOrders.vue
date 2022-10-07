@@ -151,11 +151,15 @@ export default {
           message: "客户不能为空",
           trigger: "change",
         },
-        price: {
+        price: [{
           required: true,
           message: "成交金额不能为空",
           trigger: "change",
-        },
+        }, {
+          pattern: /^(([1-9]{1}\d{0,9})|(0{1}))(\.\d{1,2})?$/,
+          message: "产品进价格式错误",
+          trigger: "change",
+        }],
         coid: {
           required: true,
           message: "客户联系人不能为空",
