@@ -468,6 +468,15 @@ public class MyInterceptor implements HandlerInterceptor {
                 }
             }
         }
+        //查看日志
+        if("/user-log/select".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("81".equals(fun)){
+                    System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
         System.out.println("我失败了");
         returnJson(response,"{\"code\":400,\"msg\":\"您没有权限进行此操作!\"}");
         return  false;

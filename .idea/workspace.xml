@@ -12,10 +12,9 @@
   <component name="ChangeListManager">
     <list default="true" id="317c400c-3673-4c85-8daf-b907ae19d478" name="默认的" comment="使用了operator数据库">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/crm.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/config/MyInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/config/MyInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/ContactController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/ContactController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/controller/InventoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/entity/Paging.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycrm/crm/entity/Paging.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +46,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../实训作业/h927" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -120,6 +119,7 @@
       <workItem from="1665062697940" duration="37000" />
       <workItem from="1665108459916" duration="2894000" />
       <workItem from="1665111399846" duration="3465000" />
+      <workItem from="1665126485504" duration="1736000" />
     </task>
     <task id="LOCAL-00001" summary="合并完成">
       <created>1664000036638</created>
