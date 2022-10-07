@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mycrm.crm.entity.*;
 import com.mycrm.crm.service.ClientService;
 import com.mycrm.crm.service.ContactService;
+import com.mycrm.crm.service.OperatorService;
+import com.mycrm.crm.service.RolesService;
 import com.mycrm.crm.util.FromDateUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,9 +30,13 @@ import java.util.List;
 @Api(tags = "客户模块控制器")
 public class ContactController {
     @Autowired
+    OperatorService operatorService;
+    @Autowired
     ContactService contactService;
     @Autowired
     ClientService clientService;
+    @Autowired
+    RolesService rolesService;
     @PostMapping("/add")
     @ApiOperation(value = "添加客户联系人")
     public ResponseData addContact(@RequestBody Contact contact) {
@@ -51,34 +57,86 @@ public class ContactController {
     }
     @PostMapping("/page")
     @ApiOperation(value = "查询所有客户信息")
-    public  Object testSelectPage(@RequestBody Paging pagacontact) {
+    public  Object testSelectPage(@RequestBody Paging pagecontact) {
+        System.out.println("--------------------------");
+        System.out.println(pagecontact);
         QueryWrapper<ContactVo> wrapper = new QueryWrapper<ContactVo>();
-        Page<ContactVo> page = new Page<>(pagacontact.getCurrent(), pagacontact.getPagesize());
+        Page<ContactVo> page = new Page<>(pagecontact.getCurrent(), pagecontact.getPagesize());
+        QueryWrapper<Roles> rolesQueryWrapper=new QueryWrapper<>();
+        rolesQueryWrapper.eq("roname","销售员");
+        Roles roles=rolesService.getOne(rolesQueryWrapper);
+        QueryWrapper<Operator> operatorQueryWrapper=new QueryWrapper<>();
+        operatorQueryWrapper.eq("oid",pagecontact.getOid());
+        Operator operator=operatorService.getOne(operatorQueryWrapper);
         IPage<ContactVo> iPage= null;
-        if (pagacontact.getQuery()==null||pagacontact.getQuery().length()==0)
+        if (roles.getRoid()==operator.getRoid())
         {
-            wrapper.isNotNull("coname");
-            iPage = contactService.selectPage(page,wrapper);
-        }else {
-            if (pagacontact.getQuery().indexOf("常")!=-1||pagacontact.getQuery().indexOf("正")!=-1)
+            if (pagecontact.getQuery()==null||pagecontact.getQuery().length()==0)
             {
-                wrapper.like("co.coid", pagacontact.getQuery()).or().like("coname" ,pagacontact.getQuery()).or().like("oname" ,pagacontact.getQuery()).or().like("co.address",pagacontact.getQuery()).or().like("co.phone",pagacontact.getQuery()).or().like("cname",pagacontact.getQuery()).or().like("co.remark",pagacontact.getQuery()).or().like("co.status",1);
-            }else if (pagacontact.getQuery().indexOf("流")!=-1||pagacontact.getQuery().indexOf("失")!=-1)
-            {
-                wrapper.like("co.coid", pagacontact.getQuery()).or().like("coname" ,pagacontact.getQuery()).or().like("oname" ,pagacontact.getQuery()).or().like("co.address",pagacontact.getQuery()).or().like("co.phone",pagacontact.getQuery()).or().like("cname",pagacontact.getQuery()).or().like("co.remark",pagacontact.getQuery()).or().like("co.status",0);
+                wrapper.eq("co.operid",pagecontact.getOid());
+                iPage = contactService.selectPage(page,wrapper);
+            }else {
+                if (pagecontact.getQuery().indexOf("常")!=-1||pagecontact.getQuery().indexOf("正")!=-1)
+                {
+                    wrapper.eq("co.operid",pagecontact.getOid()).and(w1->w1.like("co.coid", pagecontact.getQuery())
+                            .or().like("coname" ,pagecontact.getQuery())
+                            .or().like("oname" ,pagecontact.getQuery())
+                            .or().like("co.address",pagecontact.getQuery())
+                            .or().like("co.phone",pagecontact.getQuery())
+                            .or().like("cname",pagecontact.getQuery())
+                            .or().like("co.remark",pagecontact.getQuery())
+                            .or().like("co.status",1));
+                }else if (pagecontact.getQuery().indexOf("流")!=-1||pagecontact.getQuery().indexOf("失")!=-1)
+                {
+                    wrapper.eq("co.operid",pagecontact.getOid()).and(w1->w1.like("co.coid", pagecontact.getQuery())
+                            .or().like("coname" ,pagecontact.getQuery())
+                            .or().like("oname" ,pagecontact.getQuery())
+                            .or().like("co.address",pagecontact.getQuery())
+                            .or().like("co.phone",pagecontact.getQuery())
+                            .or().like("cname",pagecontact.getQuery())
+                            .or().like("co.remark",pagecontact.getQuery())
+                            .or().like("co.status",0));
+                }
+                else {
 
+                    wrapper.eq("co.operid",pagecontact.getOid()).and(w1->w1.like("co.coid", pagecontact.getQuery())
+                            .or().like("coname" ,pagecontact.getQuery())
+                            .or().like("oname" ,pagecontact.getQuery())
+                            .or().like("co.address",pagecontact.getQuery())
+                            .or().like("co.phone",pagecontact.getQuery())
+                            .or().like("cname",pagecontact.getQuery())
+                            .or().like("co.remark",pagecontact.getQuery()));
+                }
+                iPage = contactService.selectPage(page, wrapper);
             }
-            else {
-                wrapper.like("co.coid", pagacontact.getQuery()).or().like("coname" ,pagacontact.getQuery()).or().like("oname" ,pagacontact.getQuery()).or().like("co.address",pagacontact.getQuery()).or().like("co.phone",pagacontact.getQuery()).or().like("cname",pagacontact.getQuery()).or().like("co.remark",pagacontact.getQuery());
-            }
-            iPage = contactService.selectPage(page, wrapper);
         }
-        pagacontact.setRowcount((int) iPage.getTotal());
-        pagacontact.setCurrent((int) iPage.getCurrent());
+        else {
+            if (pagecontact.getQuery()==null||pagecontact.getQuery().length()==0)
+            {
+                wrapper.isNotNull("coname");
+                iPage = contactService.selectPage(page,wrapper);
+            }else {
+                if (pagecontact.getQuery().indexOf("常")!=-1||pagecontact.getQuery().indexOf("正")!=-1)
+                {
+                    wrapper.like("co.coid", pagecontact.getQuery()).or().like("coname" ,pagecontact.getQuery()).or().like("oname" ,pagecontact.getQuery()).or().like("co.address",pagecontact.getQuery()).or().like("co.phone",pagecontact.getQuery()).or().like("cname",pagecontact.getQuery()).or().like("co.remark",pagecontact.getQuery()).or().like("co.status",1);
+                }else if (pagecontact.getQuery().indexOf("流")!=-1||pagecontact.getQuery().indexOf("失")!=-1)
+                {
+                    wrapper.like("co.coid", pagecontact.getQuery()).or().like("coname" ,pagecontact.getQuery()).or().like("oname" ,pagecontact.getQuery()).or().like("co.address",pagecontact.getQuery()).or().like("co.phone",pagecontact.getQuery()).or().like("cname",pagecontact.getQuery()).or().like("co.remark",pagecontact.getQuery()).or().like("co.status",0);
+
+                }
+                else {
+                    wrapper.like("co.coid", pagecontact.getQuery()).or().like("coname" ,pagecontact.getQuery()).or().like("oname" ,pagecontact.getQuery()).or().like("co.address",pagecontact.getQuery()).or().like("co.phone",pagecontact.getQuery()).or().like("cname",pagecontact.getQuery()).or().like("co.remark",pagecontact.getQuery());
+                }
+                iPage = contactService.selectPage(page, wrapper);
+            }
+        }
+
+        pagecontact.setRowcount((int) iPage.getTotal());
+        pagecontact.setCurrent((int) iPage.getCurrent());
         List<ContactVo> contactVos = iPage.getRecords();
-        pagacontact.setList(contactVos);
-        pagacontact.setPagesize((int) iPage.getSize());
-        return pagacontact;
+        pagecontact.setList(contactVos);
+        pagecontact.setPagesize((int) iPage.getSize());
+        return pagecontact;
     }
     @GetMapping("/queryById")
     @ApiOperation(value = "查询指定客户")

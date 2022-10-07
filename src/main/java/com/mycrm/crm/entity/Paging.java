@@ -20,4 +20,6 @@ public class Paging {
     private String query;
     //每页数据
     private int pagesize;
+    //用户id
+    private  int oid;
 }

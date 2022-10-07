@@ -207,6 +207,7 @@ public class InventoryController {
         Map Rsmap = new HashMap();
         QueryWrapper<Product> wrapper=new QueryWrapper();
         wrapper.select("pid","pname");
+        wrapper.eq("type",1);
         List<Product> list=productService.list(wrapper);
         Rsmap.put("data", list);
         List<UserLog> userLog=userLogService.selectid();
