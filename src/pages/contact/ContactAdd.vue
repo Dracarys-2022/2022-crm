@@ -1,4 +1,4 @@
-  <template >
+<template >
     <div class="new-page" style="background-color: white">
         <a-form-model ref="contact" :model="contact" :label-col="labelCol" :wrapper-col="wrapperCol" layout="horizontal"
             :rules="rules">
@@ -6,7 +6,7 @@
                 <a-input name="coname" v-model="contact.coname" placeholder="请输入客户联系人名称" />
             </a-form-model-item>
             <a-form-model-item class="a" label="客户公司名称:" prop="cid">
-                <a-select v-model="contact.cid" placeholder="请选择客户公司" >
+                <a-select v-model="contact.cid" placeholder="请选择客户公司">
                     <a-select-option :key="i" v-for="(it, i) in list">
                         {{ it.cname }}
                     </a-select-option>
@@ -52,7 +52,7 @@ export default {
                 select: "+86",
                 phone: "",
                 mobile: "",
-                operid:"",
+                operid: "",
                 address: "",
                 remark: "",
                 cid: "",
@@ -66,7 +66,13 @@ export default {
             },
             rules: {
                 coname:
-                    { required: true, message: '客户联系人不能为空', trigger: 'blur' },
+                    [{ required: true, message: '客户联系人不能为空', trigger: 'blur' },
+                    {
+                        message: "联系人只能为汉字",
+                        pattern: /^[\u4E00-\u9FA5]+$/,
+                        trigger: "change",
+                        min: 2
+                    }],
                 cid:
                     { required: true, message: '客户公司不能为空', trigger: 'blur' },
                 mobile: [
@@ -95,7 +101,7 @@ export default {
     },
     methods: {
         Insubmit(contact) {
-            this.contact.operid=localStorage.getItem('localOperator');
+            this.contact.operid = localStorage.getItem('localOperator');
             this.contact.cid = this.list[this.contact.cid].cid
             this.$refs[contact].validate((valid) => {
                 if (valid) {   // 如果校验通过，请求接口，允许提交表单

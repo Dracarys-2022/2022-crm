@@ -83,6 +83,7 @@ export default {
         showQuickJumper: true,
         pageSize: 10,
         total: 0,
+        oid:"",
         current: 1,
         query: "",
       },
@@ -287,6 +288,7 @@ export default {
   },
   watch: {
     $route() {
+      this.pagination.oid=localStorage.getItem('localOperator');
       pageList(this.pagination).then((res) => {
         this.list = res.data.list;
       });
@@ -350,6 +352,7 @@ export default {
     },
   },
   created() {
+    this.pagination.oid=localStorage.getItem('localOperator');
     pageList(this.pagination).then((res) =>
       this.querylist(res)
     );

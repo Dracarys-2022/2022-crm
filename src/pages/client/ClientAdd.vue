@@ -1,4 +1,4 @@
-  <template >
+<template >
   <div class="new-page" style="background-color: white">
     <a-form-model ref="client" :model="client" :label-col="labelCol" :wrapper-col="wrapperCol" layout="horizontal"
       :rules="rules">
@@ -92,7 +92,7 @@ export default {
         registered: "",
         phone: "",
         mobile: "",
-        operid:"",
+        operid: "",
         address: "",
         category: "股份有限公司",
         account: "",
@@ -110,9 +110,19 @@ export default {
       rules: {
         cname:
           { required: true, message: '客户公司名称不能为空', trigger: 'blur' },
-        legalperson: {
-          required: true, message: '客户公司法人格式不正确', trigger: 'blur', min: 2
-        },
+        legalperson: [
+          {
+            required: true,
+            message: "法人不能为空",
+            trigger: "change",
+          },
+          {
+            message: "法人只能为汉字",
+            pattern: /^[\u4E00-\u9FA5]+$/,
+            trigger: "change",
+            min: 2
+          }
+        ],
         mobile: [
           {
             required: true,
@@ -120,16 +130,36 @@ export default {
             message: '请输入正确的手机号'
           },
         ],
-        account: { required: true, trigger: 'blur', min: 15, max: 19, message: '请输入正确的银行卡号' },
+        registered: [
+          {
+            message: "注册资金只能为数字",
+            pattern: /^[0-9]*$/,
+            trigger: "change",
+          }
+        ],
+        account: [
+          {
+            required: true,
+            trigger: 'blur',
+            min: 15,
+            max: 19,
+            message: '请输入正确的银行卡号'
+          },
+          {
+            message: "银行卡号只能为数字",
+            pattern: /^[0-9]*$/,
+            trigger: "change",
+          }],
         address: { required: true, trigger: 'blur', message: '公司地址不能为空' },
-        industry: { required: true, trigger: 'blur', message: '公司所属行业不能为空' }
+        industry: [{ required: true, trigger: 'blur', message: '公司所属行业不能为空' },
+        ]
       }
     };
   },
 
   methods: {
     Insubmit(client) {
-      this.client.operid=localStorage.getItem('localOperator');
+      this.client.operid = localStorage.getItem('localOperator');
       this.$refs[client].validate((valid) => {
         if (valid) {   // 如果校验通过，请求接口，允许提交表单
           this.client.phone = this.client.select + this.client.mobile
@@ -141,10 +171,10 @@ export default {
             this.$refs[client].resetFields();
           });
         } else {   //校验不通过
-        this.$message.success(
-              '输入的信息不正确',
-              10,
-            );
+          this.$message.success(
+            '输入的信息不正确',
+            10,
+          );
           return false;
         }
       })

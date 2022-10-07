@@ -4,6 +4,7 @@ export async function pageList(pagination){
     return request(ContactPage,METHOD.POST,{
         query:pagination.query,
         current:pagination.current,
-        pagesize:pagination.pageSize
+        pagesize:pagination.pageSize,
+        oid:pagination.oid
 })}
 export default pageList

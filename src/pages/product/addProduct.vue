@@ -106,26 +106,42 @@ export default {
           message: "单位不能为空",
           trigger: "change",
         },
-        price: {
+        price: [{
           required: true,
           message: "成交金额不能为空",
           trigger: "change",
-        },
-        marketprice: {
+        },{
+          pattern: /^(([1-9]{1}\d{0,9})|(0{1}))(\.\d{1,2})?$/,
+          message: "成交金额格式错误",
+          trigger: "change",
+        }],
+        marketprice: [{
           required: true,
           message: "市场价不能为空",
           trigger: "change",
-        },
-        specification: {
+        },{
+          pattern: /^(([1-9]{1}\d{0,9})|(0{1}))(\.\d{1,2})?$/,
+          message: "市场价格式错误",
+          trigger: "change",
+        }],
+        specification: [{
           required: true,
           message: "规格不能为空",
           trigger: "change",
-        },
-        shelflife: {
+        },{
+          message: "规格只能为汉字",
+          pattern: /^[\u4E00-\u9FA5]+$/,
+          trigger: "change",
+        }],
+        shelflife: [{
           required: true,
           message: "保质期不能为空",
           trigger: "change",
-        },
+        },{
+          message: "保质期只能为数字",
+          pattern: /^[0-9]*$/,
+          trigger: "change",
+        }],
       },
     };
   },

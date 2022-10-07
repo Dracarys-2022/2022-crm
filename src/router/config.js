@@ -316,6 +316,9 @@ const options = {
               path: 'updateproduct',
               name: '产品更新',
               component: () => import('@/pages/product/UpdateProduct'),
+              meta: {
+                invisible: true
+              }
             },
           ]
         },
