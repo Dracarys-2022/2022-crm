@@ -110,12 +110,9 @@ public class OperatorController {
         QueryWrapper<OperatorVo> wrapper = new QueryWrapper<OperatorVo>();
         Page<OperatorVo> page = new Page<>(pagaoperator.getCurrent(), pagaoperator.getPagesize());
         IPage<OperatorVo> iPage= null;
-        QueryWrapper<Functions> queryWrapper= new QueryWrapper<>();
-        queryWrapper.eq("fname","系统管理员");
-        Functions functions =functionsService.getOne(queryWrapper);
-        QueryWrapper<Roles> wrapper1= new QueryWrapper<>();
-        wrapper1.like("permissions",functions.getFid());
-        Roles roles =rolesService.getOne(wrapper1);
+        QueryWrapper<Roles> queryWrapper= new QueryWrapper<>();
+        queryWrapper.eq("roname","系统管理员");
+        Roles roles =rolesService.getOne(queryWrapper);
         if (pagaoperator.getQuery()==null||pagaoperator.getQuery().length()==0)
         {
             wrapper.ne("r.roid",roles.getRoid()).orderByDesc("status");
