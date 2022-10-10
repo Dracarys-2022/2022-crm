@@ -129,7 +129,22 @@ export default {
         //}
     },
     watch: {},
-
+    created(){
+        queryList().then(res => {
+            this.list = res.data
+            if(res.data.msg=="您没有权限进行此操作!"){
+                this.$message.success(
+            // '查询成功',
+                res.data.msg,
+            10,
+        )
+            }else{
+                this.$message.success(
+                '查询成功'
+        );
+            }
+        })
+    }
 };
 
 </script>

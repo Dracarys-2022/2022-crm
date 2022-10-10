@@ -313,7 +313,17 @@ export default {
       );
     },
     querylist: function (res) {
-      message.success('查询成功');
+      if(res.data.msg=="您没有权限进行此操作!"){
+                this.$message.success(
+            // '查询成功',
+                res.data.msg,
+            10,
+        )
+            }else{
+                this.$message.success(
+                '查询成功'
+        );
+            }
       this.list = res.data.list;
       this.pagination.total = res.data.rowcount;
       this.pagination.query = res.data.query;

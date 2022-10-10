@@ -92,7 +92,7 @@ export default {
     created() {
             this.operator.oid = this.$route.query.oid
             queryById(this.operator.oid).then((res) => {
-                if(res.data.msg!=""){
+                if(res.data.msg=="您没有权限进行此操作!"){
                 this.$message.success(
             // '查询成功',
                 res.data.msg,
