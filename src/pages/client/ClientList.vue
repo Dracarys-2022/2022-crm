@@ -354,7 +354,7 @@ export default {
     $route() {
       pageList(this.pagination).then((res) => {
         this.list = res.data.list;
-        if(res.data.msg!=""){
+        if(res.data.msg=="您没有权限进行此操作!"){
                 this.$message.success(
             // '查询成功',
                 res.data.msg,
@@ -362,8 +362,7 @@ export default {
         )
             }else{
                 this.$message.success(
-                '查询成功',
-            10,
+                '查询成功'
         );
             }
       });
@@ -389,7 +388,7 @@ export default {
     },
     querylist: function (res) {
       // message.success('查询成功');
-      if(res.data.msg!=""){
+      if(res.data.msg=="您没有权限进行此操作!"){
                 this.$message.success(
             // '查询成功',
                 res.data.msg,
@@ -397,8 +396,7 @@ export default {
         )
             }else{
                 this.$message.success(
-                '查询成功',
-            10,
+                '查询成功'
         );
             }
       this.list = res.data.list;
