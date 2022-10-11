@@ -4,7 +4,6 @@ import com.mycrm.crm.util.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
-import lombok.SneakyThrows;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +17,13 @@ public class MyInterceptor implements HandlerInterceptor {
         System.out.println("MyInterceptor1>>>preHandle");
         //把token解析出来
         String token = request.getHeader("Authorization");
+        if(token==null||"".equals(token)){
+            return false;
+        }
         System.out.println("token的值为"+token);
         String aa=token.replace("\"", "");
-        Jws<Claims> claimsJws= Jwts.parser().setSigningKey(JwtUtil.signature).parseClaimsJws(aa);
+        String token1=aa.substring(7);
+        Jws<Claims> claimsJws= Jwts.parser().setSigningKey(JwtUtil.signature).parseClaimsJws(token1);
         Claims body=claimsJws.getBody();
         String permissions= (String) body.get("permissions");
         System.out.println("权限："+permissions);
