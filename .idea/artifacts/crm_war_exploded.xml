@@ -97,6 +97,7 @@
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.36" />
           <element id="library" level="project" name="Maven: org.springframework.plugin:spring-plugin-core:2.0.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.plugin:spring-plugin-metadata:2.0.0.RELEASE" />
+          <element id="library" level="project" name="Maven: com.auth0:java-jwt:3.19.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">

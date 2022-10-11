@@ -1,15 +1,13 @@
 package com.mycrm.crm.controller;
 
 
+import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mycrm.crm.common.BaseContext;
 import com.mycrm.crm.entity.*;
-import com.mycrm.crm.service.ActiveService;
-import com.mycrm.crm.service.ClientService;
-import com.mycrm.crm.service.ContactService;
-import com.mycrm.crm.service.UserLogService;
+import com.mycrm.crm.service.*;
 import com.mycrm.crm.util.FromDateUtil;
 
 import io.swagger.annotations.Api;
@@ -18,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +39,8 @@ public class ClientController {
     ActiveService activeService;
     @Autowired
     UserLogService userLogService;
+    @Autowired
+    OrdersService ordersService;
     @PostMapping("/add")
     @ApiOperation(value = "添加客户公司")
     public ResponseData addClient(@RequestBody Client client){
@@ -72,7 +73,6 @@ public class ClientController {
         String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了客户公司联系人管理相关操作");
         userLog.get(0).setBehavior(behavior);
         userLogService.updateById(userLog.get(0));
-
         return list;
     }
 
@@ -93,7 +93,7 @@ public class ClientController {
             if (client.getStatus()==0)
             {
                 Contact contact=new Contact();
-                client.setUpdatetime(FromDateUtil.UtilToSql());
+                contact.setUpdatetime(FromDateUtil.UtilToSql());
                 QueryWrapper<Contact> wrapper = new QueryWrapper<Contact>();
                 wrapper.eq("cid",client.getCid());
                 contact.setCid(client.getCid());
@@ -108,7 +108,39 @@ public class ClientController {
     @PostMapping("/page")
     @ApiOperation(value = "查询客户公司")
     public  Object testSelectPage(@RequestBody Paging pageclient) {
-        System.out.println(pageclient);
+        QueryWrapper<Client> wrapperclinet = new QueryWrapper<Client>();
+        wrapperclinet.eq("status","1");
+        List<Client> list =new ArrayList<>();
+        list = clientService.list(wrapperclinet);
+        Contact contact=null;
+        for (Client client:list)
+        {
+            QueryWrapper<Orders> ordersQueryWrapper = new QueryWrapper<Orders>();
+            ordersQueryWrapper.eq("cid",client.getCid()).eq("type",5).orderByDesc("deadline");
+            List<Orders> ordersList = new ArrayList<>();
+            ordersList=ordersService.list(ordersQueryWrapper);
+           if(!ordersList.isEmpty()){
+               Orders orders = new Orders();
+               orders= ordersList.get(0);
+               if(orders.getDeadline().plusMonths(6).compareTo(FromDateUtil.UtilToSql())<0) {
+                   
+                   client.setStatus(0);
+                   client.setUpdatetime(FromDateUtil.UtilToSql());
+                   boolean update = clientService.updateById(client);
+                   if (update==true){
+                       contact=new Contact();
+                       contact.setUpdatetime(FromDateUtil.UtilToSql());
+                       QueryWrapper<Contact> wrapper = new QueryWrapper<Contact>();
+                       wrapper.eq("cid",client.getCid());
+                       contact.setCid(client.getCid());
+                       contact.setStatus(0);
+                       contactService.update(contact,wrapper);
+                   }
+
+               }
+           }
+
+        }
         QueryWrapper<ClientVo> wrapper = new QueryWrapper<ClientVo>();
         Page<ClientVo> page = new Page<>(pageclient.getCurrent(), pageclient.getPagesize());
         IPage<ClientVo> iPage= null;
@@ -138,7 +170,6 @@ public class ClientController {
         String behavior=userLog.get(0).getBehavior().concat(" "+ LocalDateTime.now()+"查看了客户公司管理相关操作");
         userLog.get(0).setBehavior(behavior);
         userLogService.updateById(userLog.get(0));
-
         return pageclient;
     }
 }
