@@ -32,8 +32,6 @@ public class UserLog implements Serializable {
     private Integer id;
     @ApiModelProperty(value = "用户名")
     private String user;
-    @ApiModelProperty(value = "密码")
-    private String password;
     @ApiModelProperty(value = "创建时间")
     private LocalDateTime createTime;
     @ApiModelProperty(value = "更新时间")
