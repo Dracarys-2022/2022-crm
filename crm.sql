@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80030
 File Encoding         : 65001
 
-Date: 2022-09-25 17:07:07
+Date: 2022-10-13 19:53:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,16 +27,19 @@ CREATE TABLE `active` (
   `endtime` time DEFAULT NULL,
   `people` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of active
 -- ----------------------------
 INSERT INTO `active` VALUES ('1', '会议1', '2022-08-13', '08:30:00', '09:00:00', '王五');
-INSERT INTO `active` VALUES ('2', '返校名单', '2022-09-08', '08:30:00', '08:45:00', '刘明宇 王嘉裕');
-INSERT INTO `active` VALUES ('3', '返校名单', '2022-09-09', '08:30:00', '08:45:00', '程森 潘金明 杨玉升 孙鹤');
 INSERT INTO `active` VALUES ('4', '会议1', '2022-09-30', '08:30:00', '09:00:00', '123');
 INSERT INTO `active` VALUES ('5', '会议2', '2022-09-30', '08:45:00', '09:00:00', '王五，李四');
+INSERT INTO `active` VALUES ('6', '123', '2022-09-07', '08:30:00', '09:15:00', '123');
+INSERT INTO `active` VALUES ('7', '123', '2022-09-07', '08:30:00', '09:15:00', '123');
+INSERT INTO `active` VALUES ('8', '123', '2022-09-07', '08:30:00', '09:15:00', '123');
+INSERT INTO `active` VALUES ('9', '123', '2022-10-06', '08:30:00', '09:30:00', '123');
+INSERT INTO `active` VALUES ('10', '123', '2022-09-09', '08:30:00', '09:30:00', '213');
 
 -- ----------------------------
 -- Table structure for calendar
@@ -197,14 +200,15 @@ CREATE TABLE `operator` (
   `password` varchar(255) DEFAULT NULL COMMENT '用户密码',
   `status` int NOT NULL DEFAULT '1' COMMENT '用户身份',
   `roid` int DEFAULT NULL COMMENT '角色',
+  `token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`oid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of operator
 -- ----------------------------
-INSERT INTO `operator` VALUES ('1', '韩总', '12345678910', '202cb962ac59075b964b07152d234b70', '1', '1');
-INSERT INTO `operator` VALUES ('2', '索总', '12345678912', '202cb962ac59075b964b07152d234b70', '1', '1');
+INSERT INTO `operator` VALUES ('1', '韩总', '12345678910', '202cb962ac59075b964b07152d234b70', '1', '1', null);
+INSERT INTO `operator` VALUES ('2', '索总', '12345678912', '202cb962ac59075b964b07152d234b70', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for orders
@@ -354,7 +358,6 @@ DROP TABLE IF EXISTS `user_log`;
 CREATE TABLE `user_log` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   `status` int DEFAULT NULL,
@@ -362,94 +365,23 @@ CREATE TABLE `user_log` (
   `behavior` longtext,
   `by1` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of user_log
 -- ----------------------------
-INSERT INTO `user_log` VALUES ('58', 'admin', 'admin', '2022-08-29 15:42:28', null, '0', '\"Windows\"', '15:42:28.282尝试登录 因为账号或者密码错误登录失败 因为账号或者密码错误登录失败 因为账号或者密码错误登录失败 因为账号或者密码错误登录失败 因为账号或者密码错误登录失败 因为账号或者密码错误登录失败 登录成功 登录成功 登录成功 登录成功 登录成功', '58');
-INSERT INTO `user_log` VALUES ('59', 'admin', '123', '2022-08-29 15:47:58', null, '1', '\"Windows\"', '15:47:58.143尝试登录 登录成功 登录成功 登录成功 登录成功 登录成功', '59');
-INSERT INTO `user_log` VALUES ('60', 'admin', '123', '2022-08-29 15:57:51', null, '1', '\"Windows\"', '15:57:51.146尝试登录 登录成功', '60');
-INSERT INTO `user_log` VALUES ('61', 'admin', '123', '2022-08-29 15:59:38', null, '1', '\"Windows\"', '15:59:38.386尝试登录 登录成功', '61');
-INSERT INTO `user_log` VALUES ('62', 'admin', '123', '2022-08-29 16:01:16', null, '1', '\"Windows\"', '16:01:15.791尝试登录 登录成功', '62');
-INSERT INTO `user_log` VALUES ('63', 'admin', '123', '2022-08-29 16:08:34', null, '1', '\"Windows\"', '16:08:34.425尝试登录 登录成功', '63');
-INSERT INTO `user_log` VALUES ('64', 'admin', '123', '2022-08-29 16:09:21', null, '1', '\"Windows\"', '16:09:20.822尝试登录 登录成功', '64');
-INSERT INTO `user_log` VALUES ('65', 'admin', '123', '2022-08-29 16:09:36', null, '1', '\"Windows\"', '16:09:36.256尝试登录 登录成功', '65');
-INSERT INTO `user_log` VALUES ('66', 'admin', '123', '2022-08-29 16:10:11', null, '1', '\"Windows\"', '16:10:10.932尝试登录', '66');
-INSERT INTO `user_log` VALUES ('67', '1123', '123', '2022-09-08 19:30:13', null, '0', '\"Windows\"', '19:30:12.838尝试登录 因为账号或者密码错误登录失败 查看了用户日程表 查看了2022-09-10日程表 查看了2022-09-17日程表 查看了用户日程表 查看了2022-09-15日程表 查看了2022-09-16日程表 查看了2022-09-17日程表 查看了用户日程表 查看了用户日程表 查看了2022-09-10日程表 查看了2022-09-08日程表 添加了2022-09-08日程表 查看了用户日程表 查看了2022-09-08日程表 查看了2022-09-09日程表 添加了2022-09-09日程表 查看了2022-09-09日程表 查看了用户日程表 查看了2022-09-09日程表 查看了2022-09-08日程表 查看了2022-09-09日程表 登录成功', '67');
-INSERT INTO `user_log` VALUES ('68', 'admin', '123', '2022-09-10 11:38:33', null, '1', '\"Windows\"', '11:38:33.292尝试登录 查看了用户日程表 查看了2022-09-09日程表 查看了2022-09-10日程表 查看了2022-09-09日程表 查看了2022-09-08日程表 查看了2022-09-15日程表 查看了2022-09-30日程表 添加了2022-09-30日程表 查看了2022-09-30日程表 查看了2022-09-08日程表 查看了2022-09-30日程表 添加了2022-09-30日程表 查看了用户日程表 查看了2022-09-30日程表 查看了用户日程表 查看了2022-09-08日程表 查看了2022-09-08日程表 查看了2022-09-09日程表 因为账号或者密码错误登录失败', '68');
-INSERT INTO `user_log` VALUES ('69', 'admin', 'admin', '2022-09-18 21:10:58', null, '0', '\"Windows\"', '21:10:57.576尝试登录 因为账号或者密码错误登录失败', '69');
-INSERT INTO `user_log` VALUES ('70', 'admin', 'admin', '2022-09-18 21:12:35', null, '0', '\"Windows\"', '21:12:35.450尝试登录 登录成功', '70');
-INSERT INTO `user_log` VALUES ('71', 'admin', '123', '2022-09-18 21:12:57', null, '1', '\"Windows\"', '21:12:56.964尝试登录 登录成功', '71');
-INSERT INTO `user_log` VALUES ('72', 'admin', '123', '2022-09-18 21:14:26', null, '1', '\"Windows\"', '21:14:26.208尝试登录 登录成功', '72');
-INSERT INTO `user_log` VALUES ('73', 'admin', '123', '2022-09-18 21:15:30', null, '1', '\"Windows\"', '21:15:30.006尝试登录 查看了用户日程表 登录成功', '73');
-INSERT INTO `user_log` VALUES ('74', 'admin', '123', '2022-09-18 21:15:55', null, '1', '\"Windows\"', '21:15:55.223尝试登录 登录成功', '74');
-INSERT INTO `user_log` VALUES ('75', 'admin', '123', '2022-09-18 21:18:46', null, '1', '\"Windows\"', '21:18:45.520尝试登录 登录成功', '75');
-INSERT INTO `user_log` VALUES ('76', 'admin', '123', '2022-09-18 21:19:40', null, '1', '\"Windows\"', '21:19:39.846尝试登录 登录成功', '76');
-INSERT INTO `user_log` VALUES ('77', 'admin', 'admin', '2022-09-18 21:20:06', null, '0', '\"Windows\"', '21:20:06.202尝试登录', '77');
-INSERT INTO `user_log` VALUES ('78', 'admin', '123', '2022-09-18 21:20:09', null, '1', '\"Windows\"', '21:20:08.974尝试登录 登录成功', '78');
-INSERT INTO `user_log` VALUES ('79', 'admin', '123', '2022-09-18 21:21:08', null, '1', '\"Windows\"', '21:21:07.832尝试登录 因为账号或者密码错误登录失败', '79');
-INSERT INTO `user_log` VALUES ('80', '阿大声道', 'asd ', '2022-09-18 21:21:13', null, '0', '\"Windows\"', '21:21:12.626尝试登录 登录成功', '80');
-INSERT INTO `user_log` VALUES ('81', 'admin', '123', '2022-09-18 21:21:24', null, '1', '\"Windows\"', '21:21:23.890尝试登录 查看了用户日程表 登录成功', '81');
-INSERT INTO `user_log` VALUES ('82', 'admin', '123', '2022-09-18 21:22:42', null, '1', '\"Windows\"', '21:22:41.726尝试登录 登录成功', '82');
-INSERT INTO `user_log` VALUES ('83', 'admin', '123', '2022-09-18 21:22:51', null, '1', '\"Windows\"', '21:22:50.587尝试登录 登录成功', '83');
-INSERT INTO `user_log` VALUES ('84', 'admin', '123', '2022-09-18 21:32:56', null, '1', '\"Windows\"', '21:32:55.999尝试登录 登录成功', '84');
-INSERT INTO `user_log` VALUES ('85', 'admin', '123', '2022-09-18 21:33:06', null, '1', '\"Windows\"', '21:33:05.555尝试登录 登录成功', '85');
-INSERT INTO `user_log` VALUES ('86', 'admin', '123', '2022-09-18 21:43:00', null, '1', '\"Windows\"', '21:43:00.316尝试登录 登录成功', '86');
-INSERT INTO `user_log` VALUES ('87', 'admin', '123', '2022-09-18 21:44:04', null, '1', '\"Windows\"', '21:44:03.654尝试登录 登录成功', '87');
-INSERT INTO `user_log` VALUES ('88', 'admin', '123', '2022-09-18 21:44:10', null, '1', '\"Windows\"', '21:44:10.152尝试登录 登录成功', '88');
-INSERT INTO `user_log` VALUES ('89', 'admin', '123', '2022-09-18 21:45:30', null, '1', '\"Windows\"', '21:45:29.517尝试登录 登录成功', '89');
-INSERT INTO `user_log` VALUES ('90', 'admin', '123', '2022-09-18 21:48:38', null, '1', '\"Windows\"', '21:48:38.205尝试登录 登录成功', '90');
-INSERT INTO `user_log` VALUES ('91', 'admin', '123', '2022-09-18 22:33:48', null, '1', '\"Windows\"', '22:33:47.878尝试登录 查看了用户日程表 登录成功', '91');
-INSERT INTO `user_log` VALUES ('92', 'admin', '123', '2022-09-18 22:47:49', null, '1', '\"Windows\"', '22:47:49.148尝试登录 登录成功', '92');
-INSERT INTO `user_log` VALUES ('93', 'admin', '123', '2022-09-18 22:48:22', null, '1', '\"Windows\"', '22:48:21.861尝试登录 登录成功', '93');
-INSERT INTO `user_log` VALUES ('94', 'admin', '123', '2022-09-18 22:52:34', null, '1', '\"Windows\"', '22:52:33.911尝试登录 登录成功', '94');
-INSERT INTO `user_log` VALUES ('95', 'admin', '123', '2022-09-18 23:02:29', null, '1', '\"Windows\"', '23:02:29.346尝试登录 查看了用户日程表 查看了2022-09-14日程表 查看了用户日程表 登录成功', '95');
-INSERT INTO `user_log` VALUES ('96', 'admin', '123', '2022-09-19 20:23:50', null, '1', '\"Windows\"', '20:23:49.828尝试登录 查看了用户日程表 查看了2022-09-08日程表 查看了2022-09-09日程表 2022-09-24T23:10:35.362登录成功', '96');
-INSERT INTO `user_log` VALUES ('97', 'admin', '123', '2022-09-24 23:10:35', null, '1', '\"Windows\"', '23:10:34.733尝试登录', '97');
-INSERT INTO `user_log` VALUES ('98', 'admin', '123', '2022-09-25 14:27:14', null, '1', '\"Windows\"', '14:27:13.961尝试登录', '98');
-INSERT INTO `user_log` VALUES ('99', 'admin', '123', '2022-09-25 14:32:07', null, '1', '\"Windows\"', '14:32:07.086尝试登录', '99');
-INSERT INTO `user_log` VALUES ('100', 'admin', '123', '2022-09-25 14:33:32', null, '1', '\"Windows\"', '14:33:31.746尝试登录', '100');
-INSERT INTO `user_log` VALUES ('101', 'admin', '123', '2022-09-25 14:35:18', null, '1', '\"Windows\"', '14:35:17.966尝试登录', '101');
-INSERT INTO `user_log` VALUES ('102', 'admin', '123', '2022-09-25 14:46:41', null, '1', '\"Windows\"', '14:46:41.318尝试登录 2022-09-25T14:48:29.784登录成功', '102');
-INSERT INTO `user_log` VALUES ('103', 'admin', '123', '2022-09-25 14:46:41', null, '1', '\"Windows\"', '14:46:41.318尝试登录', '103');
-INSERT INTO `user_log` VALUES ('104', 'admin', '123', '2022-09-25 14:47:38', null, '1', '\"Windows\"', '14:47:37.525尝试登录', '104');
-INSERT INTO `user_log` VALUES ('105', 'admin', '123', '2022-09-25 14:48:11', null, '1', '\"Windows\"', '14:48:11.208尝试登录', '105');
-INSERT INTO `user_log` VALUES ('106', 'admin', '123', '2022-09-25 14:48:30', null, '1', '\"Windows\"', '14:48:29.584尝试登录', '106');
-INSERT INTO `user_log` VALUES ('107', 'admin', '123', '2022-09-25 14:51:35', null, '1', '\"Windows\"', '14:51:35.353尝试登录 2022-09-25T15:01:11.020登录成功', '107');
-INSERT INTO `user_log` VALUES ('108', 'admin', '123', '2022-09-25 14:58:27', null, '1', '\"Windows\"', '14:58:27.301尝试登录 2022-09-25T15:01:58.670登录成功', '108');
-INSERT INTO `user_log` VALUES ('109', 'admin', '123', '2022-09-25 15:01:11', null, '1', '\"Windows\"', '15:01:10.809尝试登录 2022-09-25T15:02:43.235登录成功', '109');
-INSERT INTO `user_log` VALUES ('110', 'admin', '123', '2022-09-25 15:01:58', null, '1', '\"Windows\"', '15:01:58.406尝试登录 2022-09-25T15:04:21.972查看了用户日程表', '110');
-INSERT INTO `user_log` VALUES ('111', 'admin', '123', '2022-09-25 15:02:43', null, '1', '\"Windows\"', '15:02:43.051尝试登录 2022-09-25T15:02:49.655查看了用户日程表', '111');
-INSERT INTO `user_log` VALUES ('112', 'admin', '123', '2022-09-25 15:06:01', null, '1', '\"Windows\"', '15:06:00.617尝试登录', '112');
-INSERT INTO `user_log` VALUES ('113', 'admin', '123', '2022-09-25 15:07:23', null, '1', '\"Windows\"', '15:07:22.519尝试登录', '113');
-INSERT INTO `user_log` VALUES ('114', 'admin', '123', '2022-09-25 15:08:36', null, '1', '\"Windows\"', '15:08:36.019尝试登录', '114');
-INSERT INTO `user_log` VALUES ('115', 'admin', '123', '2022-09-25 15:09:31', null, '1', '\"Windows\"', '15:09:30.617尝试登录', '115');
-INSERT INTO `user_log` VALUES ('116', 'admin', '123', '2022-09-25 15:22:33', null, '1', '\"Windows\"', '15:22:33.402尝试登录', '116');
-INSERT INTO `user_log` VALUES ('117', 'admin', '123', '2022-09-25 15:24:29', null, '1', '\"Windows\"', '15:24:28.757尝试登录', '117');
-INSERT INTO `user_log` VALUES ('118', 'admin', '123', '2022-09-25 15:25:48', null, '1', '\"Windows\"', '15:25:48.326尝试登录 2022-09-25T15:39:31.455登录成功 2022-09-25T15:52:04.790因为账号或者密码错误登录失败', null);
-INSERT INTO `user_log` VALUES ('119', 'admin', '123', '2022-09-25 15:32:42', null, '1', '\"Windows\"', '15:32:41.726尝试登录 查看了2022-09-07日程表', null);
-INSERT INTO `user_log` VALUES ('120', 'admin', '123', '2022-09-25 15:39:31', null, '1', '\"Windows\"', '15:39:31.289尝试登录 2022-09-25T15:39:37.633查看了用户日程表', null);
-INSERT INTO `user_log` VALUES ('121', 'admin', '123', '2022-09-25 15:52:05', null, '0', '\"Windows\"', '15:52:04.582尝试登录', null);
-INSERT INTO `user_log` VALUES ('122', 'admin', '123', '2022-09-25 15:52:18', null, '0', '\"Windows\"', '15:52:18.205尝试登录', null);
-INSERT INTO `user_log` VALUES ('123', 'admin', '123', '2022-09-25 15:53:37', null, '0', '\"Windows\"', '15:53:37.147尝试登录 2022-09-25T15:55:02.731登录成功', null);
-INSERT INTO `user_log` VALUES ('124', 'admin', '123', '2022-09-25 15:54:32', null, '0', '\"Windows\"', '15:54:32.284尝试登录', null);
-INSERT INTO `user_log` VALUES ('125', 'admin', '123', '2022-09-25 15:55:03', null, '0', '\"Windows\"', '15:55:02.510尝试登录 2022-09-25T15:57:14.725登录成功 2022-09-25T15:58:16.737登录成功', null);
-INSERT INTO `user_log` VALUES ('126', 'admin', '123', '2022-09-25 15:55:11', null, '0', '\"Windows\"', '15:55:10.862尝试登录 2022-09-25T15:55:44.708登录成功', null);
-INSERT INTO `user_log` VALUES ('127', 'admin', '123', '2022-09-25 15:55:27', null, '0', '\"Windows\"', '15:55:27.384尝试登录', null);
-INSERT INTO `user_log` VALUES ('128', 'admin', '123', '2022-09-25 15:55:45', null, '0', '\"Windows\"', '15:55:44.558尝试登录', null);
-INSERT INTO `user_log` VALUES ('129', 'admin', '123', '2022-09-25 15:56:14', null, '0', '\"Windows\"', '15:56:13.861尝试登录', null);
-INSERT INTO `user_log` VALUES ('130', 'admin', '123', '2022-09-25 15:56:56', null, '0', '\"Windows\"', '15:56:56.307尝试登录 2022-09-25T15:58:38.741登录成功', null);
-INSERT INTO `user_log` VALUES ('131', 'admin', '123', '2022-09-25 15:57:15', null, '0', '\"Windows\"', '15:57:14.558尝试登录', null);
-INSERT INTO `user_log` VALUES ('132', 'admin', '123', '2022-09-25 15:57:20', null, '0', '\"Windows\"', '15:57:19.613尝试登录', null);
-INSERT INTO `user_log` VALUES ('133', 'admin', '123', '2022-09-25 15:57:31', null, '0', '\"Windows\"', '15:57:30.621尝试登录', null);
-INSERT INTO `user_log` VALUES ('134', 'admin', '123', '2022-09-25 15:58:17', null, '0', '\"Windows\"', '15:58:16.598尝试登录', null);
-INSERT INTO `user_log` VALUES ('135', 'admin', '123', '2022-09-25 15:58:23', null, '0', '\"Windows\"', '15:58:22.923尝试登录', null);
-INSERT INTO `user_log` VALUES ('136', 'admin', '123', '2022-09-25 15:58:39', null, '0', '\"Windows\"', '15:58:38.584尝试登录', null);
-INSERT INTO `user_log` VALUES ('137', '韩总', '123', '2022-09-25 17:05:47', null, '0', '\"Windows\"', '17:05:47.148尝试登录 2022-09-25T17:06:17.306因为账号或者密码错误登录失败', null);
-INSERT INTO `user_log` VALUES ('138', '韩总', '123', '2022-09-25 17:06:04', null, '0', '\"Windows\"', '17:06:03.953尝试登录 2022-09-25T17:06:23.231登录成功', null);
-INSERT INTO `user_log` VALUES ('139', 'admin', '123', '2022-09-25 17:06:17', null, '0', '\"Windows\"', '17:06:17.150尝试登录', null);
-INSERT INTO `user_log` VALUES ('140', '韩总', '123', '2022-09-25 17:06:23', null, '0', '\"Windows\"', '17:06:23.116尝试登录', null);
+INSERT INTO `user_log` VALUES ('145', '韩总', '2022-09-25 23:40:30', null, '1', '\"Windows\"', '23:40:30.377尝试登录 2022-09-25T23:40:34.795查看了用户日程表', null);
+INSERT INTO `user_log` VALUES ('146', '韩总', '2022-09-25 23:46:38', null, '1', '\"Windows\"', '23:46:37.579尝试登录', null);
+INSERT INTO `user_log` VALUES ('147', 'admin', '2022-09-25 23:51:46', null, '0', '\"Windows\"', '23:51:45.728尝试登录', null);
+INSERT INTO `user_log` VALUES ('148', '韩总', '2022-09-25 23:51:58', null, '1', '\"Windows\"', '23:51:57.631尝试登录 2022-09-25T23:52:08.565查看了用户日程表', null);
+INSERT INTO `user_log` VALUES ('149', '韩总', '2022-09-26 11:48:06', null, '1', '\"Windows\"', '11:48:06.219尝试登录', null);
+INSERT INTO `user_log` VALUES ('150', '韩总', '2022-09-26 23:00:11', null, '1', '\"Windows\"', '23:00:11.204尝试登录', null);
+INSERT INTO `user_log` VALUES ('151', '韩总', '2022-09-26 23:00:56', null, '1', '\"Windows\"', '23:00:56.281尝试登录', null);
+INSERT INTO `user_log` VALUES ('152', '韩总', '2022-09-26 23:01:28', null, '1', '\"Windows\"', '23:01:27.853尝试登录', null);
+INSERT INTO `user_log` VALUES ('153', '韩总', '2022-09-27 15:50:10', null, '1', '\"Windows\"', '15:50:09.944尝试登录', null);
+INSERT INTO `user_log` VALUES ('154', '韩总', '2022-10-05 17:53:40', null, '1', '\"Windows\"', '17:53:40.396尝试登录', null);
+INSERT INTO `user_log` VALUES ('155', '韩总', '2022-10-05 18:29:14', null, '1', '\"Windows\"', '18:29:13.766尝试登录', null);
+INSERT INTO `user_log` VALUES ('156', '韩总', '2022-10-06 14:19:02', null, '1', '\"Windows\"', '14:19:02.463尝试登录', null);
 
 -- ----------------------------
 -- Table structure for visit
