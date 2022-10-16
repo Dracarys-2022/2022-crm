@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -46,7 +48,7 @@ public class UserController {
     RolesService rolesService;
     @ApiOperation(value = "用户登录")
     @PostMapping("login")
-    public Operator login(@RequestBody Operator operator, HttpServletRequest request){
+    public Object login(@RequestBody Operator operator, HttpServletRequest request){
         QueryWrapper<Operator> queryWrapper=new QueryWrapper<>();
         String password= Md5Utils.code(operator.getPassword());
         System.err.println(password);
@@ -74,7 +76,10 @@ public class UserController {
         String functions=rolesService.getOne(wrapper).getPermissions();
         operator1.setToken(JwtUtil.createToken(operator1,functions));
         System.out.println("token的值为"+operator1.getToken());
-        return operator1;
+        Map<Object,Object> map=new HashMap<>();
+        map.put("data",operator1);
+        map.put("permission",functions);
+        return map;
     }
     @GetMapping("用户更新")
     @ApiOperation(value = "添加活动")

@@ -120,9 +120,10 @@ public class ProductController {
         return Rsmap;
     }
 
-    @PostMapping("/add")
+    @PostMapping("add")
     @ApiOperation("添加新产品")
     public Object add(@RequestBody Product product) {
+        System.out.println("添加商品");
         productService.save(product);
         return 0;
     }

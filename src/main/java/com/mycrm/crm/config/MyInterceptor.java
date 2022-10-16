@@ -18,11 +18,22 @@ public class MyInterceptor implements HandlerInterceptor {
         System.out.println("MyInterceptor1>>>preHandle");
         //把token解析出来
         String token = request.getHeader("Authorization");
+//        String username = request.getHeader("111");
+        if(token==null||"".equals(token)){
+            System.out.println("token有问题");
+            return false;
+        }
         System.out.println("token的值为"+token);
-        String aa=token.replace("\"", "");
+        String aaa=token.replace("\"", "");
+        String aa=aaa.substring(7);
         Jws<Claims> claimsJws= Jwts.parser().setSigningKey(JwtUtil.signature).parseClaimsJws(aa);
         Claims body=claimsJws.getBody();
         String permissions= (String) body.get("permissions");
+        //String oname=(String)body.get("username");
+//        if(username==null||username.equals("")||oname.equals(username)){
+//            System.out.println("名字出现问题");
+//            return false;
+//        }
         System.out.println("权限："+permissions);
         String functions []=permissions.split(",");
         //功能查询的拦截放行
@@ -94,13 +105,6 @@ public class MyInterceptor implements HandlerInterceptor {
             for(String fun:functions){
                 if ("28".equals(fun)){
                     System.out.println("删除拜访记录");
-                    return true;
-                }
-            }
-        }if("/product/add".equals(request.getRequestURI())){
-            for(String fun:functions){
-                if ("29".equals(fun)){
-                    System.out.println("添加产品");
                     return true;
                 }
             }
@@ -321,6 +325,14 @@ public class MyInterceptor implements HandlerInterceptor {
             for(String fun:functions){
                 if ("33".equals(fun)){
                     System.out.println("我通过了");
+                    return true;
+                }
+            }
+        }
+        if("/product/add".equals(request.getRequestURI())){
+            for(String fun:functions){
+                if ("29".equals(fun)){
+                    System.out.println("添加产品");
                     return true;
                 }
             }

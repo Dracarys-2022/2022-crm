@@ -22,6 +22,7 @@ public class JwtUtil {
                 .setId(UUID.randomUUID().toString())
                 .signWith(SignatureAlgorithm.HS256,signature)
                 .compact();
+        jwtToken="Bearer "+jwtToken;
         return jwtToken;
 
     }
