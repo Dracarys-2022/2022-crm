@@ -80,7 +80,6 @@ public class UserLogController {
     @ApiOperation(value = "记录用户行为")
     public String save(@RequestBody UserLog userLog, HttpServletRequest request){
         String user1=userLog.getUser();
-        String password=userLog.getPassword();
         userLog.setBehavior(LocalTime.now()+"尝试登录");
         userLog.setCreateTime(LocalDateTime.now());
         String userAgent = request.getHeader("sec-ch-ua-platform");
