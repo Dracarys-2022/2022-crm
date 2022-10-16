@@ -84,6 +84,7 @@
 
 <script>
 import { listvisit,deletevisit } from "@/services/visit";
+import { message } from "ant-design-vue";
 export default {
   name: "StandardList",
   components: {},
@@ -378,6 +379,15 @@ export default {
       console.log(to.path);
       console.log(from.path);
       listvisit(this.pagination.current, this.pagination.pageSize).then((res) => {
+        if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
+        )
+            }else{
+                message.success(
+                '填写成功！'
+        );
+            }
         this.list = res.data.data.records;
       });
     },
@@ -393,13 +403,30 @@ export default {
     },
     querylist(res) {
       // message.success(res.data.msg);
+      if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
+        )
+            }else{
+                message.success(
+                '填写成功！'
+        );
+            }
       this.list = res.data.data.records;
       this.pagination.total = res.data.total;
     },
     deletevisit(vid){
       deletevisit(vid).then(res=>this.afterdelete(res))
     },afterdelete(res){
-        alert("删除成功！")
+      if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
+        )
+            }else{
+                message.success(
+                '删除成功！'
+        );
+            }
         this.list=res.data.data.records;
       this.pagination.total=res.data.total
     },
@@ -423,6 +450,22 @@ export default {
     },
   },
   created() {
+    var aaa=localStorage.getItem('permissions');
+    var aa=aaa.replace("\"","").replace("\"","");
+    if(localStorage.getItem('access-admin')==""||localStorage.getItem('access-admin')==null){
+      this.$message.success("请重新登录！")
+      this.$router.push({
+          path: "/login"
+        });
+        return;
+    }
+   if (!aa.split(",").includes("26")) {
+      this.$message.success("您没有权限")
+      this.$router.push({
+        path: "/403"
+        });
+        return;
+   }
     listvisit(this.pagination.current, this.pagination.pageSize).then((res) =>
       this.querylist(res)
     );

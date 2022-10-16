@@ -1,7 +1,6 @@
 import TabsView from '@/layouts/tabs/TabsView'
 import BlankView from '@/layouts/BlankView'
 import PageView from '@/layouts/PageView'
-
 // 路由配置
 const options = {
   routes: [
@@ -51,8 +50,8 @@ const options = {
             // }
           ]
         },
-        
-        
+
+
         // {
         //   path: 'result',
         //   name: '结果页',
@@ -98,7 +97,7 @@ const options = {
         //     }
         //   ]
         // },
-       
+
         // {
         //   name: '带参菜单',
         //   path: 'router/query',
@@ -244,7 +243,7 @@ const options = {
               component: () => import('@/pages/visit/convi')
             }
           ]
-        },{
+        }, {
           path: 'roles',
           name: '权限管理',
           meta: {
@@ -257,12 +256,12 @@ const options = {
               name: '角色添加',
               component: () => import('@/pages/roles/addRole')
             },
-          
+
             {
               path: 'listRole',
               name: '角色查看',
               component: () => import('@/pages/roles/listRole')
-            },{
+            }, {
               path: 'listFunction',
               name: '功能查看',
               component: () => import('@/pages/functions/listFunction')
@@ -322,7 +321,7 @@ const options = {
             },
           ]
         },
-		{
+        {
           path: 'client',
           name: '客户公司管理',
           meta: {
@@ -339,17 +338,17 @@ const options = {
               path: '/client/clientList',
               name: '客户公司信息',
               component: () => import('@/pages/client/ClientList'),
-             
+
             },
             {
               path: '/client/clientDetail',
               meta: {
-                invisible:true,
+                invisible: true,
               },
               name: '客户公司详情',
               component: () => import('@/pages/client/ClientDetail')
             },
-            
+
           ]
         },
         {
@@ -373,7 +372,7 @@ const options = {
             {
               path: '/contact/contactDetail',
               meta: {
-                invisible:true,
+                invisible: true,
               },
               name: '客户联系人详情',
               component: () => import('@/pages/contact/ContactDetail')
@@ -401,7 +400,7 @@ const options = {
             {
               path: '/operator/operatorDetail',
               meta: {
-                invisible:true,
+                invisible: true,
               },
               name: '用户详情',
               component: () => import('@/pages/operator/OperatorDetail')
@@ -412,7 +411,7 @@ const options = {
           name: '个人中心',
           path: '/operator/center',
           meta: {
-            invisible:true,
+            invisible: true,
           },
           component: () => import('@/pages/operator/OperatorCenter')
         }

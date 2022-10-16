@@ -8,8 +8,8 @@ axios.defaults.timeout = 5000
 axios.defaults.withCredentials= true
 axios.defaults.xsrfHeaderName= xsrfHeaderName
 axios.defaults.xsrfCookieName= xsrfHeaderName
-axios.defaults.baseURL = 'http://localhost:8081'
-
+axios.defaults.baseURL = 'http://119.3.255.96:8888/api'
+// axios.defaults.baseURL = 'http://localhost:8081'
 // 认证类型
 const AUTH_TYPE = {
   BEARER: 'Bearer',

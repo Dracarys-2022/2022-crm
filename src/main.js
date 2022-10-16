@@ -14,8 +14,8 @@ import 'moment/locale/zh-cn'
 import elementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/display.css'
+import globals from './pages/components/global/global.js'
 import axios from 'axios'
-
 const router = initRouter(store.state.setting.asyncRoutes)
 const i18n = initI18n('CN', 'US')
 Vue.use(elementUI)
@@ -32,15 +32,17 @@ axios.interceptors.request.use(config => {
   //判断是否存在token，如果存在将每个页面header都添加token
   //if中的值为登陆时存入vuex中的token值
   //如果存在token值，将token放入请求头‘Authorization’中
-  if(localStorage.getItem('access-admin')!==null){
+  // if(localStorage.getItem('access-admin')!==null){
+  // config.headers.common['Authorization']=localStorage.getItem('access-admin')
+  // }
   config.headers.common['Authorization']=localStorage.getItem('access-admin')
-  }
-  
+  // config.headers.common['operatorname']=localStorage.getItem('oname')
   return config;
   }, error => {
   // 对请求错误做些什么
   return Promise.reject(error);
   });
+  Vue.prototype.$global=globals;
 new Vue({
   router,
   store,

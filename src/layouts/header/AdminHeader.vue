@@ -19,6 +19,15 @@
           </a-tooltip>
           <header-notice class="header-item"/>
           <header-avatar class="header-item"/>
+          <div>
+            <a-button @click="center">
+           
+            个人中心
+          </a-button>
+          <a-button @click="logout">
+           退出登录
+          </a-button>
+</div>
           <a-dropdown class="lang header-item">
             <div>
               <a-icon type="global"/> {{langAlias}}
@@ -38,7 +47,7 @@ import HeaderNotice from './HeaderNotice'
 import HeaderAvatar from './HeaderAvatar'
 import IMenu from '@/components/menu/menu'
 import {mapState, mapMutations} from 'vuex'
-
+import {logout} from '@/services/user'
 export default {
   name: 'AdminHeader',
   components: {IMenu, HeaderAvatar, HeaderNotice, HeaderSearch},
@@ -79,11 +88,36 @@ export default {
     onSelect (obj) {
       this.$emit('menuSelect', obj)
     },
+    center() {
+      this.$router.replace({
+        path: '/operator/center',
+        //query: { cid: e }
+      });
+    },
+    logout() {
+      logout()
+      this.$router.push('/login')
+    },
     ...mapMutations('setting', ['setLang'])
   }
 }
 </script>
 
 <style lang="less" scoped>
+ .header-avatar{
+    display: inline-flex;
+    .avatar, .name{
+      align-self: center;
+    }
+    .avatar{
+      margin-right: 8px;
+    }
+    .name{
+      font-weight: 500;
+    }
+  }
+  .avatar-menu{
+    width: 150px;
+  }
 @import "index";
 </style>

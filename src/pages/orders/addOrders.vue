@@ -37,11 +37,12 @@
           <a-input v-model="source.price" prop="price" />
         </a-form-model-item>
         <a-form-model-item class="a" label="客户" prop="cid">
-          <a-select v-model="source.cid" placeholder="选择客户">
-            <a-select-option 
+          <a-select v-model="source.cid" placeholder="选择客户" @change="ccc(source.cid)">
+            <a-select-option  
             v-for="(it, i) in c" 
             :key="i" 
-            :value="it.cid">{{
+            :value="it.cid"
+           >{{
               it.cname
             }}</a-select-option>
           </a-select>
@@ -225,29 +226,50 @@ export default {
     resetForm(source) {
       this.$refs[source].resetFields();
     },
-  },
-  watch: {
-     cid(newValue,oldValue){
-      console.log(oldValue)
-        selectcoid(newValue).then((res)=>{
-          this.source.co=res.data.data;
+    ccc(sss){
+      selectcoid(sss).then((res)=>{
+          this.co=res.data.data;
         })
-    }
   },
+  },
+  // watch: {
+  //    cid(newValue,oldValue){
+  //     console.log(oldValue)
+  //     alert(newValue)
+  //     alert(oldValue)
+  //       selectcoid(newValue).then((res)=>{
+  //         this.source.co=res.data.data;
+  //       })
+  //   }
+  // },
   created() {
+    var aaa=localStorage.getItem('permissions');
+    var aa=aaa.replace("\"","").replace("\"","");
+    if(localStorage.getItem('access-admin')==""||localStorage.getItem('access-admin')==null){
+      this.$message.success("请重新登录！")
+      this.$router.push({
+          path: "/login"
+        });
+        return;
+    }
+   if (!aa.split(",").includes("42")) {
+      this.$message.success("您没有权限")
+      this.$router.push({
+        path: "/403"
+        });
+        return;
+   }
     getproduct().then((res) => {
       // alert(res.data.c)
       // alert(res.data.product)
       // alert(res.data.co)
       // this.co = res.data.co;
-      if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+      if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
             }else{
-                this.$message.success(
+                message.success(
                 '查询成功'
         );
             }

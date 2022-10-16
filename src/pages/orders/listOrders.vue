@@ -158,7 +158,7 @@
 
 <script>
 import { listorders,requestout,out,returnstate,complate } from "@/services/orders";
-// import { message } from "ant-design-vue";
+import { message } from "ant-design-vue";
 export default {
   data() {
     return {
@@ -373,14 +373,12 @@ export default {
     },
     querylist: function (res) {
       // message.success(res.data.msg);
-      if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+      if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
             }else{
-                this.$message.success(
+                message.success(
                 '查询成功'
         );
             }
@@ -398,14 +396,12 @@ export default {
     },
     requestout(oid){
       requestout(oid,1,5).then(res=>{
-        if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+        if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
             }else{
-                this.$message.success(
+                message.success(
                 '已请求出库！'
         );
             }
@@ -415,14 +411,12 @@ export default {
       })
     },out(oid){
       out(oid,1,5).then(res=>{
-        if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+        if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
             }else{
-                this.$message.success(
+                message.success(
                 '已出库！'
         );
             }
@@ -440,14 +434,12 @@ export default {
         //   path: "/inventory/updatestock",
         //   query: { data: res.data.data },
         // });
-        if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+        if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
             }else{
-                this.$message.success(
+                message.success(
                 '已退换！'
         );
             }
@@ -458,14 +450,12 @@ export default {
     },
     complate(oid){
       complate(oid,1,5).then(res=>{
-        if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+        if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
             }else{
-                this.$message.success(
+                message.success(
                 '已完成订单！'
         );
             }
@@ -476,6 +466,22 @@ export default {
     }
   },
   created() {
+    var aaa=localStorage.getItem('permissions');
+    var aa=aaa.replace("\"","").replace("\"","");
+    if(localStorage.getItem('access-admin')==""||localStorage.getItem('access-admin')==null){
+      this.$message.success("请重新登录！")
+      this.$router.push({
+          path: "/login"
+        });
+        return;
+    }
+   if (!aa.split(",").includes("43")) {
+      this.$message.success("您没有权限")
+      this.$router.push({
+        path: "/403"
+        });
+        return;
+   }
     listorders(this.pagination.current, this.pagination.pageSize).then((res) =>
       this.querylist(res)
     );

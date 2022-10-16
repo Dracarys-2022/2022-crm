@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import {formatRoutes} from '@/utils/routerUtil'
 
 Vue.use(Router)
-
+// const aaa=this.$global.permissions.split(",")
 // 不需要登录拦截的路由配置
 const loginIgnore = {
   names: ['404', '403'],      //根据路由名称匹配
@@ -17,7 +17,23 @@ const loginIgnore = {
     return this.names.includes(route.name) || this.paths.includes(route.path)
   }
 }
-
+// Router.Router.beforeEach((to, from, next) => {
+//   console.log(to+from+next)
+//   alert(to.name)
+//   if(to.path==='./pages/login.vue'){
+//     next();
+//   }
+//   /* must call `next` */
+//   // if(to.path==='/login'){
+//   //   console.log(aaa)
+//   //   next();
+//   // }
+//   // if(to.path==='addOrders'&aaa.includes(21)){
+//   //  next();
+//   // }else{
+//   //   next('/login')
+//   // }
+// });
 /**
  * 初始化路由实例
  * @param isAsync 是否异步路由模式

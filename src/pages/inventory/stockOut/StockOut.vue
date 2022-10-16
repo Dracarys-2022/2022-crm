@@ -122,17 +122,17 @@ export default {
       );
     },
     querylist: function (res) {
-      if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
-        )
-            }else{
-                this.$message.success(
-                '查询成功'
-        );
-            }
+      // if(res.data.msg!=""){
+      //           this.$message.success(
+      //       // '查询成功',
+      //           res.data.msg,
+      //       10,
+      //   )
+      //       }else{
+      //           this.$message.success(
+      //           '查询成功'
+      //   );
+      //       }
       this.list = res.data.data.records;
       this.pagination.total = res.data.total;
       //message.success(res.data.msg);
@@ -173,6 +173,22 @@ export default {
     },
   },
   created() {
+    var aaa=localStorage.getItem('permissions');
+    var aa=aaa.replace("\"","").replace("\"","");
+    if(localStorage.getItem('access-admin')==""||localStorage.getItem('access-admin')==null){
+      this.$message.success("请重新登录！")
+      this.$router.push({
+          path: "/login"
+        });
+        return;
+    }
+   if (!aa.split(",").includes("62")) {
+      this.$message.success("您没有权限")
+      this.$router.push({
+        path: "/403"
+        });
+        return;
+   }
     query(this.pagination.current, this.pagination.pageSize).then((res) =>
       this.querylist(res)
     );

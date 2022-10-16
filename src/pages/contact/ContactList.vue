@@ -362,6 +362,22 @@ export default {
     },
   },
   created() {
+    var aaa=localStorage.getItem('permissions');
+    var aa=aaa.replace("\"","").replace("\"","");
+    if(localStorage.getItem('access-admin')==""||localStorage.getItem('access-admin')==null){
+      this.$message.success("请重新登录！")
+      this.$router.push({
+          path: "/login"
+        });
+        return;
+    }
+   if (!aa.split(",").includes("71")) {
+      this.$message.success("您没有权限")
+      this.$router.push({
+        path: "/403"
+        });
+        return;
+   }
     this.pagination.oid=localStorage.getItem('localOperator');
     pageList(this.pagination).then((res) =>
       this.querylist(res)

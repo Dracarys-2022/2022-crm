@@ -29,7 +29,7 @@ export default ({
         )
             }else{
                 this.$message.success(
-                '查询成功'
+                '填写成功'
         );
             }
         this.$ref.loginFormRef.resetFields()
@@ -38,6 +38,23 @@ export default ({
       // console.log(this);
       this.$refs.loginFormRef.resetFields()
     }
+  },created() {
+    var aaa=localStorage.getItem('permissions');
+    var aa=aaa.replace("\"","").replace("\"","");
+    if(localStorage.getItem('access-admin')==""||localStorage.getItem('access-admin')==null){
+      this.$message.success("请重新登录！")
+      this.$router.push({
+          path: "/login"
+        });
+        return;
+    }
+   if (!aa.split(",").includes("21")) {
+      this.$message.success("您没有权限")
+      this.$router.push({
+        path: "/403"
+        });
+        return;
+   }
   },
 });
 </script>

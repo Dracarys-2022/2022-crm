@@ -36,8 +36,10 @@ const assetsCDN = {
 
 module.exports = {
   devServer: {
+    
+    port:8888,
     proxy: {
-      'http://localhost:8081/inventory': { //此处要与 /services/api.js 中的 API_PROXY_PREFIX 值保持一致
+        'http://119.3.255.96:8888': { //此处要与 /services/api.js 中的 API_PROXY_PREFIX 值保持一致
         target: process.env.VUE_APP_API_BASE_URL,
         changeOrigin: true,
         pathRewrite: {

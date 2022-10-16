@@ -101,11 +101,15 @@ export default {
           message: "产品或服务类型不能为空",
           trigger: "change",
         },
-        units: {
+        units: [{
           required: true,
           message: "单位不能为空",
           trigger: "change",
-        },
+        },{
+          message: "单位只能为汉字",
+          pattern: /^[\u4E00-\u9FA5]+$/,
+          trigger: "change",
+        }],
         price: [{
           required: true,
           message: "成交金额不能为空",
@@ -129,8 +133,8 @@ export default {
           message: "规格不能为空",
           trigger: "change",
         },{
-          message: "规格只能为汉字",
-          pattern: /^[\u4E00-\u9FA5]+$/,
+          message: "规格只能为数字",
+          pattern: /^[0-9]*$/,
           trigger: "change",
         }],
         shelflife: [{
@@ -159,19 +163,18 @@ export default {
         if (valid) {
           // 如果校验通过，请求接口，允许提交表单
           addproduct(this.source).then(res=>{
-            if(res.data.msg!=""){
-                this.$message.success(
-            // '查询成功',
-                res.data.msg,
-            10,
+            if(res.data.msg=="您没有权限进行此操作!"){
+                message.success(
+                    "您没有权限进行此操作!"
         )
             }else{
-                this.$message.success(
-                '添加成功'
+                message.success(
+                '查询成功'
         );
+        this.$closePage(this.$route, "/product/ListProduct");
+        this.$refs[source].resetFields();
             }
           });
-          this.$refs[source].resetFields();
         } else {
           //校验不通过
           message.warning("输入内容不规范，请重新输入");
@@ -189,7 +192,24 @@ export default {
     },
   },
   watch: {},
-  created() {},
+  created() {
+    var aaa=localStorage.getItem('permissions');
+    var aa=aaa.replace("\"","").replace("\"","");
+    if(localStorage.getItem('access-admin')==""||localStorage.getItem('access-admin')==null){
+      this.$message.success("请重新登录！")
+      this.$router.push({
+          path: "/login"
+        });
+        return;
+    }
+   if (!aa.split(",").includes("29")) {
+      this.$message.success("您没有权限")
+      this.$router.push({
+        path: "/403"
+        });
+        return;
+   }
+  },
 };
 </script>
 

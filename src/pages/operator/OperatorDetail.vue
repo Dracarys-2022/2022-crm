@@ -90,6 +90,22 @@ export default {
         },
     },
     created() {
+        var aaa=localStorage.getItem('permissions');
+    var aa=aaa.replace("\"","").replace("\"","");
+    if(localStorage.getItem('access-admin')==""||localStorage.getItem('access-admin')==null){
+      this.$message.success("请重新登录！")
+      this.$router.push({
+          path: "/login"
+        });
+        return;
+    }
+   if (!aa.split(",").includes("50")) {
+      this.$message.success("您没有权限")
+      this.$router.push({
+        path: "/403"
+        });
+        return;
+   }
             this.operator.oid = this.$route.query.oid
             queryById(this.operator.oid).then((res) => {
                 if(res.data.msg=="您没有权限进行此操作!"){

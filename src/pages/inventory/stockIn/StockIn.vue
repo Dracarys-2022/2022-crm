@@ -151,6 +151,8 @@ export default {
           this.source.operid = localStorage.getItem('localOperator');
           add(this.source).then(this.afterSubmit);
           this.$refs[source].resetFields();
+          this.$closePage(this.$route, "/inventory/liststock");
+
         } else {
           //校验不通过
           message.warning("输入内容不规范，请重新输入")
@@ -187,6 +189,22 @@ export default {
     },
   },
   created() {
+    var aaa=localStorage.getItem('permissions');
+    var aa=aaa.replace("\"","").replace("\"","");
+    if(localStorage.getItem('access-admin')==""||localStorage.getItem('access-admin')==null){
+      this.$message.success("请重新登录！")
+      this.$router.push({
+          path: "/login"
+        });
+        return;
+    }
+   if (!aa.split(",").includes("56")) {
+      this.$message.success("您没有权限")
+      this.$router.push({
+        path: "/403"
+        });
+        return;
+   }
     getproduct().then(res => {
       if (res.data.msg == "您没有权限进行此操作!") {
         this.$message.success(

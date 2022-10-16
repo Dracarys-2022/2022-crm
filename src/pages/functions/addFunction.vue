@@ -63,6 +63,23 @@ export default ({
         this.functions=res.data
         // alert(functions)
     }
+  },created() {
+    var aaa=localStorage.getItem('permissions');
+    var aa=aaa.replace("\"","").replace("\"","");
+    if(localStorage.getItem('access-admin')==""||localStorage.getItem('access-admin')==null){
+      this.$message.success("请重新登录！")
+      this.$router.push({
+          path: "/login"
+        });
+        return;
+    }
+   if (!aa.split(",").includes("75")) {
+      this.$message.success("您没有权限")
+      this.$router.push({
+          path: "/dashboard/workplace"
+        });
+        return;
+   }
   },
 });
 </script>

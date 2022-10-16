@@ -35,9 +35,9 @@
             </a-form-item>
           </a-tab-pane>
         </a-tabs>
-        <div>
+        <!-- <div>
            <el-link type="primary" class="abcde" href="#/update">修改密码</el-link>
-        </div>
+        </div> -->
         <a-form-item>
           <a-button :loading="logging" style="width: 100%;margin-top: 24px" size="large" htmlType="submit" type="primary">登录</a-button>
         </a-form-item>
@@ -86,7 +86,6 @@ export default {
            this.$message.success("已将本次登录记录")
           
           login(oname, password).then(this.afterLogin)
-          localStorage.setItem('oname',JSON.stringify(oname))
           }
         }
       })
@@ -96,9 +95,11 @@ export default {
       const loginRes = res.data
       // console.log("loginRes:"+loginRes.token);
       // alert("loginRes:"+loginRes.token)
-      if (!loginRes.token == '') {
-        localStorage.setItem('localOperator',JSON.stringify(loginRes.oid))
-        localStorage.setItem('access-admin',JSON.stringify(loginRes.token))
+      if (!loginRes.data.token == '') {
+        localStorage.setItem('oname',JSON.stringify(loginRes.data.oname))
+        localStorage.setItem('localOperator',JSON.stringify(loginRes.data.oid))
+        localStorage.setItem('access-admin',JSON.stringify(loginRes.data.token))
+        localStorage.setItem('permissions',JSON.stringify(loginRes.permission))
           this.$message.success('登录成功')
           this.$router.push('/dashboard/workplace')
       } else {
